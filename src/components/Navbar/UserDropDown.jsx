@@ -8,7 +8,7 @@ function UserDropDown() {
         <a href="/">Profile</a>
       </li>
       <li>
-        <a href="/">Logout</a>
+        <p>Logout</p>
       </li>
     </ul>
   );
