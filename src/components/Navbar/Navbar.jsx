@@ -1,5 +1,6 @@
 import React from 'react';
 import "./styles/Navbar.css";
+import icon from "../../images/outdoors-4-64.png";
 import UserDropDown from './UserDropDown';
 
 function Navbar({ user, signUp, logIn }) {
@@ -10,6 +11,7 @@ function Navbar({ user, signUp, logIn }) {
     <nav className="navbar">
       <div className="navbar-left-div">
         <a className="title" href="/">
+          <img src={icon} alt=""/>
           <h1>Find LaCloche</h1>
         </a>
       </div>

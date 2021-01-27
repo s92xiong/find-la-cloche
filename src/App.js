@@ -2,6 +2,7 @@ import './App.css';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from './firebase';
 import Navbar from './components/Navbar/Navbar.jsx';
+import SearchBar from './components/SearchBar/SearchBar';
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
         signUp={signUp}
         logIn={logIn}
       />
+      <div className="App-container">
+        <SearchBar />
+      </div>
     </div>
   );
 }

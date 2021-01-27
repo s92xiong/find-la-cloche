@@ -1,0 +1,8 @@
+.search-bar h2 {
+  text-align: center;
+  margin: 10px;
+}
+
+.search-bar input {
+  width: 500px;
+}
