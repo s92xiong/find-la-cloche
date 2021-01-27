@@ -25,6 +25,7 @@ function SearchBar() {
           onChange={handleChange}
           placeholder="Enter a campsite name"
           ref={inputRef}
+          spellCheck="false"
         />
         <button>Search</button>
       </form>

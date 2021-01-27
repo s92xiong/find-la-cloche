@@ -5,7 +5,7 @@ import UserDropDown from './UserDropDown';
 
 function Navbar({ user, signUp, logIn }) {
 
-  const jojo = false;
+  const jojo = true;
   
   return (
     <nav className="navbar">
@@ -28,7 +28,7 @@ function Navbar({ user, signUp, logIn }) {
           :
           <div className="login-true" >
             <img className="profile-pic" src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png" alt=""/>
-            <h4>S Xiong</h4>
+            <h4>Jonathan Joestar</h4>
             <UserDropDown />
           </div>
         }

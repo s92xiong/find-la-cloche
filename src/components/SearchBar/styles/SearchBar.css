@@ -24,7 +24,7 @@
 }
 
 .search-icon {
-  width: 5%;
+  width: 8%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -32,7 +32,6 @@
   background-color: #ffffff;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
-  padding-left: 20px;
 }
 
 .search-icon img {
@@ -46,7 +45,6 @@
   height: 100%;
   border: none;
   outline: none;
-  padding: 0 0 0 20px;
   font-size: 1.35rem;
   color: #444444;
   font-family: 'Varela Round', sans-serif;
@@ -73,4 +71,86 @@
 
 .search-bar-lower button:hover {
   background-color: #5a9b2fea;
+}
+
+@media (max-width: 750px) {
+  .search-bar h2 {
+    font-size: 35px;
+  }
+  
+  .search-bar-lower {
+    width: 500px;
+    height: 80px;
+    display: flex;
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .search-icon img {
+    height: 14px;
+    width: 14px;
+  }
+
+  .search-bar-lower input {
+    font-size: 1.2rem;
+  }
+
+  .search-bar-lower button {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 499px) {
+  .search-bar h2 {
+    font-size: 30px;
+  }
+  
+  .search-bar-lower {
+    width: 335px;
+    height: 75px;
+    display: flex;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .search-icon img {
+    height: 14px;
+    width: 14px;
+  }
+
+  .search-bar-lower input {
+    font-size: 1rem;
+  }
+
+  .search-bar-lower button {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .search-bar h2 {
+    font-size: 20px;
+  }
+
+  .search-bar-lower {
+    width: 280px;
+  }
+
+  .search-bar-lower input {
+    font-size: 0.8rem;
+  }
+
+  .search-bar-lower button {
+    font-size: 0.7rem;
+  }
+  
+  .search-icon {
+    width: 10%;
+    padding-left: 5px;
+  }
+
+  .search-icon img {
+    height: 10px;
+    width: 10px;
+  }
 }
