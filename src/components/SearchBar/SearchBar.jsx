@@ -10,9 +10,13 @@ function SearchBar() {
 
   return (
     <div className="search-bar">
-      <h2>Find Your Campsite</h2>
-      <div>
-        <input type="text" onChange={handleChange} />
+      <h2>Find your campsite</h2>
+      <div className="search-bar-lower">
+        <input 
+          type="text" 
+          onChange={handleChange}
+          placeholder="Enter a campsite name"
+        />
         <button>Search</button>
       </div>
     </div>

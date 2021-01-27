@@ -1,8 +1,53 @@
-.search-bar h2 {
-  text-align: center;
-  margin: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+.search-bar {
+  margin-bottom: 90px;
 }
 
-.search-bar input {
-  width: 500px;
+.search-bar h2 {
+  text-align: center;
+  margin: 16px;
+  color: white;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.search-bar-lower {
+  width: 700px;
+  height: 95px;
+  display: flex;
+  padding: 15px;
+  background-color: #c4bfbfa7;
+  border-radius: 10px;
+}
+
+.search-bar-lower input {
+  width: 81%;
+  height: 100%;
+  border: none;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  outline: none;
+  padding: 0 0 0 33px;
+  font-size: 1.35rem;
+  color: #444444;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.search-bar-lower input::placeholder {
+  color: #4444449c;
+  opacity: 1;
+}
+
+.search-bar-lower button {
+  width: 19%;
+  height: 100%;
+  background-color: #448c14;
+  color: white;
+  font-size: 1.3rem;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-family: 'Varela Round', sans-serif;
 }
