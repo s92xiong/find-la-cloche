@@ -8,5 +8,7 @@
 .App {
   width: 100vw;
   height: 100vh;
-  background-color: grey;
+  background-image: url("images/algonquin-highlands.jpg");
+  background-size: cover;
+  background-position: center;
 }

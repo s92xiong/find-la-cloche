@@ -4,7 +4,7 @@ import UserDropDown from './UserDropDown';
 
 function Navbar({ user, signUp, logIn }) {
 
-  const jojo = true;
+  const jojo = false;
   
   return (
     <nav className="navbar">
