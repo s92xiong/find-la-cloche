@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+.navbar {
+  height: 70px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #ff7e33cb; */
+  background-color: #eeeeee;
+  padding: 0 35px 0 35px;
+}
+
+/* .navbar-left-div {
+  
+} */
+
+.title {
+  text-decoration: none;
+  color: #277b99;
+  font-family: 'Lato', sans-serif;
+}
+
+.navbar-right-div {
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.about {
+  font-size: 15px;
+  text-decoration: none;
+  color: #636363;
+  margin-right: 40px;
+}
+
+.login-false {
+  display: flex;
+  width: auto;
+  justify-content: space-around;
+}
+
+.login-false button {
+  width: 80px;
+  height: 40px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.login-false button:first-child {
+  background-color: #2596be;
+  color: white;
+  margin: 0 8px 0 0;
+}
+
+.login-false button:first-child:hover {
+  background-color: #239eca;
+}
+
+.login-false button:last-child {
+  background-color: #eeeeee;
+  border: 2px solid #2596be;
+  color: #2b7f9e;
+}
+
+.login-false button:last-child:hover {
+  background-color: #f5f5f5;
+}
+
+.login-true {
+  width: auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin: 0 8px 0 0;
+}
