@@ -5,15 +5,15 @@ import UserDropDown from './UserDropDown';
 
 function Navbar({ user, signUp, logIn }) {
 
-  const jojo = true;
+  const jojo = false;
   
   return (
     <nav className="navbar">
       <div className="navbar-left-div">
-        <a className="title" href="/">
+        <a href="/">
           <img src={icon} alt=""/>
-          <h1>Find LaCloche</h1>
         </a>
+        <h1 className="title">Find LaCloche</h1>
       </div>
       <div className="navbar-right-div">
         <a className="about" href="/">

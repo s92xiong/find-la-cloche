@@ -5,16 +5,7 @@
   margin-bottom: 90px;
 }
 
-.search-bar h2 {
-  text-align: center;
-  margin: 16px;
-  color: white;
-  font-family: 'Varela Round', sans-serif;
-  font-weight: 600;
-  font-size: 43px;
-}
-
-.search-bar-lower {
+.search-bar-form {
   width: 700px;
   height: 95px;
   display: flex;
@@ -40,7 +31,7 @@
   opacity: 0.5;
 }
 
-.search-bar-lower input {
+.search-bar-form input {
   width: 75%;
   height: 100%;
   border: none;
@@ -50,12 +41,12 @@
   font-family: 'Varela Round', sans-serif;
 }
 
-.search-bar-lower input::placeholder {
+.search-bar-form input::placeholder {
   color: #4444449c;
   opacity: 1;
 }
 
-.search-bar-lower button {
+.search-bar-form button {
   width: 20%;
   height: 100%;
   background-color: #448c14;
@@ -69,7 +60,7 @@
   cursor: pointer;
 }
 
-.search-bar-lower button:hover {
+.search-bar-form button:hover {
   background-color: #5a9b2fea;
 }
 
@@ -78,7 +69,7 @@
     font-size: 35px;
   }
   
-  .search-bar-lower {
+  .search-bar-form {
     width: 500px;
     height: 80px;
     display: flex;
@@ -91,11 +82,11 @@
     width: 14px;
   }
 
-  .search-bar-lower input {
+  .search-bar-form input {
     font-size: 1.2rem;
   }
 
-  .search-bar-lower button {
+  .search-bar-form button {
     font-size: 1.15rem;
   }
 }
@@ -105,7 +96,7 @@
     font-size: 30px;
   }
   
-  .search-bar-lower {
+  .search-bar-form {
     width: 335px;
     height: 75px;
     display: flex;
@@ -118,11 +109,11 @@
     width: 14px;
   }
 
-  .search-bar-lower input {
+  .search-bar-form input {
     font-size: 1rem;
   }
 
-  .search-bar-lower button {
+  .search-bar-form button {
     font-size: 0.8rem;
   }
 }
@@ -132,15 +123,15 @@
     font-size: 20px;
   }
 
-  .search-bar-lower {
+  .search-bar-form {
     width: 280px;
   }
 
-  .search-bar-lower input {
+  .search-bar-form input {
     font-size: 0.8rem;
   }
 
-  .search-bar-lower button {
+  .search-bar-form button {
     font-size: 0.7rem;
   }
   

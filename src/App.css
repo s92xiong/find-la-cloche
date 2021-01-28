@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 .App {
@@ -11,18 +10,4 @@
   background-image: url("images/algonquin-highlands.jpg");
   background-size: cover;
   background-position: center;
-}
-
-.App-container {
-  width: 100vw;
-  height: calc(100vh - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (max-width: 500px) {
-  .App-container {
-    height: calc(100vh - 160px);
-  }
 }

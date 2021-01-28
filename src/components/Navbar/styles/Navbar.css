@@ -12,23 +12,16 @@
   padding: 0 35px 0 35px;
 }
 
-/* .navbar-left-div {
+.navbar-left-div {
   display: flex;
   justify-content: center;
   align-items: center;
-} */
-
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  color: #2795bd;
   font-family: 'Lato', sans-serif;
-  font-size: 20px;
 }
 
-.title h1 {
+.title {
+  color: #2795bd;
+  font-size: 26px;
   margin: 0 0 0 20px;
 }
 
@@ -43,6 +36,7 @@
   text-decoration: none;
   color: #727272;
   font-family: 'Lato', sans-serif;
+  margin-right: 30px;
 }
 
 .login-false {
@@ -99,7 +93,7 @@
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  margin: 20px;
+  margin: 0px 8px 0 0;
 }
 
 @media (max-width: 500px) {

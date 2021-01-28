@@ -15,8 +15,7 @@ function SearchBar() {
 
   return (
     <div className="search-bar">
-      <h2>Find your campsite</h2>
-      <form className="search-bar-lower" onSubmit={handleSubmit}>
+      <form className="search-bar-form" onSubmit={handleSubmit}>
         <div className="search-icon">
           <img src={searchIcon} alt=""/>
         </div>
