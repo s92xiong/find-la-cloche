@@ -2,28 +2,35 @@ import React from 'react';
 import "./styles/Navbar.css";
 import icon from "../../images/outdoors-4-64.png";
 import UserDropDown from './UserDropDown';
+import { Link } from 'react-router-dom';
 
-function Navbar({ user, signUp, logIn }) {
+function Navbar({ user }) {
 
   const jojo = false;
   
   return (
     <nav className="navbar">
+      
       <div className="navbar-left-div">
-        <a href="/">
+        <Link to="/">
           <img src={icon} alt=""/>
-        </a>
+        </Link>
         <h1 className="title">Find LaCloche</h1>
       </div>
+      
       <div className="navbar-right-div">
-        <a className="about" href="/">
+        <Link className="about" to="/about">
           About
-        </a>
+        </Link>
         {
           (!jojo) ?
           <div className="login-false">
-            <button onClick={signUp}>Sign Up</button>
-            <button onClick={logIn}>Log In</button>
+            <Link to="/sign-up">
+              <button className="sign-up-button">Sign Up</button>
+            </Link>
+            <Link to="/log-in">
+              <button className="log-in-button">Log In</button>
+            </Link>
           </div>
           :
           <div className="login-true" >
@@ -33,6 +40,7 @@ function Navbar({ user, signUp, logIn }) {
           </div>
         }
       </div>
+
     </nav>
   );
 }

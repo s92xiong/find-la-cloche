@@ -45,7 +45,7 @@
   justify-content: space-around;
 }
 
-.login-false button {
+.sign-up-button, .log-in-button {
   width: 80px;
   height: 40px;
   font-weight: 600;
@@ -55,23 +55,23 @@
   cursor: pointer;
 }
 
-.login-false button:first-child {
+.sign-up-button {
   background-color: #2596be;
   color: white;
   margin: 0 8px 0 0;
 }
 
-.login-false button:first-child:hover {
+.sign-up-button:hover {
   background-color: #239eca;
 }
 
-.login-false button:last-child {
+.log-in-button {
   background-color: #fafafa;
   border: 2px solid #2596be;
   color: #2b7f9e;
 }
 
-.login-false button:last-child:hover {
+.log-in-button:hover {
   color: #279fca;
   border-color: #279fca;
 }
@@ -106,17 +106,13 @@
     margin: 0;
   }
 
+  .navbar-left-div img {
+    width: 55px;
+    height: 55px;
+  }
+
   .title {
     font-size: 18px;
-  }
-
-  .title img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .title h1 {
-    margin: 0 0 0 10px;
   }
 
   .navbar-right-div {
@@ -125,21 +121,21 @@
   }
 
   .about {
-    /* font-size: 15px;
-    margin: 0px; */
-    display: none;
+    font-size: 15px;
+    margin: 12px;
+    /* display: none; */
   }
 
-  .login-false button {
+  .sign-up-button, .log-in-button {
     width: 70px;
     height: 35px;
-    margin: 0 0 13px 0;
+    margin: 0 5px 0px 5px;
   }
 
   .profile-pic {
     border-radius: 50%;
     width: 35px;
     height: 35px;
-    margin: 0 15px 0 0;
+    margin: 0 8px 0 0;
   }
 }

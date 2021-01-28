@@ -10,26 +10,20 @@ function Routes() {
 
   const [user] = useAuthState(auth);
 
-  const signUp = () => {
-    console.log("User will sign up...");
-  };
-
-  const logIn = () => {
-    console.log("Logging user in...");
-  };
-
   return (
     <BrowserRouter>
       <div className="App">
         
         <Navbar 
           user={user}
-          signUp={signUp}
-          logIn={logIn}
         />
         
         <Switch>
-          <Route exact path="/" render={ () => <Home /> } />
+          
+          <Route 
+            exact path="/" 
+            render={ () => <Home /> } 
+          />
           
         </Switch>
 
