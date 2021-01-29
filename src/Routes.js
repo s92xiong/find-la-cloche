@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import SignUp from './components/SignUp/SignUp';
+import LogIn from "./components/LogIn/LogIn";
 
 
 function Routes() {
@@ -33,6 +34,11 @@ function Routes() {
           <Route 
             exact path="/sign-up" 
             render={ () => <SignUp /> } 
+          />
+
+          <Route 
+            exact path="/log-in" 
+            render={ () => <LogIn /> } 
           />
           
         </Switch>

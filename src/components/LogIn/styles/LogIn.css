@@ -1,0 +1,7 @@
+.log-in {
+  width: 100vw;
+  height: calc(100vh - 70px);
+  background-image: url("../../../images/killarney6.jpg");
+  background-size: cover;
+  background-position: center;
+}
