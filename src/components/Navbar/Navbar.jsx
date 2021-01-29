@@ -12,14 +12,12 @@ function Navbar({ user }) {
     <nav className="navbar">
       
       <div className="navbar-left-div">
-        <Link to="/">
-          <img src={icon} alt=""/>
-        </Link>
-        <h1 className="title">Find LaCloche</h1>
+        <Link to="/"><img src={icon} alt=""/></Link>
+        <h1 className="title"><Link to="/">Find LaCloche</Link></h1>
       </div>
       
       <div className="navbar-right-div">
-        <Link className="about" to="/about">
+        <Link className="about-nav" to="/about">
           About
         </Link>
         {

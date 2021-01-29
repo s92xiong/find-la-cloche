@@ -1,0 +1,7 @@
+.sign-up {
+  width: 100vw;
+  height: calc(100vh - 70px);
+  background-image: url("../../../images/killarney4.jpg");
+  background-size: cover;
+  background-position: center;
+}

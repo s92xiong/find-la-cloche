@@ -19,10 +19,11 @@
   font-family: 'Lato', sans-serif;
 }
 
-.title {
+.title a {
   color: #2795bd;
   font-size: 26px;
   margin: 0 0 0 20px;
+  text-decoration: none;
 }
 
 .navbar-right-div {
@@ -31,7 +32,7 @@
   align-items: center;
 }
 
-.about {
+.about-nav {
   font-size: 15px;
   text-decoration: none;
   color: #727272;
@@ -120,7 +121,7 @@
     align-items: center;
   }
 
-  .about {
+  .about-nav {
     font-size: 15px;
     margin: 12px;
     /* display: none; */
