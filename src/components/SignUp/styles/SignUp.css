@@ -77,7 +77,7 @@
 
 .sign-up-form p {
   line-height: 1.5rem;
-  font-size: 13px;
+  font-size: 14px;
   color: #1d1d1d;
   font-weight: 300;
 }
@@ -86,6 +86,10 @@
   text-decoration: none;
   color: #428a12;
   font-weight: 600;
+}
+
+.log-in-a-tag:hover {
+  color: #428a12d8;
 }
 
 .continue-with-google {
