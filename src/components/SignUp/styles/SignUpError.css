@@ -1,3 +1,14 @@
+.error {
+  border: 2px solid red;
+}
+
 .error::placeholder {
   color: red;
+}
+
+.error-message {
+  font-size: 13px;
+  font-weight: 400;
+  color: red;
+  padding-left: 10px;
 }

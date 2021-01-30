@@ -2,6 +2,7 @@ import React from 'react';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
 import googleIcon from "../../images/google-icon.png";
+import InputField from './InputField';
 
 function SignUp() {
 
@@ -21,27 +22,39 @@ function SignUp() {
     <div className="sign-up">
       <form className="sign-up-form">
         <h2 className="create-an-account">Create an account</h2>
-        <input
-         className={!error ? "sign-up-form-input first-name" :  "sign-up-form-input first-name error" } 
-         type="text" 
-         placeholder="First name"
+
+        <InputField 
+          error={error}
+          classInput="first-name"
+          inputType="text"
+          placeholderText="First name"
+          errorMessage="Enter your first name."
         />
-        <input 
-          className={!error ? "sign-up-form-input last-name" :  "sign-up-form-input last-name error" }  
-          type="text" 
-          placeholder="Last name"
+
+        <InputField 
+          error={error}
+          classInput="last-name"
+          inputType="text"
+          placeholderText="Last name"
+          errorMessage="Enter your last name."
         />
-        <input 
-          className={!error ? "sign-up-form-input email" :  "sign-up-form-input email error" }  
-          type="email" 
-          placeholder="Email"
+
+        <InputField 
+          error={error}
+          classInput="email"
+          inputType="email"
+          placeholderText="Email"
+          errorMessage="Email is not valid."
         />
-        <input 
-          className={!error ? "sign-up-form-input password" :  "sign-up-form-input password error" }  
-          type="password" 
-          placeholder="Password" 
-          required
+
+        <InputField 
+          error={error}
+          classInput="password"
+          inputType="password"
+          placeholderText="Password"
+          errorMessage="Password must be 6 characters long."
         />
+
         <button className="sign-up-form-button">Sign up</button>
         <p>Already have an account? <a className="log-in-a-tag" href="/log-in">
           Log in
@@ -53,6 +66,7 @@ function SignUp() {
         </button>
         <br/>
       </form>
+
     </div>
   );
 }
