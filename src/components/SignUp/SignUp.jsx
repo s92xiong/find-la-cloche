@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
 import googleIcon from "../../images/google-icon.png";
@@ -6,61 +6,86 @@ import InputField from './InputField';
 
 function SignUp() {
 
-  // Create green border on hover
-  // Selected = green border 2px solid
+  const [inputError, setInputError] = useState({
+    firstNameError: false,
+    lastNameError: false,
+    emailError: false,
+    passwordError: false,
+  });
 
-  // Create separate error variables for each input, if one of the inputs are
-  // empty when submitting form, the styling should change to have:
-  // red border 1px solid red
-  // red font in the placeholder
-  // a new div should show up that says "Enter your first/last name" or "Email" is not valid
-  // Separate classNames for each input, error styling should be in its own folder called SignUpError.css
+  const [value, setValue] = useState({
+    firstName: "", lastName: "", email: "", password: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitting sign up form");
+  };
+
+  const handleGoogleClick = (e) => {
+    e.preventDefault();
+    console.log("Continuing w/ Google");
+  }
+
   // Must also change 'Create an account' div if the height changes so that it fits the screen in mobile view
-  const error = false;
 
   return (
     <div className="sign-up">
-      <form className="sign-up-form">
+      <form className="sign-up-form" onSubmit={handleSubmit}>
         <h2 className="create-an-account">Create an account</h2>
-
         <InputField 
-          error={error}
+          error={inputError.firstNameError}
+          setInputError={setInputError}
           classInput="first-name"
           inputType="text"
           placeholderText="First name"
           errorMessage="Enter your first name."
+          dataID="firstName"
+          value={value}
+          setValue={setValue}
         />
-
         <InputField 
-          error={error}
+          error={inputError.lastNameError}
+          setInputError={setInputError}
           classInput="last-name"
           inputType="text"
           placeholderText="Last name"
           errorMessage="Enter your last name."
+          dataID="lastName"
+          value={value}
+          setValue={setValue}
         />
-
         <InputField 
-          error={error}
+          error={inputError.emailError}
+          setInputError={setInputError}
           classInput="email"
           inputType="email"
           placeholderText="Email"
           errorMessage="Email is not valid."
+          dataID="email"
+          value={value}
+          setValue={setValue}
         />
-
         <InputField 
-          error={error}
+          error={inputError.passwordError}
+          setInputError={setInputError}
           classInput="password"
           inputType="password"
           placeholderText="Password"
           errorMessage="Password must be 6 characters long."
+          dataID="password"
+          value={value}
+          setValue={setValue}
         />
-
         <button className="sign-up-form-button">Sign up</button>
         <p>Already have an account? <a className="log-in-a-tag" href="/log-in">
           Log in
         </a></p>
         <p>Or</p>
-        <button className="continue-with-google">
+        <button 
+          className="continue-with-google"
+          onClick={handleGoogleClick}
+        >
           <img src={googleIcon} alt=""/>
           Continue with Google
         </button>
