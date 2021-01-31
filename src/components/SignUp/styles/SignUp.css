@@ -49,11 +49,11 @@
   font-weight: 300;
 }
 
-.sign-up-form-input:hover {
+.input-success:hover {
   border-color: #428a12;
 }
 
-.sign-up-form-input:focus {
+.input-success:focus {
   border: 2px solid #428a12;
 }
 

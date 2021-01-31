@@ -14,37 +14,14 @@ function SignUp() {
     firstName: "", lastName: "", email: "", password: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
-
     const newError = {...inputError};
-
-    const getFirstName = document.querySelector(".first-name");
-    const getLastName = document.querySelector(".last-name");
-    const getEmail = document.querySelector(".first-name");
-    const getPassword = document.querySelector(".first-name");
-
-    // These errors must pop up when you submit, but they must leave when the input field is success/valid
-    if (value.firstName.length < 1) {
-      newError.firstNameError = true;
-    }
-    
-    if (value.lastName.length < 1) {
-      newError.lastNameError = true;
-    }
-    
-    if (value.email.length < 1) {
-      newError.emailError = true;
-      // Password must be 6 chars long
-    }
-    
-    if (value.password.length < 6) {
-      newError.passwordError = true;
-    }
-
+    if (value.firstName.length < 1) newError.firstNameError = true;
+    if (value.lastName.length < 1) newError.lastNameError = true;
+    if (value.email.length < 1) newError.emailError = true;
+    if (value.password.length < 6) newError.passwordError = true;
     setInputError(newError);
-
-    // console.log("Submitting sign up form");
   };
 
   const handleGoogleClick = (e) => {
@@ -56,7 +33,7 @@ function SignUp() {
 
   return (
     <div className="sign-up">
-      <form className="sign-up-form" onSubmit={handleSubmit}>
+      <form className="sign-up-form" onSubmit={handleSignIn}>
         <h2 className="create-an-account">Create an account</h2>
         <InputField 
           error={inputError.firstNameError}
