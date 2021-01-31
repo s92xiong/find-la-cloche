@@ -7,10 +7,7 @@ import InputField from './InputField';
 function SignUp() {
 
   const [inputError, setInputError] = useState({
-    firstNameError: false,
-    lastNameError: false,
-    emailError: false,
-    passwordError: false,
+    firstNameError: false, lastNameError: false, emailError: false, passwordError: false,
   });
 
   const [value, setValue] = useState({
@@ -19,7 +16,35 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting sign up form");
+
+    const newError = {...inputError};
+
+    const getFirstName = document.querySelector(".first-name");
+    const getLastName = document.querySelector(".last-name");
+    const getEmail = document.querySelector(".first-name");
+    const getPassword = document.querySelector(".first-name");
+
+    // These errors must pop up when you submit, but they must leave when the input field is success/valid
+    if (value.firstName.length < 1) {
+      newError.firstNameError = true;
+    }
+    
+    if (value.lastName.length < 1) {
+      newError.lastNameError = true;
+    }
+    
+    if (value.email.length < 1) {
+      newError.emailError = true;
+      // Password must be 6 chars long
+    }
+    
+    if (value.password.length < 6) {
+      newError.passwordError = true;
+    }
+
+    setInputError(newError);
+
+    // console.log("Submitting sign up form");
   };
 
   const handleGoogleClick = (e) => {
@@ -91,7 +116,6 @@ function SignUp() {
         </button>
         <br/>
       </form>
-
     </div>
   );
 }

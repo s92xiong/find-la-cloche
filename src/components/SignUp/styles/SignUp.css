@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Lato', sans-serif;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .sign-up-form {
@@ -113,4 +113,15 @@
 
 .continue-with-google:hover {
   background-color: #5686dad5;
+}
+
+@media (max-height: 600px) {
+  .sign-up {
+    width: 100vw;
+    height: auto;
+  }
+  
+  .sign-up-form {
+    margin: 25px;
+  }
 }

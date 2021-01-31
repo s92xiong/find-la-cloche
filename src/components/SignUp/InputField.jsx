@@ -18,7 +18,7 @@ function InputField({ error, classInput, inputType, placeholderText, errorMessag
         className={
           !error ? 
           `sign-up-form-input ${classInput}`
-          :  
+          :
           `sign-up-form-input ${classInput} error` 
         }
         type={inputType} // text, email, or password
