@@ -7,6 +7,8 @@ function InputField({
     errorMessage, dataID, value, setValue 
   }) {
 
+  const errorKey = `${dataID}Error`;
+
   const handleInputChange = (e) => {
     // Copy value object state, update "key":"value" pair via dataID attribute
     const newValue = { ...value };
@@ -15,13 +17,12 @@ function InputField({
 
     // Copy error object state
     const newError = {...error};
-    const errorKey = `${dataID}Error`;
-
-    console.log(newError[errorKey]);
+    // const errorKey = `${dataID}Error`;
 
     // A valid input requires 6 or more characters
     const requiredNumOfChars = (errorKey === "passwordError") ? 6 : 1;
 
+    // Determine if there is an error in the input value
     if (newValue[dataID].length >= requiredNumOfChars) {
       newError[errorKey] = false;
     } else {
@@ -36,7 +37,7 @@ function InputField({
       <input
         data-id={dataID} // Property name to access input field
         className={
-          !error ? 
+          !error[errorKey] ? 
           `sign-up-form-input input-success ${classInput}`
           :
           `sign-up-form-input ${classInput} error` 
@@ -46,7 +47,7 @@ function InputField({
         onChange={handleInputChange}
       />
       {
-        error ?
+        error[errorKey] ?
         <span className="error-message">{errorMessage}</span> 
         :
         <></>

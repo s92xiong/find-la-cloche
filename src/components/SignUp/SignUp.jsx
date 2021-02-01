@@ -36,7 +36,7 @@ function SignUp() {
       <form className="sign-up-form" onSubmit={handleSignIn}>
         <h2 className="create-an-account">Create an account</h2>
         <InputField 
-          error={inputError.firstNameError}
+          error={inputError}
           setInputError={setInputError}
           classInput="first-name"
           inputType="text"
@@ -47,7 +47,7 @@ function SignUp() {
           setValue={setValue}
         />
         <InputField 
-          error={inputError.lastNameError}
+          error={inputError}
           setInputError={setInputError}
           classInput="last-name"
           inputType="text"
@@ -58,7 +58,7 @@ function SignUp() {
           setValue={setValue}
         />
         <InputField 
-          error={inputError.emailError}
+          error={inputError}
           setInputError={setInputError}
           classInput="email"
           inputType="email"
@@ -69,7 +69,7 @@ function SignUp() {
           setValue={setValue}
         />
         <InputField 
-          error={inputError.passwordError}
+          error={inputError}
           setInputError={setInputError}
           classInput="password"
           inputType="password"
