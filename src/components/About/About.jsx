@@ -16,7 +16,7 @@ function About() {
           34 campsites along the <a target="blank" href={trailLink}>La Cloche Silhouette Trail</a>.
         </p>
         <p>
-          Inspired by <a href={allTrailsLink}>AllTrails</a>, this app serves as a guide to inform future backpackers of 
+          Inspired by <a target="blank" href={allTrailsLink}>AllTrails</a>, this app serves as a guide to inform future backpackers of 
           the topography and conditions of their reserved campsite.
         </p>
       </div>
