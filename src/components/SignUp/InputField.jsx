@@ -3,30 +3,29 @@ import "./styles/SignUp.css";
 import "./styles/SignUpError.css"; 
 
 function InputField({ 
-    error, setInputError ,classInput, inputType, placeholderText, 
-    errorMessage, dataID, value, setValue 
+    error, setInputError, classInput, inputType, placeholderText, 
+    errorMessage, valueProp, value, setValue 
   }) {
 
-  const errorKey = `${dataID}Error`;
+  const errorProp = `${valueProp}Error`;
 
   const handleInputChange = (e) => {
     // Copy value object state, update "key":"value" pair via dataID attribute
     const newValue = { ...value };
-    newValue[dataID] = e.target.value;
+    newValue[valueProp] = e.target.value;
     setValue(newValue);
 
     // Copy error object state
     const newError = {...error};
-    // const errorKey = `${dataID}Error`;
 
     // A valid input requires 6 or more characters
-    const requiredNumOfChars = (errorKey === "passwordError") ? 6 : 1;
+    const requiredNumOfChars = (errorProp === "passwordError") ? 6 : 1;
 
     // Determine if there is an error in the input value
-    if (newValue[dataID].length >= requiredNumOfChars) {
-      newError[errorKey] = false;
+    if (newValue[valueProp].length >= requiredNumOfChars) {
+      newError[errorProp] = false;
     } else {
-      newError[errorKey] = true;
+      newError[errorProp] = true;
     }
 
     setInputError(newError);
@@ -35,9 +34,9 @@ function InputField({
   return (
     <div className="sign-up-form-child">
       <input
-        data-id={dataID} // Property name to access input field
+        data-id={valueProp} // Property name to access input field
         className={
-          !error[errorKey] ? 
+          (!error[errorProp]) ? 
           `sign-up-form-input input-success ${classInput}`
           :
           `sign-up-form-input ${classInput} error` 
@@ -47,7 +46,7 @@ function InputField({
         onChange={handleInputChange}
       />
       {
-        error[errorKey] ?
+        (error[errorProp]) ?
         <span className="error-message">{errorMessage}</span> 
         :
         <></>

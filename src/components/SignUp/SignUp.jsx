@@ -42,7 +42,7 @@ function SignUp() {
           inputType="text"
           placeholderText="First name"
           errorMessage="Enter your first name."
-          dataID="firstName"
+          valueProp="firstName"
           value={value}
           setValue={setValue}
         />
@@ -53,7 +53,7 @@ function SignUp() {
           inputType="text"
           placeholderText="Last name"
           errorMessage="Enter your last name."
-          dataID="lastName"
+          valueProp="lastName"
           value={value}
           setValue={setValue}
         />
@@ -64,7 +64,7 @@ function SignUp() {
           inputType="email"
           placeholderText="Email"
           errorMessage="Email is not valid."
-          dataID="email"
+          valueProp="email"
           value={value}
           setValue={setValue}
         />
@@ -75,7 +75,7 @@ function SignUp() {
           inputType="password"
           placeholderText="Password"
           errorMessage="Password must be 6 characters long."
-          dataID="password"
+          valueProp="password"
           value={value}
           setValue={setValue}
         />
