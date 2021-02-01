@@ -42,12 +42,27 @@ function SignUp() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
+
     const newError = {...inputError};
-    if (value.firstName.length < 1) newError.firstNameError = true;
-    if (value.lastName.length < 1) newError.lastNameError = true;
-    if (value.email.length < 1) newError.emailError = true;
-    if (value.password.length < 6) newError.passwordError = true;
+
+    if (value.firstName.length < 1) {
+      newError.firstNameError = true;
+    }
+
+    if (value.lastName.length < 1) {
+      newError.lastNameError = true;
+    }
+    
+    if (value.email.length < 1) {
+      newError.emailError = true;
+    }
+    
+    if (value.password.length < 6) {
+      newError.passwordError = true;
+    }
+    
     setInputError(newError);
+    console.log("You successfully Signed Up!");
   };
 
   const handleGoogleClick = (e) => {
