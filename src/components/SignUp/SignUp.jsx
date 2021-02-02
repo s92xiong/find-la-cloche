@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
+// eslint-disable-next-line no-unused-vars
+import firebase from "firebase/app";
 import googleIcon from "../../images/google-icon.png";
 import InputField from './InputField';
+import signInError from './signInError';
 
 function SignUp() {
 
@@ -40,29 +43,19 @@ function SignUp() {
     return handler;
   };
 
-  const handleSignIn = (e) => {
+  const createUserEmailPassword = (e) => {
     e.preventDefault();
+    const result = signInError(value, inputError, setInputError);
 
-    const newError = {...inputError};
-
-    if (value.firstName.length < 1) {
-      newError.firstNameError = true;
-    }
-
-    if (value.lastName.length < 1) {
-      newError.lastNameError = true;
+    if (result) {
+      console.log("The form has successfully submitted!");
+    } else {
+      console.log("Failure to submit form...");
     }
     
-    if (value.email.length < 1) {
-      newError.emailError = true;
-    }
-    
-    if (value.password.length < 6) {
-      newError.passwordError = true;
-    }
-    
-    setInputError(newError);
-    console.log("You successfully Signed Up!");
+    // firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+    // .then((userCredential) => console.log(userCredential))
+    // .catch((error) => console.error(error));
   };
 
   const handleGoogleClick = (e) => {
@@ -72,7 +65,7 @@ function SignUp() {
 
   return (
     <div className="sign-up">
-      <form className="sign-up-form" onSubmit={handleSignIn}>
+      <form className="sign-up-form" onSubmit={createUserEmailPassword}>
         <h2 className="create-an-account">Create an account</h2>
         <InputField 
           error={inputError}
