@@ -1,24 +1,17 @@
+import emailIsValid from "./emailValidation";
+
 function signInError(value, inputError, setInputError) {
-
-  // Check if all input fields are valid, if not, create error
   const newError = {...inputError};
-  
-  if (value.firstName.length < 1) {
-    newError.firstNameError = true;
-  }
 
-  if (value.lastName.length < 1) {
-    newError.lastNameError = true;
-  }
+  // First and last name should have at least 1 character
+  if (value.firstName.length < 1) newError.firstNameError = true;
+  if (value.lastName.length < 1) newError.lastNameError = true;
+
+  // If the email is not valid (returns false), then set error to true
+  if (!emailIsValid(value.email)) newError.emailError = true;
   
-  if (value.email.length < 1) {
-    newError.emailError = true;
-  }
-  
-  if (value.password.length < 6) {
-    newError.passwordError = true;
-  }
-  
+  // Password must be >= 6 characters
+  if (value.password.length < 6) newError.passwordError = true;
   setInputError(newError);
 
   for (const key in newError) {

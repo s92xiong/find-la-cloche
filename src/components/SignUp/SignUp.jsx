@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
 // eslint-disable-next-line no-unused-vars
-import firebase from "firebase/app";
 import googleIcon from "../../images/google-icon.png";
 import InputField from './InputField';
 import signInError from './signInError';
+import { auth } from '../../firebase';
 
 function SignUp() {
 
@@ -47,15 +47,14 @@ function SignUp() {
     e.preventDefault();
     const result = signInError(value, inputError, setInputError);
 
-    if (result) {
-      console.log("The form has successfully submitted!");
-    } else {
-      console.log("Failure to submit form...");
-    }
-    
-    // firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-    // .then((userCredential) => console.log(userCredential))
-    // .catch((error) => console.error(error));
+    if (!result) return console.log("Failure to submit form...");
+    // console.log(value.email, value.password);
+    auth.createUserWithEmailAndPassword(value.email, value.password)
+    .then((userCredential) => {
+      // Add user to Firestore "users" collection
+      console.log(userCredential)
+    })
+    .catch((error) => console.error(error));
   };
 
   const handleGoogleClick = (e) => {
