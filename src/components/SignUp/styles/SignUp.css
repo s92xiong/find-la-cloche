@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Lato', sans-serif;
-  /* overflow: scroll; */
+  overflow: auto;
 }
 
 .sign-up-form {
@@ -56,6 +56,13 @@
 
 .input-success:focus {
   border: 2px solid #428a12;
+}
+
+.existing-account {
+  color: red;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 5px;
 }
 
 .sign-up-form button {
@@ -118,7 +125,7 @@
 @media (max-height: 600px) {
   .sign-up {
     width: 100vw;
-    height: auto;
+    height: auto; /* Allows for scrolling if screen height is too short */
   }
   
   .sign-up-form {

@@ -10,11 +10,17 @@ import { auth } from '../../firebase';
 function SignUp() {
 
   const [inputError, setInputError] = useState({
-    firstNameError: false, lastNameError: false, emailError: false, passwordError: false,
+    firstNameError: false, 
+    lastNameError: false, 
+    emailError: false, 
+    passwordError: false,
   });
 
   const [value, setValue] = useState({
-    firstName: "", lastName: "", email: "", password: "",
+    firstName: "", 
+    lastName: "", 
+    email: "", 
+    password: "",
   });
 
   const handleInputChange = (valueProp) => {
@@ -43,6 +49,9 @@ function SignUp() {
     return handler;
   };
 
+  // If account already exists in DB, show message above Sign Up button
+  const accountExists = false;
+
   const createUserEmailPassword = (e) => {
     e.preventDefault();
     const result = signInError(value, inputError, setInputError);
@@ -52,7 +61,7 @@ function SignUp() {
     auth.createUserWithEmailAndPassword(value.email, value.password)
     .then((userCredential) => {
       // Add user to Firestore "users" collection
-      console.log(userCredential)
+      console.log(userCredential);
     })
     .catch((error) => console.error(error));
   };
@@ -102,6 +111,7 @@ function SignUp() {
           valueProp="password"
           handleInputChange={handleInputChange}
         />
+        { (accountExists) ? <span className="existing-account">You already have an account. Please log in.</span> : <></> }
         <button className="sign-up-form-button">Sign up</button>
         <p>Already have an account? <a className="log-in-a-tag" href="/log-in">
           Log in
