@@ -52,18 +52,22 @@ function SignUp() {
   // If account already exists in DB, show message above Sign Up button
   const accountExists = false;
 
-  const createUserEmailPassword = (e) => {
-    e.preventDefault();
-    const result = signInError(value, inputError, setInputError);
+  const createUserEmailPassword = async (e) => {
+    try {
+      e.preventDefault();
+      
+      // signInError returns a boolean and renders UI for invalid input fields
+      const result = signInError(value, inputError, setInputError);
 
-    if (!result) return console.log("Failure to submit form...");
-    // console.log(value.email, value.password);
-    auth.createUserWithEmailAndPassword(value.email, value.password)
-    .then((userCredential) => {
-      // Add user to Firestore "users" collection
+      // Prevent form submission if any input fields are invalid
+      if (!result) return console.log("Failure to submit form...");
+
+      // Async code registers a new user via email and password auth
+      const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
       console.log(userCredential);
-    })
-    .catch((error) => console.error(error));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleGoogleClick = (e) => {
@@ -131,3 +135,17 @@ function SignUp() {
 }
 
 export default SignUp;
+
+// const createUserEmailPassword = (e) => {
+//   e.preventDefault();
+//   const result = signInError(value, inputError, setInputError);
+
+//   if (!result) return console.log("Failure to submit form...");
+//   // console.log(value.email, value.password);
+//   auth.createUserWithEmailAndPassword(value.email, value.password)
+//   .then((userCredential) => {
+//     // Add user to Firestore "users" collection
+//     console.log(userCredential);
+//   })
+//   .catch((error) => console.error(error));
+// };
