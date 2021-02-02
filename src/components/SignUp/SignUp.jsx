@@ -56,14 +56,15 @@ function SignUp() {
     e.preventDefault();
     
     // signInError returns a boolean & renders error messages for invalid input fields
-    const result = signInError(value, inputError, setInputError);
+    const areAllIputFieldsValid = signInError(value, inputError, setInputError);
 
     // Prevent form submission if any input fields are invalid
-    if (!result) return console.log("Please fill in all input fields");
+    if (!areAllIputFieldsValid) return console.log("Please fill in all input fields");
 
     try {
       const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
       console.log(userCredential);
+      window.location = "/"; // Redirect to home page
     } catch (error) {
       console.error(error);
       if (error.code === "auth/email-already-in-use") setAccountExists(true);
