@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
-// eslint-disable-next-line no-unused-vars
 import googleIcon from "../../images/google-icon.png";
 import InputField from './InputField';
 import signInError from './signInError';
-import { auth } from '../../firebase';
+import { auth, firestore } from '../../firebase';
+// import userIcon from "../../images/profile-icon.webp";
 
 function SignUp() {
 
@@ -54,17 +54,31 @@ function SignUp() {
 
   const createUserEmailPassword = async (e) => {
     e.preventDefault();
-    
     // signInError returns a boolean & renders error messages for invalid input fields
     const areAllIputFieldsValid = signInError(value, inputError, setInputError);
-
     // Prevent form submission if any input fields are invalid
     if (!areAllIputFieldsValid) return console.log("Please fill in all input fields");
 
     try {
       const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
-      console.log(userCredential);
-      window.location = "/"; // Redirect to home page
+      
+      await userCredential.user.updateProfile({
+        displayName: `${value.firstName} ${value.lastName}`,
+      });
+
+      console.log(`User ${userCredential.user.displayName} has signed in.`);
+      // console.log(userCredential.user.photoURL);
+
+      // Add user to Firestore db
+      await firestore.collection("users").add({
+        name: `${value.firstName} ${value.lastName}`,
+        email: value.email,
+        uid: userCredential.user.uid,
+      });
+
+      // Redirect to home page:
+      window.location = "/";
+      
     } catch (error) {
       console.error(error);
       if (error.code === "auth/email-already-in-use") setAccountExists(true);
@@ -74,7 +88,7 @@ function SignUp() {
   const handleGoogleClick = (e) => {
     e.preventDefault();
     console.log("Continuing w/ Google");
-  }
+  };
 
   return (
     <div className="sign-up">

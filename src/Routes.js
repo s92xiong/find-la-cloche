@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './App.css';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from './firebase';
@@ -13,6 +13,10 @@ import LogIn from "./components/LogIn/LogIn";
 function Routes() {
 
   const [user] = useAuthState(auth);
+  
+  useEffect(() => {
+    if (user) console.log(auth.currentUser.displayName);
+  })
 
   return (
     <BrowserRouter>

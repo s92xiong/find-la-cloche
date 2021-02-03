@@ -3,10 +3,10 @@ import "./styles/Navbar.css";
 import icon from "../../images/outdoors-4-64.png";
 import UserDropDown from './UserDropDown';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase';
+import userIcon from "../../images/profile-icon.webp";
 
 function Navbar({ user }) {
-
-  const jojo = false;
   
   return (
     <nav className="navbar">
@@ -21,7 +21,7 @@ function Navbar({ user }) {
           About
         </Link>
         {
-          (!jojo) ?
+          (!user) ?
           <div className="login-false">
             <Link to="/sign-up">
               <button className="sign-up-button">Sign Up</button>
@@ -32,8 +32,8 @@ function Navbar({ user }) {
           </div>
           :
           <div className="login-true" >
-            <img className="profile-pic" src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png" alt=""/>
-            <h4>Jonathan Joestar</h4>
+            <img className="profile-pic" src={ (auth.currentUser.photoURL) ? auth.currentUser.photoURL : userIcon  } alt=""/>
+            { (auth.currentUser.displayName) ? <h4>{auth.currentUser.displayName}</h4> : <></> }
             <UserDropDown />
           </div>
         }
