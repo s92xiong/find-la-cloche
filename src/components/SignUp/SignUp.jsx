@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
-import googleIcon from "../../images/google-icon.png";
 import InputField from './InputField';
 import signInError from './signInError';
+import GoogleButton from "./GoggleButton";
 import { auth, firestore } from '../../firebase';
 // import userIcon from "../../images/profile-icon.webp";
 
@@ -127,17 +127,9 @@ function SignUp() {
         />
         { (accountExists) ? <span className="existing-account">You already have an account. Please log in.</span> : <></> }
         <button className="sign-up-form-button">Sign up</button>
-        <p>Already have an account? <a className="log-in-a-tag" href="/log-in">
-          Log in
-        </a></p>
+        <p>Already have an account? <a className="log-in-a-tag" href="/log-in">Log in</a></p>
         <p>Or</p>
-        <button 
-          className="continue-with-google"
-          onClick={handleGoogleClick}
-        >
-          <img src={googleIcon} alt=""/>
-          Continue with Google
-        </button>
+        <GoogleButton handleClick={handleGoogleClick} />
         <br/>
       </form>
     </div>

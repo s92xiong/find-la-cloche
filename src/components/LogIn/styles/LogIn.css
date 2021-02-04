@@ -4,4 +4,36 @@
   background-image: url("../../../images/killarney6.jpg");
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  overflow: auto;
+}
+
+.log-in-form > * {
+  margin: 15px;
+}
+
+.log-in-form {
+  width: 450px;
+  height: auto;
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.continue-with-google {
+  margin: 10px 0 15px 0;
+  width: 80%;
+  height: 40px;
+  font-family: 'Lato', sans-serif;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
 }
