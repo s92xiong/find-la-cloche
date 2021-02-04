@@ -61,14 +61,9 @@ function SignUp() {
 
     try {
       const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
-      
       await userCredential.user.updateProfile({
         displayName: `${value.firstName} ${value.lastName}`,
       });
-
-      console.log(`User ${userCredential.user.displayName} has signed in.`);
-      // console.log(userCredential.user.photoURL);
-
       // Add user to Firestore db
       await firestore.collection("users").add({
         name: `${value.firstName} ${value.lastName}`,
@@ -76,9 +71,9 @@ function SignUp() {
         uid: userCredential.user.uid,
       });
 
-      // Redirect to home page:
+      // Redirect to home page after creating an account
       window.location = "/";
-      
+
     } catch (error) {
       console.error(error);
       if (error.code === "auth/email-already-in-use") setAccountExists(true);
