@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { auth } from '../../firebase';
 import GoggleButton from '../SignUp/GoggleButton';
 import InputField from '../SignUp/InputField';
 import "./styles/LogIn.css";
@@ -38,11 +39,25 @@ function LogIn() {
     return handler;
   };
 
-  const googleLogIn = () => console.log("Logging in via Google");
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await auth.signInWithEmailAndPassword(value.email, value.password);
+      console.log(userCredential);
+      window.location = "/";
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const googleLogIn = async (e) => {
+    e.preventDefault();
+    console.log("Clicked Google button");
+  };
 
   return (
     <div className="log-in">
-      <form className="log-in-form">
+      <form className="log-in-form" onSubmit={handleLogIn}>
         <h2>Log in to your account</h2>
         <InputField
           error={inputError}
@@ -58,10 +73,12 @@ function LogIn() {
           classInput="password"
           inputType="password"
           placeholderText="Password"
-          errorMessage="Password must be 6 characters long."
+          errorMessage="Invalid password."
           valueProp="password"
           handleInputChange={handleInputChange}
         />
+        <button className="log-in-button-form">Log in</button>
+        <p>OR</p>
         <GoggleButton handleClick={googleLogIn} />
       </form>
     </div>

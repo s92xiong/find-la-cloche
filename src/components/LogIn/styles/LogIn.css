@@ -11,8 +11,8 @@
   overflow: auto;
 }
 
-.log-in-form > * {
-  margin: 15px;
+.log-in-form h2 {
+  margin: 20px 0 10px 0;
 }
 
 .log-in-form {
@@ -25,7 +25,7 @@
   border-radius: 15px;
 }
 
-.continue-with-google {
+.log-in-form button {
   margin: 10px 0 15px 0;
   width: 80%;
   height: 40px;
@@ -36,4 +36,13 @@
   font-weight: 600;
   outline: none;
   cursor: pointer;
+  color: white;
+}
+
+.log-in-button-form {
+  background-color: #428a12;
+}
+
+.log-in-button-form:hover {
+  background-color: #428a12d8;
 }
