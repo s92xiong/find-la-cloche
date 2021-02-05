@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
 import InputField from './InputField';
 import signInError from './signInError';
 import GoogleButton from "./GoggleButton";
 import { auth, firestore } from '../../firebase';
-// import userIcon from "../../images/profile-icon.webp";
+import EmailVerification from './EmailVerification';
 
 function SignUp() {
 
@@ -24,7 +24,10 @@ function SignUp() {
   });
 
   // Display error message if email is already in use
-  const [accountExists, setAccountExists] = useState(false);
+  const [accountAlreadyInUse, setAccountAlreadyInUse] = useState(false);
+
+  // Display message after the user has successfully created an account
+  const [emailVerificationPopup, setEmailVerificationPopup] = useState(false);
 
   const handleInputChange = (valueProp) => {
     const handler = (e) => {
@@ -54,29 +57,40 @@ function SignUp() {
 
   const createUserEmailPassword = async (e) => {
     e.preventDefault();
-    // signInError returns a boolean & renders error messages for invalid input fields
-    const areAllIputFieldsValid = signInError(value, inputError, setInputError);
+    
     // Prevent form submission if any input fields are invalid
+    const areAllIputFieldsValid = signInError(value, inputError, setInputError);
     if (!areAllIputFieldsValid) return console.log("Please fill in all input fields");
 
     try {
+      // Create user and automatically log in
       const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
       await userCredential.user.updateProfile({
         displayName: `${value.firstName} ${value.lastName}`,
       });
-      // Add user to Firestore db
+
+      // Add user to Firestore
       await firestore.collection("users").add({
         name: `${value.firstName} ${value.lastName}`,
         email: value.email,
         uid: userCredential.user.uid,
       });
 
-      // Redirect to home page after creating an account
-      window.location = "/";
+      // Send an email verification letter to the newly registered user
+      await auth.currentUser.sendEmailVerification()
+      .then(() => console.log("Email verification letter has been sent."));
+
+      // Sign user out immediately, they should only be able to sign back in if they have verified their email
+      await auth.signOut();
+
+      // Render a pop-up div when the user has signed in
+      setEmailVerificationPopup(true);
+
+      // window.location = "/log-in";
 
     } catch (error) {
       console.error(error);
-      if (error.code === "auth/email-already-in-use") setAccountExists(true);
+      if (error.code === "auth/email-already-in-use") setAccountAlreadyInUse(true);
     }
   };
 
@@ -84,6 +98,16 @@ function SignUp() {
     e.preventDefault();
     console.log("Continuing w/ Google");
   };
+
+  useEffect(() => {
+    document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false)); 
+  }, [emailVerificationPopup])
+
+  if (emailVerificationPopup) {
+    return (
+      <EmailVerification />
+    );
+  }
 
   return (
     <div className="sign-up">
@@ -125,7 +149,7 @@ function SignUp() {
           valueProp="password"
           handleInputChange={handleInputChange}
         />
-        { (accountExists) ? <span className="existing-account">You already have an account. Please log in.</span> : <></> }
+        { (accountAlreadyInUse) ? <span className="existing-account">You already have an account. Please log in.</span> : <></> }
         <button className="sign-up-form-button">Sign up</button>
         <p>Already have an account? <a className="log-in-a-tag" href="/log-in">Log in</a></p>
         <p>Or</p>
