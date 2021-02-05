@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 import GoggleButton from '../SignUp/GoggleButton';
 import InputField from '../SignUp/InputField';
@@ -15,6 +15,8 @@ function LogIn() {
     email: "", 
     password: "",
   });
+
+  const [invalidEmail, setInvalidEmail] = useState(false);
 
   const handleInputChange = (valueProp) => {
     const handler = (e) => {
@@ -42,11 +44,19 @@ function LogIn() {
   const handleLogIn = async (e) => {
     e.preventDefault();
     try {
+      // Log in with email
       const userCredential = await auth.signInWithEmailAndPassword(value.email, value.password);
-      console.log(userCredential);
+
+      // Sign out the user if the email is not verified
+      if (!userCredential.user.emailVerified) {
+        await auth.signOut();
+        return setInvalidEmail(true);
+      }
+      setInvalidEmail(false);
       window.location = "/";
-    } catch (error) {
-      console.error(error);
+
+    } catch {
+      setInputError({ emailError: true, passwordError: true });
     }
   };
 
@@ -54,6 +64,10 @@ function LogIn() {
     e.preventDefault();
     console.log("Clicked Google button");
   };
+
+  useEffect(() => {
+    document.addEventListener('DOMContentLoaded', () => setInvalidEmail(false)); 
+  }, [invalidEmail]);
 
   return (
     <div className="log-in">
@@ -77,6 +91,9 @@ function LogIn() {
           valueProp="password"
           handleInputChange={handleInputChange}
         />
+        {
+          (invalidEmail) ? <span className="invalid-email">You must validate your email to log in.</span> : <></>
+        }
         <button className="log-in-button-form">Log in</button>
         <p>Or</p>
         <GoggleButton handleClick={googleLogIn} />

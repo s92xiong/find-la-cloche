@@ -86,8 +86,6 @@ function SignUp() {
       // Render a pop-up div when the user has signed in
       setEmailVerificationPopup(true);
 
-      // window.location = "/log-in";
-
     } catch (error) {
       console.error(error);
       if (error.code === "auth/email-already-in-use") setAccountAlreadyInUse(true);
