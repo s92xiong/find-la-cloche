@@ -78,8 +78,9 @@ function LogIn() {
           handleInputChange={handleInputChange}
         />
         <button className="log-in-button-form">Log in</button>
-        <p>OR</p>
+        <p>Or</p>
         <GoggleButton handleClick={googleLogIn} />
+        <br/>
       </form>
     </div>
   );
