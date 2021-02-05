@@ -1,6 +1,6 @@
 .email-verification-sent {
   width: 450px;
-  height: 300px;
+  height: auto;
   background-color: #fcfcfc;
   display: flex;
   flex-direction: column;
@@ -10,9 +10,18 @@
   text-align: center;
 }
 
+.email-verification-sent img {
+  width: 100px;
+  height: 100px;
+  margin: 25px;
+}
+
 .email-verification-sent p {
   line-height: 1.4rem;
   margin: 15px 25px;
+  font-size: 16px;
+  color: #1d1d1d;
+  font-weight: 300;
 }
 
 .link-to-log-in-button {
@@ -21,9 +30,13 @@
 }
 
 .link-to-log-in-button div {
-  margin-top: 10px;
+  margin: 10px 0 20px 0;
   padding: 10px 20px 10px 20px;
-  background-color: rgb(0, 110, 255);
+  background-color: #2596be;
   cursor: pointer;
   color: #ffffff;
+}
+
+.link-to-log-in-button div:hover {
+  background-color: #2595beda;
 }

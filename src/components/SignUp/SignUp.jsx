@@ -101,7 +101,7 @@ function SignUp() {
 
   useEffect(() => {
     document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false)); 
-  }, [emailVerificationPopup])
+  }, [emailVerificationPopup]);
 
   if (emailVerificationPopup) {
     return (
