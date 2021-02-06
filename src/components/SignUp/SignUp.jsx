@@ -7,6 +7,7 @@ import GoogleButton from "./GoggleButton";
 import { auth, firestore } from '../../firebase';
 import EmailVerification from './EmailVerification';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import UserLoggedIn from "../LogIn/UserLoggedIn";
 
 function SignUp() {
 
@@ -105,6 +106,10 @@ function SignUp() {
     document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false)); 
   }, [emailVerificationPopup, user]);
 
+  // Render a modal/popup that prevents users from accessing SignUp component if already logged in
+  if (user) return <UserLoggedIn />;
+
+  // Render popup if a new account is created & an email ver letter is sent
   if (emailVerificationPopup) return <EmailVerification />;
 
   return (

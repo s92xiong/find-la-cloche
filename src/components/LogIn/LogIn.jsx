@@ -5,6 +5,7 @@ import GoggleButton from '../SignUp/GoggleButton';
 import InputField from '../SignUp/InputField';
 import CatchLogInError from './CatchLogInError';
 import "./styles/LogIn.css";
+import UserLoggedIn from './UserLoggedIn';
 
 function LogIn() {
 
@@ -78,7 +79,10 @@ function LogIn() {
     // if (user) return window.location = "/";
     // Only display message if the user attempts to log in and the email is not verified
     document.addEventListener('DOMContentLoaded', () => setUnverifiedEmail(false));
-  }, [unverifiedEmail, user]);
+  }, [unverifiedEmail]);
+
+  // If the user is already logged in, display a component/message that redirects them to the homepage
+  if (user) return <UserLoggedIn />
 
   return (
     <div className="log-in">
