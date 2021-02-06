@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import "./styles/LogIn.css";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import GoggleButton from '../SignUp/GoggleButton';
 import InputField from '../SignUp/InputField';
 import CatchLogInError from './CatchLogInError';
-import "./styles/LogIn.css";
 import UserLoggedIn from './UserLoggedIn';
+import handleGoogleAuth from '../SignUp/handleGoogleAuth';
 
 function LogIn() {
 
@@ -69,11 +70,6 @@ function LogIn() {
     }
   };
 
-  const googleLogIn = async (e) => {
-    e.preventDefault();
-    console.log("Clicked Google button");
-  };
-
   useEffect(() => {
     // If the user is logged in, redirect them away from the log in page
     // if (user) return window.location = "/";
@@ -111,7 +107,7 @@ function LogIn() {
         }
         <button className="log-in-button-form">Log in</button>
         <p>Or</p>
-        <GoggleButton handleClick={googleLogIn} />
+        <GoggleButton handleClick={handleGoogleAuth} />
         <br/>
       </form>
     </div>

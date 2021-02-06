@@ -8,6 +8,7 @@ import { auth, firestore } from '../../firebase';
 import EmailVerification from './EmailVerification';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import UserLoggedIn from "../LogIn/UserLoggedIn";
+import handleGoogleAuth from './handleGoogleAuth';
 
 function SignUp() {
 
@@ -75,8 +76,8 @@ function SignUp() {
 
       // Add user to Firestore
       await firestore.collection("users").add({
-        name: `${value.firstName} ${value.lastName}`,
         email: value.email,
+        reviews: [],
         uid: userCredential.user.uid,
       });
 
@@ -96,20 +97,15 @@ function SignUp() {
     }
   };
 
-  const handleGoogleClick = (e) => {
-    e.preventDefault();
-    console.log("Continuing w/ Google");
-  };
-
   useEffect(() => {
-    // if (user) return window.location = "/";
+    // Prevent rendering of email verification popup on page load
     document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false)); 
   }, [emailVerificationPopup, user]);
 
-  // Render a modal/popup that prevents users from accessing SignUp component if already logged in
+  // Component prevents users from accessing SignUp component if already logged in
   if (user) return <UserLoggedIn />;
 
-  // Render popup if a new account is created & an email ver letter is sent
+  // Render component if a new account is created & an email verification letter is sent
   if (emailVerificationPopup) return <EmailVerification />;
 
   return (
@@ -152,11 +148,16 @@ function SignUp() {
           valueProp="password"
           handleInputChange={handleInputChange}
         />
-        { (accountAlreadyInUse) ? <span className="existing-account">You already have an account. Please log in.</span> : <></> }
+        { 
+          (accountAlreadyInUse) ? 
+          <span className="existing-account">You already have an account. Please log in.</span> 
+          : 
+          <></> 
+        }
         <button className="sign-up-form-button">Sign up</button>
         <p>Already have an account? <a className="log-in-a-tag" href="/log-in">Log in</a></p>
         <p>Or</p>
-        <GoogleButton handleClick={handleGoogleClick} />
+        <GoogleButton handleClick={handleGoogleAuth} />
         <br/>
       </form>
     </div>
