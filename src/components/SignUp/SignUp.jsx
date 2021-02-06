@@ -6,8 +6,11 @@ import signInError from './signInError';
 import GoogleButton from "./GoggleButton";
 import { auth, firestore } from '../../firebase';
 import EmailVerification from './EmailVerification';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function SignUp() {
+
+  const [user] = useAuthState(auth);
 
   const [inputError, setInputError] = useState({
     firstNameError: false, 
@@ -98,14 +101,11 @@ function SignUp() {
   };
 
   useEffect(() => {
+    // if (user) return window.location = "/";
     document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false)); 
-  }, [emailVerificationPopup]);
+  }, [emailVerificationPopup, user]);
 
-  if (emailVerificationPopup) {
-    return (
-      <EmailVerification />
-    );
-  }
+  if (emailVerificationPopup) return <EmailVerification />;
 
   return (
     <div className="sign-up">

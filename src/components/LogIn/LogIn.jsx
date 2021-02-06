@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import GoggleButton from '../SignUp/GoggleButton';
 import InputField from '../SignUp/InputField';
+import CatchLogInError from './CatchLogInError';
 import "./styles/LogIn.css";
 
 function LogIn() {
@@ -16,9 +18,13 @@ function LogIn() {
     password: "",
   });
 
-  const [invalidEmail, setInvalidEmail] = useState(false);
+  // Determine if user is logged in
+  const [user] = useAuthState(auth);
 
-  const handleInputChange = (valueProp) => {
+  // Display message to user to verify their email if it is not verified already
+  const [unverifiedEmail, setUnverifiedEmail] = useState(false);
+
+  const detectInvalidInputs = (valueProp) => {
     const handler = (e) => {
       // Copy value object state, update "key":"value" pair via dataID attribute
       const newValue = { ...value };
@@ -43,6 +49,7 @@ function LogIn() {
 
   const handleLogIn = async (e) => {
     e.preventDefault();
+
     try {
       // Log in with email
       const userCredential = await auth.signInWithEmailAndPassword(value.email, value.password);
@@ -50,13 +57,14 @@ function LogIn() {
       // Sign out the user if the email is not verified
       if (!userCredential.user.emailVerified) {
         await auth.signOut();
-        return setInvalidEmail(true);
+        return setUnverifiedEmail(true);
       }
-      setInvalidEmail(false);
+      
+      setUnverifiedEmail(false);
       window.location = "/";
 
-    } catch {
-      setInputError({ emailError: true, passwordError: true });
+    } catch (error) {
+      CatchLogInError(error, value, setInputError);
     }
   };
 
@@ -66,8 +74,11 @@ function LogIn() {
   };
 
   useEffect(() => {
-    document.addEventListener('DOMContentLoaded', () => setInvalidEmail(false)); 
-  }, [invalidEmail]);
+    // If the user is logged in, redirect them away from the log in page
+    // if (user) return window.location = "/";
+    // Only display message if the user attempts to log in and the email is not verified
+    document.addEventListener('DOMContentLoaded', () => setUnverifiedEmail(false));
+  }, [unverifiedEmail, user]);
 
   return (
     <div className="log-in">
@@ -80,7 +91,7 @@ function LogIn() {
           placeholderText="Email"
           errorMessage="Email is not valid."
           valueProp="email"
-          handleInputChange={handleInputChange}
+          handleInputChange={detectInvalidInputs}
         />
         <InputField 
           error={inputError}
@@ -89,10 +100,10 @@ function LogIn() {
           placeholderText="Password"
           errorMessage="Invalid password."
           valueProp="password"
-          handleInputChange={handleInputChange}
+          handleInputChange={detectInvalidInputs}
         />
         {
-          (invalidEmail) ? <span className="invalid-email">You must validate your email to log in.</span> : <></>
+          (unverifiedEmail) ? <span className="invalid-email">You must validate your email to log in.</span> : <></>
         }
         <button className="log-in-button-form">Log in</button>
         <p>Or</p>
