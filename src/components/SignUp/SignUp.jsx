@@ -7,12 +7,13 @@ import GoogleButton from "./GoggleButton";
 import { auth, firestore } from '../../firebase';
 import EmailVerification from './EmailVerification';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import UserLoggedIn from "../LogIn/UserLoggedIn";
+// import UserLoggedIn from "../LogIn/UserLoggedIn";
 import handleGoogleAuth from './handleGoogleAuth';
 
 function SignUp() {
 
   const [user] = useAuthState(auth);
+  const [isNewAccountCreated, setNewAccountCreated] = useState(false);
 
   const [inputError, setInputError] = useState({
     firstNameError: false, 
@@ -62,12 +63,15 @@ function SignUp() {
 
   const createUserEmailPassword = async (e) => {
     e.preventDefault();
-    
+
     // Prevent form submission if any input fields are invalid
     const areAllIputFieldsValid = signInError(value, inputError, setInputError);
     if (!areAllIputFieldsValid) return console.log("Please fill in all input fields");
 
     try {
+      // Prevent useEffect from automatically redirecting to homepage upon logging in
+      setNewAccountCreated(true);
+
       // Create user and automatically log in
       const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
       await userCredential.user.updateProfile({
@@ -82,8 +86,7 @@ function SignUp() {
       });
 
       // Send an email verification letter to the newly registered user
-      await auth.currentUser.sendEmailVerification()
-      .then(() => console.log("Email verification letter has been sent."));
+      await auth.currentUser.sendEmailVerification();
 
       // Sign user out immediately, they should only be able to sign back in if they have verified their email
       await auth.signOut();
@@ -98,12 +101,15 @@ function SignUp() {
   };
 
   useEffect(() => {
+    // Redirect to homepage if the user is logged in
+    if (user && !isNewAccountCreated) window.location = "/";
+    
     // Prevent rendering of email verification popup on page load
-    document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false)); 
-  }, [emailVerificationPopup, user]);
+    // document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false));
+  }, [emailVerificationPopup, user, isNewAccountCreated]);
 
   // Component prevents users from accessing SignUp component if already logged in
-  if (user) return <UserLoggedIn />;
+  // if (user) return <UserLoggedIn />;
 
   // Render component if a new account is created & an email verification letter is sent
   if (emailVerificationPopup) return <EmailVerification />;

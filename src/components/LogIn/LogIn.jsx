@@ -5,7 +5,6 @@ import { auth } from '../../firebase';
 import GoggleButton from '../SignUp/GoggleButton';
 import InputField from '../SignUp/InputField';
 import CatchLogInError from './CatchLogInError';
-import UserLoggedIn from './UserLoggedIn';
 import handleGoogleAuth from '../SignUp/handleGoogleAuth';
 
 function LogIn() {
@@ -71,14 +70,12 @@ function LogIn() {
   };
 
   useEffect(() => {
-    // If the user is logged in, redirect them away from the log in page
-    // if (user) return window.location = "/";
+    // Redirect to homepage if user is logged in
+    if (user) return window.location = "/";
+    
     // Only display message if the user attempts to log in and the email is not verified
     document.addEventListener('DOMContentLoaded', () => setUnverifiedEmail(false));
-  }, [unverifiedEmail]);
-
-  // If the user is already logged in, display a component/message that redirects them to the homepage
-  if (user) return <UserLoggedIn />
+  }, [unverifiedEmail, user]);
 
   return (
     <div className="log-in">
