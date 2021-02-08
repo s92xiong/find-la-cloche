@@ -1,7 +1,5 @@
 import React from "react";
 import './App.css';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from './firebase';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Home from './components/Home/Home';
@@ -11,19 +9,13 @@ import LogIn from "./components/LogIn/LogIn";
 
 
 function Routes() {
-
-  const [user] = useAuthState(auth);
-
   return (
     <BrowserRouter>
       <div className="App">
         
-        <Navbar 
-          user={user}
-        />
+        <Navbar />
         
         <Switch>
-          
           <Route 
             exact path="/" 
             render={ () => <Home /> } 
@@ -40,7 +32,6 @@ function Routes() {
             exact path="/log-in" 
             render={ () => <LogIn /> } 
           />
-          
         </Switch>
 
       </div>

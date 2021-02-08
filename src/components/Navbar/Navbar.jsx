@@ -5,8 +5,11 @@ import UserDropDown from './UserDropDown';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
 import userIcon from "../../images/profile-icon.webp";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-function Navbar({ user }) {
+function Navbar() {
+
+  const [user] = useAuthState(auth);
   
   return (
     <nav className="navbar">
