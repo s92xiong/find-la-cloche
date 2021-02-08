@@ -42,6 +42,13 @@
   color: red;
 }
 
+.login-failed-message {
+  color: red;
+  font-size: 14px;
+  margin: 0 0 6px 0;
+}
+
+/* Style Google Button */
 .log-in-form button {
   margin: 10px 0 15px 0;
   width: 80%;

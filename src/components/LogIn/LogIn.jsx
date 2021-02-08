@@ -25,6 +25,9 @@ function LogIn() {
   // Display message to user to verify their email if it is not verified already
   const [unverifiedEmail, setUnverifiedEmail] = useState(false);
 
+  // Display a message if the login failed (e.g. wrong password)
+  const [loginFailed, setLogInFailed] = useState(false);
+
   const detectInvalidInputs = (valueProp) => {
     const handler = (e) => {
       // Copy value object state, update "key":"value" pair via dataID attribute
@@ -65,7 +68,7 @@ function LogIn() {
       window.location = "/";
 
     } catch (error) {
-      CatchLogInError(error, value, setInputError);
+      CatchLogInError(error, value, setInputError, setLogInFailed);
     }
   };
 
@@ -100,8 +103,12 @@ function LogIn() {
           handleInputChange={detectInvalidInputs}
         />
         {
-          (unverifiedEmail) ? <span className="invalid-email">You must validate your email to log in.</span> : <></>
+          (unverifiedEmail) ? 
+          <span className="invalid-email">You must validate your email to log in.</span> 
+          : 
+          <></>
         }
+        { (loginFailed) ? <span className="login-failed-message">Login failed. Please check your email and password.</span> : <></> }
         <button className="log-in-button-form">Log in</button>
         <p>Or</p>
         <GoggleButton handleClick={handleGoogleAuth} />
