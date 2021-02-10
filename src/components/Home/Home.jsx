@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import getCampsites from './getCampsites';
 import SearchBar from './SearchBar';
 import "./styles/Home.css";
 
-function Home() {
+function Home({ campsites, setCampsites }) {
 
-  // eslint-disable-next-line no-unused-vars
-  const [campsites, setCampsites] = useState([]);
-
-  useEffect(() => {
-    console.table(campsites);
-  }, [campsites]);
+  const renderCampsites = () => {
+    getCampsites(campsites, setCampsites);
+  };
 
   return (
     <div className="Home">
       <h2>Find your campsite</h2>
-      <SearchBar getCampsites={getCampsites(campsites, setCampsites)} />
+      <SearchBar renderCampsites={renderCampsites} />
     </div>
   );
 }
