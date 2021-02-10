@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import "./styles/SearchBar.css";
 import searchIcon from "../../images/search-icon.png";
 
-function SearchBar() {
+function SearchBar({ getCampsites }) {
   const [inputFieldCampsite, setInputFieldCampsite] = useState("");
   const inputRef = useRef();
 
@@ -25,6 +25,7 @@ function SearchBar() {
           placeholder="Enter a campsite name"
           ref={inputRef}
           spellCheck="false"
+          onClick={getCampsites}
         />
         <button>Search</button>
       </form>

@@ -9,7 +9,8 @@ function InputField({ handleInputChange, error, classInput, inputType, placehold
         data-id={valueProp} // Property name to access input field
         className={
           // Use bracket notation to access the property name of the error state object
-          (!error[`${valueProp}Error`]) ? 
+          (!error[`${valueProp}Error`]) 
+          ? 
           `form-input input-success ${classInput}`
           :
           `form-input ${classInput} error` 
@@ -19,7 +20,8 @@ function InputField({ handleInputChange, error, classInput, inputType, placehold
         onChange={handleInputChange(valueProp)}
       />
       {
-        (error[`${valueProp}Error`]) ?
+        (error[`${valueProp}Error`]) 
+        ?
         <span className="error-message">{errorMessage}</span> 
         :
         <></>

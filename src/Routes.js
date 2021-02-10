@@ -20,14 +20,14 @@ function Routes() {
             exact path="/" 
             render={ () => <Home /> } 
           />
-
-          <Route exact path="/about" component={About} />
-          
+          <Route 
+            exact path="/about" 
+            component={About}
+          />
           <Route 
             exact path="/sign-up" 
             render={ () => <SignUp /> } 
           />
-
           <Route 
             exact path="/log-in" 
             render={ () => <LogIn /> } 
