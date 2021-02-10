@@ -25,7 +25,7 @@ function SearchBar({ getCampsites }) {
           placeholder="Enter a campsite name"
           ref={inputRef}
           spellCheck="false"
-          onClick={getCampsites}
+          onFocus={getCampsites}
         />
         <button>Search</button>
       </form>
