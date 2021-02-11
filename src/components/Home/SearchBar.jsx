@@ -1,18 +1,39 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import "./styles/SearchBar.css";
+import "./styles/SearchList.css";
 import searchIcon from "../../images/search-icon.png";
+import getCampsites from './getCampsites';
+import SearchList from './SearchList';
 
-function SearchBar({ renderCampsites }) {
+function SearchBar({ showCampsiteList, setShowCampsites }) {
+
+  // Campsites from Firestore db
+  const [campsites, setCampsites] = useState([]);
+
+  // Manage state of input field
   const [inputFieldCampsite, setInputFieldCampsite] = useState("");
+
+  // Obtain reference to input field
   const inputRef = useRef();
 
+  // Handle input field change
   const handleChange = (e) => setInputFieldCampsite(e.target.value);
 
+  // Handle Form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputFieldCampsite);
     inputRef.current.value = "";
   };
+
+  const renderCampsites = () => {
+    getCampsites(campsites, setCampsites);
+    setShowCampsites(true);
+  };
+
+  useEffect(() => {
+    console.log(campsites);
+  },[campsites]);
 
   return (
     <div className="search-bar">
@@ -20,7 +41,8 @@ function SearchBar({ renderCampsites }) {
         <div className="search-icon">
           <img src={searchIcon} alt=""/>
         </div>
-        <input 
+        <input
+          className="search-bar-input"
           type="text" 
           onChange={handleChange}
           placeholder="Enter a campsite name"
@@ -29,6 +51,7 @@ function SearchBar({ renderCampsites }) {
           onFocus={renderCampsites}
         />
         <button>Search</button>
+        <SearchList campsites={campsites} showCampsiteList={showCampsiteList} />
       </form>
     </div>
   );

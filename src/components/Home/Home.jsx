@@ -1,18 +1,23 @@
-import React from 'react';
-import getCampsites from './getCampsites';
+import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import "./styles/Home.css";
 
-function Home({ campsites, setCampsites }) {
+function Home() {
 
-  const renderCampsites = () => {
-    getCampsites(campsites, setCampsites);
+  // Input field is selected
+  const [showCampsiteList, setShowCampsites] = useState(false);
+
+  const hideCampsites = (e) => {
+    console.log(e.target);
+    if (e.target.className !== "search-bar-input") {
+      setShowCampsites(false);
+    }
   };
 
   return (
-    <div className="Home">
+    <div className="Home" onClick={hideCampsites}>
       <h2>Find your campsite</h2>
-      <SearchBar renderCampsites={renderCampsites} />
+      <SearchBar showCampsiteList={showCampsiteList} setShowCampsites={setShowCampsites} />
     </div>
   );
 }
