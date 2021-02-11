@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import "./styles/SearchBar.css";
 import "./styles/SearchList.css";
 import searchIcon from "../../images/search-icon.png";
@@ -30,10 +30,6 @@ function SearchBar({ showCampsiteList, setShowCampsites }) {
     getCampsites(campsites, setCampsites);
     setShowCampsites(true);
   };
-
-  useEffect(() => {
-    console.log(campsites);
-  },[campsites]);
 
   return (
     <div className="search-bar">

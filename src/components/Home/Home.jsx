@@ -8,15 +8,15 @@ function Home() {
   const [showCampsiteList, setShowCampsites] = useState(false);
 
   const hideCampsites = (e) => {
-    console.log(e.target);
-    if (e.target.className !== "search-bar-input") {
+    // If the user clicks on the Home component or title, close the dropdown list
+    if (e.target.className === "Home" || e.target.className === "home-title") {
       setShowCampsites(false);
     }
   };
 
   return (
     <div className="Home" onClick={hideCampsites}>
-      <h2>Find your campsite</h2>
+      <h2 className="home-title">Find your campsite</h2>
       <SearchBar showCampsiteList={showCampsiteList} setShowCampsites={setShowCampsites} />
     </div>
   );
