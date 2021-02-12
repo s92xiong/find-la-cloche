@@ -15,7 +15,7 @@
   display: none;
 }
 
-.search-item, .search-item-hover {
+.search-item {
   list-style: none;
   font-size: 15px;
   font-family: 'Lato', sans-serif;
@@ -24,17 +24,7 @@
   cursor: pointer;
 }
 
-.search-item-hover {
-  list-style: none;
-  font-size: 15px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  padding: 10px 0 10px 20px;
+.search-item:hover {
   background-color: #448c14;
   color: white;
 }
-
-/* .search-item:hover {
-  background-color: #448c14;
-  color: white;
-} */
