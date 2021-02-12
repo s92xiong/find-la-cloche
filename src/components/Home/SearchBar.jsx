@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import "./styles/SearchBar.css";
 import "./styles/SearchList.css";
 import searchIcon from "../../images/search-icon.png";
@@ -17,9 +17,15 @@ function SearchBar({ showCampsiteList, setShowCampsites }) {
   const inputRef = useRef();
 
   // Handle input field change
-  const handleChange = (e) => setInputFieldCampsite(e.target.value);
+  const handleChange = (e) => {
+    const newCampsites = campsites.filter(campsite => campsite.name.toLowerCase().includes(e.target.value.toLowerCase()));
+    setCampsites(newCampsites);
+    setInputFieldCampsite(e.target.value);
+    setShowCampsites(true);
+  };
 
   // Handle Form submission
+  // YOU DON'T NEED A SUBMIT BUTTON!!! EVERYTHING SHOULD BE DONE IN THE ONCHANGE PROP
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputFieldCampsite);
@@ -30,10 +36,6 @@ function SearchBar({ showCampsiteList, setShowCampsites }) {
     getCampsites(campsites, setCampsites);
     setShowCampsites(true);
   };
-
-  useEffect(() => {
-    // console.table(campsites);
-  }, [campsites]);
 
   return (
     <div className="search-bar">
