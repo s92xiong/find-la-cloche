@@ -5,6 +5,7 @@ const getCampsites = (campsites, setCampsites) => {
     return firestore.collection("campsites").orderBy("index").onSnapshot(snapshot => {
       const newCampsites = snapshot.docs.map(doc => ({
         id: doc.id,
+        hover: false,
         ...doc.data(),
       }));
       setCampsites(newCampsites);
