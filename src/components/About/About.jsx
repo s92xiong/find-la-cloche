@@ -5,7 +5,6 @@ function About() {
 
   const trailLink = "https://www.alltrails.com/trail/canada/ontario/la-cloche-silhouette-trail";
   const allTrailsLink = "https://www.alltrails.com/";
-  
 
   return (
     <div className="about"> 

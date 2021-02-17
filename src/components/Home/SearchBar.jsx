@@ -1,27 +1,38 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import "./styles/SearchBar.css";
 import "./styles/SearchList.css";
 import searchIcon from "../../images/search-icon.png";
-import getCampsites from './getCampsites';
 import SearchList from './SearchList';
+import getCampsites from "./getCampsites";
 
 function SearchBar({ showCampsiteList, setShowCampsites }) {
 
-  // Campsites from Firestore db
-  const [campsites, setCampsites] = useState([]);
+  // Contains campsites that will be filtered and rendered to the DOM
+  const [filteredCampsites, setFilteredCampsites] = useState([]);
 
-  // Manage state of input field
+  // Contains all campsites from db
+  const [allCampsites, setAllCampsites] = useState([]);
+
+  // Render "No results" in drop down if input doesn't match campsite name
+  const [noResults, setNoResults] = useState(false);
+ 
+  // Input field state
   const [inputFieldCampsite, setInputFieldCampsite] = useState("");
 
   // Obtain reference to input field
   const inputRef = useRef();
 
   // Handle input field change
-  const handleChange = (e) => {
-    const newCampsites = campsites.filter(campsite => campsite.name.toLowerCase().includes(e.target.value.toLowerCase()));
-    setCampsites(newCampsites);
-    setInputFieldCampsite(e.target.value);
+  const handleInputChange = (e) => {
+    const filteredCampsites = allCampsites.filter(campsite => {
+      // Only show campsites matching text input from user
+      return campsite.name.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    
+    (filteredCampsites.length < 1) ? setNoResults(true) : setNoResults(false);
+    setFilteredCampsites(filteredCampsites);
     setShowCampsites(true);
+    setInputFieldCampsite(e.target.value);
   };
 
   // Handle Form submission
@@ -29,13 +40,15 @@ function SearchBar({ showCampsiteList, setShowCampsites }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputFieldCampsite);
-    inputRef.current.value = "";
   };
 
-  const renderCampsites = () => {
-    getCampsites(campsites, setCampsites);
-    setShowCampsites(true);
-  };
+  const openDropDownList = () => setShowCampsites(true);
+  
+  useEffect(() => {
+    if (filteredCampsites.length < 1) {
+      getCampsites(filteredCampsites, setFilteredCampsites, setAllCampsites);
+    }
+  }, [filteredCampsites, allCampsites]);
 
   return (
     <div className="search-bar">
@@ -46,14 +59,18 @@ function SearchBar({ showCampsiteList, setShowCampsites }) {
         <input
           className="search-bar-input"
           type="text" 
-          onChange={handleChange}
+          onChange={handleInputChange}
           placeholder="Enter a campsite name"
           ref={inputRef}
           spellCheck="false"
-          onFocus={renderCampsites}
+          onFocus={openDropDownList}
         />
         <button>Search</button>
-        <SearchList campsites={campsites} showCampsiteList={showCampsiteList} />
+        <SearchList 
+          campsites={filteredCampsites} 
+          showCampsiteList={showCampsiteList} 
+          noResults={noResults}
+        />
       </form>
     </div>
   );

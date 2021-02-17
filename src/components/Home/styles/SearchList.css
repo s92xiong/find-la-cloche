@@ -12,6 +12,11 @@
   border-bottom-right-radius: 10px;
 }
 
+.search-item-link {
+  color: black;
+  text-decoration: none;
+}
+
 .search-list-off {
   display: none;
 }
