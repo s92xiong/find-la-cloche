@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .navbar {
-  height: 70px;
+  height: 69px;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -10,6 +10,7 @@
   /* background-color: #ff7e33cb; */
   background-color: #fafafa;
   padding: 0 35px 0 35px;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .navbar-left-div {

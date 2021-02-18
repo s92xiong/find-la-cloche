@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ProgressBar from 'react-customizable-progressbar';
 import { auth, firestore, storage } from '../../firebase';
 import "./styles/Campsite.css";
 
@@ -9,6 +10,9 @@ function Campsite({ match }) {
 
   // Initialize state for image
   const [image, setImage] = useState(null);
+
+  // eslint-disable-next-line no-unused-vars
+  const [progress, setProgress] = useState(0);
 
   // Access the specific campsite
   const getDoc = async (id) => {
@@ -31,16 +35,20 @@ function Campsite({ match }) {
     }
 
     // Upload image to firebase 
-    storage.ref(`images/${image.name}`).put(image).on("state_changed",
+    storage.ref(`images/${match.params.id}/${image.name}`).put(image).on("state_changed",
       // Progress function
       (snapshot) => {
         const percentage = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        console.log(`Upload progress: ${percentage}% complete.`);
+        console.log(`Upload progress: ${percentage}%`);
+        setProgress(percentage);
       },
       // Error function
       (error) => console.error(error),
       // Complete/Success function
-      () => storage.ref("images").child(image.name).getDownloadURL().then(url => console.log(url))
+      () => storage.ref(`images/${match.params.id}`).child(image.name).getDownloadURL().then(url => {
+        console.log(url);
+        setImage(null);
+      })
     );
   };
 
@@ -48,12 +56,21 @@ function Campsite({ match }) {
     getDoc(match.params.id);
   }, [match, image]);
 
-  // if (!auth) return <></>;
   return (
-    <div className="campsite">
-      <h1>{item.name}</h1>
-      <input className="uploader-input" type="file" onChange={handleChange}/>
-      <button className="uploader-button" onClick={handleUpload}>Upload</button>
+    <div className="campsite-container">
+      <div className="campsite">
+        <h1>{item.name}</h1>
+        <input className="uploader-input" type="file" onChange={handleChange}/>
+        <button className="uploader-button" onClick={handleUpload}>Upload</button>
+        <ProgressBar
+          className="progress-bar"
+          progress={progress}
+          radius={100}
+          strokeColor="#63d418"
+        >
+          <span className="progress-num">{progress}%</span>
+        </ProgressBar>
+      </div>
     </div>
   );
 }
