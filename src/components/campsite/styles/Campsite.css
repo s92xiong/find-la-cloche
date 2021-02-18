@@ -1,0 +1,11 @@
+.campsite {
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+  height: auto;
+  background-color: #f2f2f2;
+}
+
+/* .uploader-input {
+  -webkit-appearance: none;
+  appearance: none;
+} */

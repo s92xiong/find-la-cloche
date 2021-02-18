@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import About from './components/About/About';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from "./components/LogIn/LogIn";
+import Campsite from "./components/campsite/Campsite";
 
 
 function Routes() {
@@ -33,6 +34,7 @@ function Routes() {
             exact path="/log-in" 
             render={ () => <LogIn /> } 
           />
+          <Route path="/:id" component={Campsite} />
         </Switch>
 
       </div>

@@ -24,7 +24,8 @@ function SearchList({ campsites, showCampsiteList, noResults }) {
             return (
               <Link 
                 className="search-item-link" 
-                to={`${campsite.name.replace(/\s+/g, '-').toLowerCase()}`} 
+                // to={`campsite/${campsite.name.replace(/\s+/g, '-').toLowerCase()}`} 
+                to={campsite.id}
                 key={campsite.id}
               >
                 <li 
