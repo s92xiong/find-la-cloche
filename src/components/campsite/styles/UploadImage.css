@@ -1,0 +1,19 @@
+.upload-image {
+  display: none;
+}
+
+.progress-bar {
+  position: relative;
+}
+
+/* Center number within circle */
+.progress-num {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

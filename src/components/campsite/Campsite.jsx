@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import ProgressBar from 'react-customizable-progressbar';
 import { auth, firestore, storage } from '../../firebase';
+import CampsiteHeader from './CampsiteHeader';
+import Carousel from './Carousel';
+import Reviews from './Reviews';
 import "./styles/Campsite.css";
+import UploadImage from './UploadImage';
 
 function Campsite({ match }) {
 
@@ -59,17 +62,14 @@ function Campsite({ match }) {
   return (
     <div className="campsite-container">
       <div className="campsite">
-        <h1>{item.name}</h1>
-        <input className="uploader-input" type="file" onChange={handleChange}/>
-        <button className="uploader-button" onClick={handleUpload}>Upload</button>
-        <ProgressBar
-          className="progress-bar"
+        <CampsiteHeader item={item} />
+        <Carousel />
+        <Reviews />
+        <UploadImage 
+          handleChange={handleChange}
+          handleUpload={handleUpload}
           progress={progress}
-          radius={100}
-          strokeColor="#63d418"
-        >
-          <span className="progress-num">{progress}%</span>
-        </ProgressBar>
+        />
       </div>
     </div>
   );

@@ -3,9 +3,9 @@
 .about {
   width: 100vw;
   height: calc(100vh - 70px);
-  background-image: url("../../images/aa1.png");
+  background-image: url("../../images/aa-red-river-gorge.png");
   background-size: cover;
-  /* background-position: center; */
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;

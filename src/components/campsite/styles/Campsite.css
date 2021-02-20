@@ -2,7 +2,8 @@
   width: 100vw;
   min-height: calc(100vh - 70px);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: #f2f2f2;
 }
 
@@ -12,24 +13,7 @@
   height: auto;
   background-color: #ffffff;
   font-family: 'Lato', sans-serif;
-}
-
-/* .uploader-input {
-  -webkit-appearance: none;
-  appearance: none;
-} */
-
-.progress-bar {
-  position: relative;
-}
-
-.progress-num {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  font-size: 25px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
