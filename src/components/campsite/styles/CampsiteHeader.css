@@ -31,6 +31,8 @@
 }
 
 .select-campsite-header {
+  padding-left: 12px;
+  padding-right: 12px;
   height: 100%;
   cursor: pointer;
   font-size: 14px;
