@@ -9,6 +9,7 @@ const getCampsites = (campsites, setCampsites, setAllCampsites) => {
         ...doc.data(),
       }));
       setCampsites(newCampsites);
+      if (!setAllCampsites) return;
       setAllCampsites(newCampsites);
     });
   }
