@@ -1,7 +1,7 @@
 import React from 'react';
 import iconImg from "../../images/search-icon.png";
 
-function SelectCampsite({ campsites }) {
+function SelectCampsite({ campsites, url, setURL }) {
   return (
     <form className="right-side-header">
       <select name="select-campsite" className="select-campsite-header">
@@ -18,7 +18,7 @@ function SelectCampsite({ campsites }) {
         <img className="search-icon-header" src={iconImg} alt=""/>
       </div>
     </form>
-  )
+  );
 }
 
 export default SelectCampsite;

@@ -7,6 +7,7 @@ import SelectCampsite from './SelectCampsite';
 function CampsiteHeader({ item }) {
 
   const [campsites, setCampsites] = useState([]);
+  const [url, setURL] = useState(null);
 
   useEffect(() => {
     if (campsites.length < 1) {
@@ -25,7 +26,7 @@ function CampsiteHeader({ item }) {
           }
         </div>
       </div>
-      <SelectCampsite campsites={campsites} />
+      <SelectCampsite campsites={campsites} url={url} setURL={setURL} />
     </div>
   );
 }
