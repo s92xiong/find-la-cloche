@@ -13,7 +13,12 @@ function SelectCampsite({ campsites, url, setURL }) {
   return (
     <form className="right-side-header">
       <OutsideClickHandler onOutsideClick={closeDropDown}>
-        <div className="drop-down-header noselect" onClick={openDropDown}>
+        <div 
+          className={ 
+            (!isDropDownOpen) ? "drop-down-header noselect" : "drop-down-header noselect dd-bb-radius"
+          } 
+          onClick={openDropDown}
+        >
           <span className="drop-down-span" >Select another campsite</span>
           <img 
             className={ (!isDropDownOpen) ? "down-arrow" : "up-arrow down-arrow"} 

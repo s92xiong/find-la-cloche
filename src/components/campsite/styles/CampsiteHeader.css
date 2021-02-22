@@ -60,6 +60,10 @@
   position: relative;
 }
 
+.dd-bb-radius {
+  border-bottom-left-radius: 0px;
+}
+
 .drop-down-span {
   padding-left: 5px;
   color: #5a5a5a;
