@@ -3,6 +3,7 @@ import iconImg from "../../images/search-icon.png";
 import downArrow from "../../images/arrow-down.png";
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
+import "./styles/SelectCampsite.css";
 
 function SelectCampsite({ campsites, url, setURL }) {
 
