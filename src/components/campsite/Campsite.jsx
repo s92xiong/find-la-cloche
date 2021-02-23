@@ -38,7 +38,7 @@ function Campsite({ match }) {
     }
 
     // Upload image to firebase 
-    storage.ref(`images/${match.params.id}/${image.name}`).put(image).on("state_changed",
+    storage.ref(`images/${auth.currentUser.uid}/${image.name}`).put(image).on("state_changed",
       // Progress function
       (snapshot) => {
         const percentage = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
@@ -48,10 +48,11 @@ function Campsite({ match }) {
       // Error function
       (error) => console.error(error),
       // Complete/Success function
-      () => storage.ref(`images/${match.params.id}`).child(image.name).getDownloadURL().then(url => {
+      async () => {
+        const url = await storage.ref(`images/${match.params.id}`).child(image.name).getDownloadURL();
         console.log(url);
         setImage(null);
-      })
+      }
     );
   };
 
