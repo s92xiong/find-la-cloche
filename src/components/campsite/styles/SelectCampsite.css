@@ -24,7 +24,7 @@
 }
 
 .drop-down-span {
-  padding-left: 5px;
+  padding-right: 8px;
   color: #999999;
 }
 
@@ -59,7 +59,7 @@
 
 .drop-down-item li {
   list-style-type: none;
-  padding: 10px 0 10px 10px;
+  padding: 10px 0 10px 15px;
   font-size: 14px;
 }
 
