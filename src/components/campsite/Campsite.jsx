@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { auth, firestore, storage } from '../../firebase';
 import getCampsites from '../Home/getCampsites';
-import CampsiteHeader from './CampsiteHeader';
+import Header from './Header';
 import Carousel from './Carousel';
 import Reviews from './Reviews';
 import "./styles/Campsite.css";
 import UploadImage from './UploadImage';
 
 function Campsite({ match }) {
-
+  // Initialize array state for campsites
   const [campsites, setCampsites] = useState([]);
 
   // Initialize state for campsite item
   const [item, setItem] = useState({});
 
   // Initialize state for image
-  const [image, setImage] = useState(null);
+  const [uploadFile, setUploadFile] = useState(null);
 
   // eslint-disable-next-line no-unused-vars
   const [progress, setProgress] = useState(0);
@@ -29,21 +29,21 @@ function Campsite({ match }) {
 
   const handleChange = (e) => {
     // Update state whenever a new file is chosen
-    setImage(e.target.files[0]);
+    setUploadFile(e.target.files[0]);
   };
 
   const handleUpload = () => {
     // Prevent non-registered users from uploading images
     if (!auth.currentUser) {
       return console.log("User must be logged in to upload images!!");
-    } else if (!image) {
+    } else if (!uploadFile) {
       return console.log("You must choose a file to upload.");
     }
 
     const date = Date.now();
 
     // Upload image to firebase 
-    const uploadTask = storage.ref(`images/${match.params.id}/${image.name}-${date}`).put(image);
+    const uploadTask = storage.ref(`images/${match.params.id}/${uploadFile.name}-${date}`).put(uploadFile);
     uploadTask.on("state_changed",
       // Progress function
       (snapshot) => {
@@ -55,7 +55,7 @@ function Campsite({ match }) {
       (error) => console.error(error),
       // Complete/Success function
       async () => {
-        const url = await storage.ref(`images/${match.params.id}`).child(`${image.name}-${date}`).getDownloadURL();
+        const url = await storage.ref(`images/${match.params.id}`).child(`${uploadFile.name}-${date}`).getDownloadURL();
 
         let index;
         campsites.forEach((campsite, i) => {
@@ -67,9 +67,8 @@ function Campsite({ match }) {
         // Access index of campsite, copy campsite array, update prop, then add to update Firestore
         const newCampsites = [...campsites];
         newCampsites[index].images = [...campsites[index].images, url];
-
       
-        // Add URL to Firestore
+        // Add URL to Firestore collection
         firestore.collection("campsites").doc(match.params.id).update({
           images: newCampsites[index].images
         })
@@ -77,19 +76,6 @@ function Campsite({ match }) {
         .catch((error) => console.error(error));
       }
     );
-  };
-
-  const retrieveImages = async () => {
-    const ref = await storage.ref("/images").child(match.params.id).listAll();
-    ref.items.forEach(async(file) => {
-      const url = await file.getDownloadURL();
-      console.log(url);
-    });
-    // Second option to iterate through loop
-    // for await (const file of ref.items) {
-    //   const url = file.getDownloadURL();
-    //   console.log(url);
-    // }
   };
 
   useEffect(() => {
@@ -100,8 +86,8 @@ function Campsite({ match }) {
   return (
     <div className="campsite-container">
       <div className="campsite">
-        <CampsiteHeader item={item} />
-        <Carousel />
+        <Header item={item} />
+        <Carousel match={match} />
         <Reviews />
         <UploadImage 
           handleChange={handleChange}
@@ -109,10 +95,6 @@ function Campsite({ match }) {
           progress={progress}
         />
       </div>
-      <br/>
-      <button onClick={retrieveImages}>Get Information</button>
-      <br/>
-      <br/>
     </div>
   );
 }

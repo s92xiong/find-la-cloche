@@ -4,7 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import getCampsites from '../Home/getCampsites';
 import SelectCampsite from './SelectCampsite';
 
-function CampsiteHeader({ item }) {
+function Header({ item }) {
 
   const [campsites, setCampsites] = useState([]);
   const [url, setURL] = useState(null);
@@ -31,4 +31,4 @@ function CampsiteHeader({ item }) {
   );
 }
 
-export default CampsiteHeader;
+export default Header;
