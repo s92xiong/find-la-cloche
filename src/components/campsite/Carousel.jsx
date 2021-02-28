@@ -4,20 +4,30 @@ import "./styles/Carousel.css";
 
 function Carousel({ match }) {
 
-  const [URLs, setURLs] = useState([]);
+  const [imgURLs, setImgURLs] = useState([]);
 
   useEffect(() => {
-    retrieveImages(match, URLs, setURLs);
-  }, [URLs, match]);
+    retrieveImages(match, setImgURLs);
+  }, [match]);
 
   return (
     <div className="carousel">
       {
-        (URLs.length === 0) ?
+        (imgURLs.length === 0) ?
         <></>
         :
-        URLs.map(url => (
-          <img src={url} alt="" className="campsite-img" key={url} />
+        imgURLs.map(url => (
+          <img 
+            key={url.urlString}
+            src={url.urlString} 
+            alt="" 
+            className={
+              (url.display) ?
+              "campsite-img"
+              :
+              "campsite-img campsite-img-hidden"
+            }
+          />
         ))
       }
     </div>
