@@ -6,7 +6,7 @@ import Home from './components/Home/Home';
 import About from './components/About/About';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from "./components/LogIn/LogIn";
-import Campsite from "./components/campsite/Campsite";
+import Campsite from "./components/Campsite/Campsite";
 
 
 function Routes() {

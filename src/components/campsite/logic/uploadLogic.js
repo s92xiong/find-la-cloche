@@ -1,4 +1,4 @@
-import { auth, firestore, storage } from "../../firebase";
+import { auth, firestore, storage } from "../../../firebase";
 
 const uploadLogic = (match, uploadFile, campsites, setProgress) => {
   // Prevent non-registered users from uploading images

@@ -6,7 +6,7 @@ function UploadImage({ handleChange, handleUpload, progress }) {
   return (
     <div className="upload-image">
       <input className="uploader-input" type="file" onChange={handleChange}/>
-      <button className="uploader-button" onClick={handleUpload}>Upload</button>
+      <button className="uploader-button" onClick={handleUpload}>Upload File</button>
       <ReactCustomizableProgressbar
         className="progress-bar"
         progress={progress}

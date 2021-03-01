@@ -6,7 +6,7 @@ import Carousel from './Carousel';
 import Reviews from './Reviews';
 import "./styles/Campsite.css";
 import UploadImage from './UploadImage';
-import uploadLogic from './uploadLogic';
+import uploadLogic from './logic/uploadLogic';
 
 function Campsite({ match }) {
   // Initialize array of campsites
