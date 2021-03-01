@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import retrieveImages from './RetrieveImages';
+import getImages from './getImages';
 import "./styles/Carousel.css";
 
 function Carousel({ match }) {
@@ -7,7 +7,7 @@ function Carousel({ match }) {
   const [imgURLs, setImgURLs] = useState([]);
 
   useEffect(() => {
-    retrieveImages(match, setImgURLs);
+    getImages(match, setImgURLs);
   }, [match]);
 
   return (

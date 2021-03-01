@@ -1,6 +1,6 @@
 import { storage } from "../../firebase";
 
-const retrieveImages = async (match, setImgURLs) => {
+const getImages = async (match, setImgURLs) => {
   const tempArray = [];
   const ref = await storage.ref("/images").child(match.params.id).listAll();
   for (const file of ref.items) {
@@ -14,4 +14,4 @@ const retrieveImages = async (match, setImgURLs) => {
   setImgURLs(tempArray);
 };
 
-export default retrieveImages;
+export default getImages;
