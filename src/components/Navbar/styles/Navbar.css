@@ -105,6 +105,14 @@
   margin: 0px 8px 0 0;
 }
 
+.down-arrow-nav {
+  margin-left: 7px;
+}
+
+.login-true:hover .down-arrow {
+  transform: rotate(-180deg);
+}
+
 @media (max-width: 500px) {
   .navbar {
     height: 160px;

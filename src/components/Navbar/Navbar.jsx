@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
 import userIcon from "../../images/profile-icon.webp";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import downArrow from "../../images/arrow-down.png";
 
 function Navbar() {
 
@@ -35,9 +36,13 @@ function Navbar() {
           <img className="profile-pic" src={ (auth.currentUser.photoURL) ? auth.currentUser.photoURL : userIcon  } alt=""/>
           { (auth.currentUser.displayName) ? <h4>{auth.currentUser.displayName}</h4> : <></> }
           <UserDropDown />
+          <img 
+            className="down-arrow down-arrow-nav" 
+            src={downArrow} 
+            alt=""
+          />
         </div>
       }
-
     </nav>
   );
 }
