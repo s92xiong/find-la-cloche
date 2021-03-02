@@ -5,7 +5,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
 import "./styles/SelectCampsite.css";
 
-function SelectCampsite({ campsites, url, setURL }) {
+function SelectCampsite({ campsites }) {
 
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const openDropDown = () => setDropDownOpen(!isDropDownOpen);

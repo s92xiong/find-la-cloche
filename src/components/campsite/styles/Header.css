@@ -1,0 +1,8 @@
+.campsite-header {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  background-color: #f2f2f2;
+}

@@ -24,4 +24,3 @@ export default getImages;
 //     display: false,
 //   });
 // }
-// console.log(tempArray);

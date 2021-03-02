@@ -1,0 +1,12 @@
+.campsite-title {
+  padding: 0 0 6px 20px;
+  /* color: white; */ 
+}
+
+.five-star-rating {
+  padding: 0 0 0 19px;
+}
+
+.campsite-stars {
+  color: gold;
+}

@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import getImages from './logic/getImages';
+import React, { useState } from 'react';
 import "./styles/Carousel.css";
 
-function Carousel({ match }) {
-
-  const [imgURLs, setImgURLs] = useState([]);
+function Carousel({ match, imgURLs, setImgURLs }) {
 
   // Initialize variable to determine which img is active
   const [imgIndex, setImgIndex] = useState(0);
-
-  useEffect(() => {
-    getImages(match, setImgURLs);
-  }, [match]);
 
   const handleLeftButton = () => {
     if (imgIndex === 0) return console.log("Current index is at 0");
@@ -21,7 +14,6 @@ function Carousel({ match }) {
     newImgURLs[imgIndex - 1].display = true;
 
     setImgURLs(newImgURLs);
-
     setImgIndex(() => imgIndex - 1);
   };
 
