@@ -7,13 +7,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: #ff7e33cb; */
   background-color: #fafafa;
-  padding: 0 110px 0 110px;
+  padding: 0 40px 0 40px;
   border-bottom: 1px solid #dddddd;
 }
 
-.navbar-left-div {
+.navbar-title-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +22,7 @@
 .title a {
   color: #2795bd;
   font-size: 26px;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 5px;
   text-decoration: none;
 }
 
@@ -38,7 +37,6 @@
   text-decoration: none;
   color: #727272;
   font-family: 'Lato', sans-serif;
-  margin-right: 30px;
 }
 
 .login-false {
@@ -108,7 +106,7 @@
     margin: 0;
   }
 
-  .navbar-left-div img {
+  .navbar-title-icon img {
     width: 55px;
     height: 55px;
   }

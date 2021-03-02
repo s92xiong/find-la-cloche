@@ -4,7 +4,7 @@ import "./styles/ModuleCard.css";
 
 function ModuleCard({ item }) {
   return (
-    <div className="module-card">
+    <div className="module-card module-card-no-bg">
       <h2 className="campsite-title">{item.name}</h2>
       <div className="five-star-rating">
         {
