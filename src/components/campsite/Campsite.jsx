@@ -52,9 +52,11 @@ function Campsite({ match }) {
     <div className="campsite-container">
       <div className="campsite">
         <Header item={item} campsites={campsites} />
-        <ModuleCard item={item} />
-        <Carousel 
-          match={match}
+        <ModuleCard 
+          item={item}
+          imgURLs={imgURLs}
+        />
+        <Carousel
           imgURLs={imgURLs} 
           setImgURLs={setImgURLs}
         />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./styles/Carousel.css";
 
-function Carousel({ match, imgURLs, setImgURLs }) {
+function Carousel({ imgURLs, setImgURLs }) {
 
   // Initialize variable to determine which img is active
   const [imgIndex, setImgIndex] = useState(0);

@@ -1,5 +1,8 @@
 .module-card {
-  height: 250px;
+  height: 300px;
+  background-position: center;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .module-card-no-bg {
@@ -7,15 +10,23 @@
   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 }
 
-.campsite-title {
-  padding: 0 0 6px 20px;
-  color: white; 
+.module-info {
+  margin: 0 0 20px 20px;
+  width: 200px;
+  background: rgba(76, 75, 75, 0.541);
+  border-radius: 5px;
+  padding: 5px;
 }
 
-.five-star-rating {
-  padding: 0 0 0 19px;
+.campsite-title {
+  color: white; 
 }
 
 .campsite-stars {
   color: gold;
+  margin: 7px 0 7px 0;
+}
+
+.park-information {
+  color: white;
 }
