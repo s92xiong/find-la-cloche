@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
 .module-card {
-  height: 300px;
-  background-position: center;
+  height: 312px;
+  background-position: center center;
+  background-size: cover;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -12,14 +15,15 @@
 
 .module-info {
   margin: 0 0 20px 20px;
-  width: 200px;
+  width: 220px;
   background: rgba(76, 75, 75, 0.541);
   border-radius: 5px;
   padding: 5px;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .campsite-title {
-  color: white; 
+  color: white;
 }
 
 .campsite-stars {
@@ -27,6 +31,7 @@
   margin: 7px 0 7px 0;
 }
 
-.park-information {
+.park-name {
   color: white;
+  font-weight: 300;
 }

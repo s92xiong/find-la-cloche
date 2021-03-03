@@ -1,0 +1,22 @@
+.sub-header {
+  width: 100%;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.sub-header-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  /* background-color: #4a9c12; */
+  background-color: #f2f2f2;
+  font-size: 17px;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.sub-header-title:hover {
+  /* background-color: #499c12dc; */
+}

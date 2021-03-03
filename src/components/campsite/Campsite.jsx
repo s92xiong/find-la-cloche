@@ -3,12 +3,12 @@ import "./styles/Campsite.css";
 import { firestore } from '../../firebase';
 import getCampsites from '../Home/getCampsites';
 import Header from './Header';
-import Carousel from './Carousel';
-import Reviews from './Reviews';
+// import Carousel from './Carousel';
 import UploadImage from './UploadImage';
 import uploadLogic from './logic/uploadLogic';
 import ModuleCard from './ModuleCard';
 import getImages from './logic/getImages';
+import SubHeader from './SubHeader';
 
 function Campsite({ match }) {
   // Initialize array of campsites
@@ -56,11 +56,11 @@ function Campsite({ match }) {
           item={item}
           imgURLs={imgURLs}
         />
-        <Carousel
+        <SubHeader />
+        {/* <Carousel
           imgURLs={imgURLs} 
           setImgURLs={setImgURLs}
-        />
-        <Reviews />
+        /> */}
         <UploadImage 
           handleChange={handleChange}
           handleUpload={handleUpload}

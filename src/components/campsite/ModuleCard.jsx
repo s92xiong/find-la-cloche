@@ -4,9 +4,11 @@ import "./styles/ModuleCard.css";
 
 function ModuleCard({ item, imgURLs }) {
   return (
-    <div 
+    <div
+      // Provide a backup background if there are no images for this campsite
       className={ (imgURLs.length > 1) ? "module-card" : "module-card module-card-no-bg" }
       style={{
+        // If the campsite has images, display the first image in the array
         backgroundImage: (imgURLs.length > 1) && `url(${imgURLs[0].urlString})`
       }}
     >
@@ -18,7 +20,7 @@ function ModuleCard({ item, imgURLs }) {
             [...Array(5)].map((star, i) => <FaStar key={i} size={20} className="campsite-stars" />)
           }
         </div>
-        <p className="park-information">Killarney Provincial Park</p>
+        <p className="park-name">Killarney Provincial Park</p>
       </div>
     </div>
   );
