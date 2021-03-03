@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import "./Campsite.css";
 import { firestore } from '../../firebase';
@@ -7,7 +8,7 @@ import getImages from './logic/getImages';
 import Header from './Header/Header';
 import ModuleCard from './Card/Card';
 // import Carousel from './Carousel/Carousel';
-import SubHeader from './SubHeader/SubHeader';
+import Content from './Content/Content';
 import UploadContainer from './UploadContainer/UploadContainer';
 
 function Campsite({ match }) {
@@ -34,7 +35,7 @@ function Campsite({ match }) {
   };
 
   const handleChange = (e) => {
-    // Update state whenever a new file is chosen
+    // Update file state when a new file is selected
     setUploadFile(e.target.files[0]);
   };
 
@@ -56,16 +57,16 @@ function Campsite({ match }) {
           item={item}
           imgURLs={imgURLs}
         />
-        <SubHeader />
+        <Content />
         {/* <Carousel
           imgURLs={imgURLs} 
           setImgURLs={setImgURLs}
         /> */}
-        <UploadContainer 
+        {/* <UploadContainer 
           handleChange={handleChange}
           handleUpload={handleUpload}
           progress={progress}
-        />
+        /> */}
       </div>
     </div>
   );
