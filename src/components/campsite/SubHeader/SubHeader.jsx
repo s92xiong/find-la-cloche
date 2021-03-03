@@ -1,5 +1,5 @@
 import React from 'react';
-import "./styles/SubHeader.css";
+import "./SubHeader.css";
 
 function SubHeader() {
   return (

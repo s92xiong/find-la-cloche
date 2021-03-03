@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
-import "./styles/ModuleCard.css";
+import "./Card.css";
 
 function ModuleCard({ item, imgURLs }) {
   return (

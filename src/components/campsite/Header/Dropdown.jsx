@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import iconImg from "../../images/search-icon.png";
-import downArrow from "../../images/arrow-down.png";
+import iconImg from "../../../images/search-icon.png";
+import downArrow from "../../../images/arrow-down.png";
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
-import "./styles/SelectCampsite.css";
+import "./styles/Dropdown.css";
 
-function SelectCampsite({ campsites }) {
+function Dropdown({ campsites }) {
 
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const openDropDown = () => setDropDownOpen(!isDropDownOpen);
@@ -46,4 +46,4 @@ function SelectCampsite({ campsites }) {
   );
 }
 
-export default SelectCampsite;
+export default Dropdown;

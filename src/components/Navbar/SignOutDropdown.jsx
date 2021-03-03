@@ -2,7 +2,7 @@ import React from 'react';
 import { auth } from '../../firebase';
 import "./styles/UserDropDown.css";
 
-function UserDropDown() {
+function SignOutDropdown() {
 
   const handleSignOut = async () => {
     try {
@@ -24,4 +24,4 @@ function UserDropDown() {
   );
 }
 
-export default UserDropDown;
+export default SignOutDropdown;

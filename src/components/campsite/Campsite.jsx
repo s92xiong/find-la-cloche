@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import "./styles/Campsite.css";
+import "./Campsite.css";
 import { firestore } from '../../firebase';
 import getCampsites from '../Home/getCampsites';
-import Header from './Header';
-// import Carousel from './Carousel';
-import UploadImage from './UploadImage';
-import uploadLogic from './logic/uploadLogic';
-import ModuleCard from './ModuleCard';
+import uploadImage from './logic/uploadImage';
 import getImages from './logic/getImages';
-import SubHeader from './SubHeader';
+import Header from './Header/Header';
+import ModuleCard from './Card/Card';
+// import Carousel from './Carousel/Carousel';
+import SubHeader from './SubHeader/SubHeader';
+import UploadContainer from './UploadContainer/UploadContainer';
 
 function Campsite({ match }) {
   // Initialize array of campsites
@@ -39,7 +39,7 @@ function Campsite({ match }) {
   };
 
   const handleUpload = () => {
-    return uploadLogic(match, uploadFile, campsites, setProgress);
+    return uploadImage(match, uploadFile, campsites, setProgress);
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function Campsite({ match }) {
           imgURLs={imgURLs} 
           setImgURLs={setImgURLs}
         /> */}
-        <UploadImage 
+        <UploadContainer 
           handleChange={handleChange}
           handleUpload={handleUpload}
           progress={progress}

@@ -1,7 +1,7 @@
 import React from 'react';
 import "./styles/Navbar.css";
 import icon from "../../images/outdoors-4-64.png";
-import UserDropDown from './UserDropDown';
+import SignOutDropdown from './SignOutDropdown';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
 import userIcon from "../../images/profile-icon.webp";
@@ -35,7 +35,7 @@ function Navbar() {
         <div className="login-true" >
           <img className="profile-pic" src={ (auth.currentUser.photoURL) ? auth.currentUser.photoURL : userIcon  } alt=""/>
           { (auth.currentUser.displayName) ? <h4>{auth.currentUser.displayName}</h4> : <></> }
-          <UserDropDown />
+          <SignOutDropdown />
           <img 
             className="down-arrow down-arrow-nav" 
             src={downArrow} 

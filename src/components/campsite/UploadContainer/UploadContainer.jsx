@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactCustomizableProgressbar from 'react-customizable-progressbar';
-import "./styles/UploadImage.css";
+import "./UploadContainer.css";
 
-function UploadImage({ handleChange, handleUpload, progress }) {
+function UploadContainer({ handleChange, handleUpload, progress }) {
   return (
     <div className="upload-image">
       <input className="uploader-input" type="file" onChange={handleChange}/>
@@ -19,4 +19,4 @@ function UploadImage({ handleChange, handleUpload, progress }) {
   );
 }
 
-export default UploadImage;
+export default UploadContainer;

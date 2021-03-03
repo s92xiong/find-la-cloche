@@ -1,6 +1,6 @@
 import { auth, firestore, storage } from "../../../firebase";
 
-const uploadLogic = (match, uploadFile, campsites, setProgress) => {
+const uploadImage = (match, uploadFile, campsites, setProgress) => {
   // Prevent non-registered users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
@@ -46,4 +46,4 @@ const uploadLogic = (match, uploadFile, campsites, setProgress) => {
   );
 };
 
-export default uploadLogic;
+export default uploadImage;

@@ -1,11 +1,11 @@
 import React from 'react';
 import "./styles/Header.css";
-import SelectCampsite from './SelectCampsite';
+import Dropdown from "./Dropdown";
 
 function Header({ campsites }) {
   return (
     <div className="campsite-header">
-      <SelectCampsite campsites={campsites} />
+      <Dropdown campsites={campsites} />
     </div>
   );
 }
