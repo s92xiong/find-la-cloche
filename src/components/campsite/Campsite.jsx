@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import "./Campsite.css";
 import { firestore } from '../../firebase';
@@ -57,16 +56,16 @@ function Campsite({ match }) {
           item={item}
           imgURLs={imgURLs}
         />
-        <Content />
+        <Content imgURLs={imgURLs} />
         {/* <Carousel
           imgURLs={imgURLs} 
           setImgURLs={setImgURLs}
         /> */}
-        {/* <UploadContainer 
+        <UploadContainer 
           handleChange={handleChange}
           handleUpload={handleUpload}
           progress={progress}
-        /> */}
+        />
       </div>
     </div>
   );

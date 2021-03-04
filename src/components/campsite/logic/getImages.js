@@ -1,26 +1,31 @@
 import { storage } from "../../../firebase";
 
 const getImages = async (match, setImgURLs) => {
-  const tempArray = [];
+  // Initialize empty array that will eventually contain promises
+  const promiseArray = [];
+
+  // Acccess the desired image directory and list all of its contents
   const ref = await storage.ref("/images").child(match.params.id).listAll();
 
-  for (let i = 0; i < ref.items.length; i++) {
-    const url = await ref.items[i].getDownloadURL();
-    tempArray.push({
-      urlString: url,
-      display: (i === 0) ? true : false,
-    });
+  // Iterate through every img file and asynchronously get its URL
+  for (const img of ref.items) {
+    const promiseURL = img.getDownloadURL();
+    promiseArray.push(promiseURL);
   }
-  // console.table(tempArray);
-  setImgURLs(tempArray);
+
+  // Await for all promises (in the for loop) to be completed and store it in a variable
+  const result = await Promise.all(promiseArray);
+
+  // Iterate through the result
+  const imgArray = result.map((url, i) => {
+    return {
+      urlString: url,
+      display: (i === 0) ? true : false
+    };
+  });
+
+  // Update state to display images
+  setImgURLs(imgArray);
 };
 
 export default getImages;
-
-// for (const file of ref.items) {
-//   const url = await file.getDownloadURL();
-//   tempArray.push({
-//     urlString: url,
-//     display: false,
-//   });
-// }
