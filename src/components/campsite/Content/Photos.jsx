@@ -20,8 +20,6 @@ function Photos({ imgURLs, campsites, match }) {
 
   const handleClick = () => {
     if (!user) return setUploadLoginError(true);
-    
-    console.log("You are logged in and permitted to upload photos!");
     setModalOpen(true);
   };
 

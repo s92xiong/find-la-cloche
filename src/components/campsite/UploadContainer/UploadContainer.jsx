@@ -5,15 +5,16 @@ import "./UploadContainer.css";
 function UploadContainer({ handleChange, handleUpload, progress, setModalOpen }) {
 
   const closeModal = (e) => {
-    console.log(e.target.className);
-    if (e.target.className === "upload-modal") {
+    if (e.target.className === "upload-modal-bg" || "close-modal-button") {
       setModalOpen(false);
     }
   };
 
   return (
-    <div className="upload-modal" onClick={closeModal}>
-      <div className="upload-image">
+    <div className="upload-modal-bg" onClick={closeModal}>
+      <div className="upload-modal">
+        <div className="close-modal-button">✕</div>
+        <h1>Upload photos</h1>
         <input className="uploader-input" type="file" onChange={handleChange}/>
         <button className="uploader-button" onClick={handleUpload}>Upload File</button>
         <ReactCustomizableProgressbar
