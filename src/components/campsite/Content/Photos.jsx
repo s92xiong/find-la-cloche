@@ -2,20 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase';
 import "./styles/Photos.css";
+import uploadImage from "../logic/uploadImage";
+import UploadContainer from "../UploadContainer/UploadContainer";
 
-function Photos({ imgURLs }) {
+function Photos({ imgURLs, campsites, match }) {
 
   const [user] = useAuthState(auth);
   const [uploadLoginError, setUploadLoginError] = useState(false);
 
+  // File information for upload
+  const [uploadFile, setUploadFile] = useState(null);
+
+  // Show progress as upload occurs
+  const [progress, setProgress] = useState(0);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
   const handleClick = () => {
     if (!user) return setUploadLoginError(true);
-
+    
     console.log("You are logged in and permitted to upload photos!");
+    setModalOpen(true);
+  };
+
+  const handleChange = (e) => {
+    // Update file state when a new file is selected
+    setUploadFile(e.target.files[0]);
+  };
+
+  const handleUpload = () => {
+    return uploadImage(match, uploadFile, campsites, setProgress);
   };
 
   useEffect(() => {
     if (uploadLoginError) {
+      // Remove error message after 3 seconds
       setTimeout(() => setUploadLoginError(false), 3000);
     }
   }, [uploadLoginError]);
@@ -46,6 +67,17 @@ function Photos({ imgURLs }) {
           })
         }
       </div>
+      {
+        (modalOpen) ?
+        <UploadContainer 
+          handleChange={handleChange}
+          handleUpload={handleUpload}
+          progress={progress}
+          setModalOpen={setModalOpen}
+        />
+        :
+        <></>
+      }
     </div>
   );
 }

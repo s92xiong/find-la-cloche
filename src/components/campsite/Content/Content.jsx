@@ -3,7 +3,7 @@ import "./styles/Content.css";
 import Photos from "./Photos";
 import Reviews from "./Reviews";
 
-function Content({ imgURLs }) {
+function Content({ imgURLs, campsites, match }) {
 
   const [toggleState, setToggleState] = useState(0);
 
@@ -35,7 +35,7 @@ function Content({ imgURLs }) {
       </div>
       {
         (toggleState === 0) ?
-        <Photos imgURLs={imgURLs} />
+        <Photos imgURLs={imgURLs} campsites={campsites} match={match} />
         :
         <Reviews />
       }
