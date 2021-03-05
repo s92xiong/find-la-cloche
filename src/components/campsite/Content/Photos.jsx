@@ -7,7 +7,10 @@ import UploadContainer from "../UploadContainer/UploadContainer";
 
 function Photos({ imgURLs, campsites, match }) {
 
+  // Check if user is logged in
   const [user] = useAuthState(auth);
+
+  // Render a message error if unauthorized user tries to upload photos
   const [uploadLoginError, setUploadLoginError] = useState(false);
 
   // File information for upload
@@ -17,6 +20,10 @@ function Photos({ imgURLs, campsites, match }) {
   const [progress, setProgress] = useState(0);
 
   const [modalOpen, setModalOpen] = useState(false);
+
+  // Render 3 different components (0, 1, 2)
+  // eslint-disable-next-line no-unused-vars
+  const [displayComponent, setComponent] = useState(0);
 
   const handleClick = () => {
     if (!user) return setUploadLoginError(true);
@@ -29,15 +36,17 @@ function Photos({ imgURLs, campsites, match }) {
   };
 
   const handleUpload = () => {
+    // setComponent(1);
     return uploadImage(match, uploadFile, campsites, setProgress);
   };
 
   useEffect(() => {
+    console.log(uploadFile);
     if (uploadLoginError) {
       // Remove error message after 3 seconds
       setTimeout(() => setUploadLoginError(false), 3000);
     }
-  }, [uploadLoginError]);
+  }, [uploadLoginError, uploadFile]);
 
   return (
     <div className="photos-container">
@@ -67,11 +76,13 @@ function Photos({ imgURLs, campsites, match }) {
       </div>
       {
         (modalOpen) ?
-        <UploadContainer 
+        <UploadContainer
           handleChange={handleChange}
           handleUpload={handleUpload}
+          uploadFile={uploadFile}
           progress={progress}
           setModalOpen={setModalOpen}
+          displayComponent={displayComponent}
         />
         :
         <></>
