@@ -25,7 +25,8 @@ function UploadContainer({
           id="select-photo"
           type="file" 
           onChange={handleChange}
-          accept="image/x-png,image/jpeg" 
+          accept="image/x-png,image/jpeg"
+          multiple
         />
         {/* Render 'Click to add a Photo' */}
         <label htmlFor="select-photo" className={
@@ -45,6 +46,16 @@ function UploadContainer({
             }
           </div>
         </label>
+        {/* Render list of images to be uploaded */}
+        <div className={
+          (displayComponent === 1) ? "pre-upload-list" : "pre-upload-list hide"
+        }>
+          <li>Jonathan Joestar</li>
+          <li>Joseph Joestar</li>
+          <li>Kujo Jotaro</li>
+          <li>Higashikata Josuke</li>
+          <li>Giorno Giovanna</li>
+        </div>
         {/* Render 'Progress Bar' */}
         <ReactCustomizableProgressbar
           className={displayComponent === 2 ? "progress-bar" : "progress-bar hide"}

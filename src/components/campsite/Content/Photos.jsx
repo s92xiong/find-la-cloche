@@ -32,7 +32,8 @@ function Photos({ imgURLs, campsites, match }) {
 
   const handleChange = (e) => {
     // Update file state when a new file is selected
-    setUploadFile(e.target.files[0]);
+    // setUploadFile(e.target.files[0]);
+    setUploadFile(e.target.files);
   };
 
   const handleUpload = () => {
