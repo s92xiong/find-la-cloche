@@ -1,6 +1,6 @@
 import { auth, firestore, storage } from "../../../firebase";
 
-const uploadImage = (match, uploadFile, campsites, setProgress) => {
+const uploadImage = (match, uploadFile, campsites, setProgress, setModalOpen, setUploadFile) => {
   // Prevent non-registered users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
@@ -30,7 +30,10 @@ const uploadImage = (match, uploadFile, campsites, setProgress) => {
         if (campsite.id === match.params.id) {
           index = i;
         }
-      })
+      });
+
+      setModalOpen(false);
+      setUploadFile(null);
 
       // Access index of campsite, copy campsite array, update prop, then add to update Firestore
       const newCampsites = [...campsites];

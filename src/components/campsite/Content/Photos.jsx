@@ -37,11 +37,10 @@ function Photos({ imgURLs, campsites, match }) {
 
   const handleUpload = () => {
     // setComponent(1);
-    return uploadImage(match, uploadFile, campsites, setProgress);
+    return uploadImage(match, uploadFile, campsites, setProgress, setModalOpen, setUploadFile);
   };
 
   useEffect(() => {
-    console.log(uploadFile);
     if (uploadLoginError) {
       // Remove error message after 3 seconds
       setTimeout(() => setUploadLoginError(false), 3000);
@@ -83,6 +82,7 @@ function Photos({ imgURLs, campsites, match }) {
           progress={progress}
           setModalOpen={setModalOpen}
           displayComponent={displayComponent}
+          setUploadFile={setUploadFile}
         />
         :
         <></>

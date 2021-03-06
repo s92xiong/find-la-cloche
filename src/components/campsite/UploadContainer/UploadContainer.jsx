@@ -4,13 +4,14 @@ import "./UploadContainer.css";
 import photoIcon from "../../../images/camera-icon.png";
 
 function UploadContainer({ 
-  handleChange, handleUpload, progress, setModalOpen, displayComponent, uploadFile
+  handleChange, handleUpload, progress, setModalOpen, displayComponent, uploadFile, setUploadFile
 }) {
 
   const closeModal = (e) => {
-    // console.log(e.target.className);
     if (e.target.className === "upload-modal-bg" || e.target.className === "close-modal-button") {
+      // Close modal & clear image file from state
       setModalOpen(false);
+      setUploadFile(null);
     }
   };
 
