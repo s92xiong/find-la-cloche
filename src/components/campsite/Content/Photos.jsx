@@ -14,7 +14,7 @@ function Photos({ imgURLs, campsites, match }) {
   const [uploadLoginError, setUploadLoginError] = useState(false);
 
   // File information for upload
-  const [uploadFile, setUploadFile] = useState(null);
+  const [filesArray, setFilesArray] = useState(null);
 
   // Show progress as upload occurs
   const [progress, setProgress] = useState(0);
@@ -22,7 +22,6 @@ function Photos({ imgURLs, campsites, match }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   // Render 3 different components (0, 1, 2)
-  // eslint-disable-next-line no-unused-vars
   const [displayComponent, setComponent] = useState(0);
 
   const handleClick = () => {
@@ -30,15 +29,17 @@ function Photos({ imgURLs, campsites, match }) {
     setModalOpen(true);
   };
 
-  const handleChange = (e) => {
-    // Update file state when a new file is selected
-    // setUploadFile(e.target.files[0]);
-    setUploadFile(e.target.files);
+  const handleFileChange = (e) => {
+    // Update file state when a new set of files or file is selected
+    setFilesArray(e.target.files);
+    setComponent(1);
   };
 
   const handleUpload = () => {
-    // setComponent(1);
-    return uploadImage(match, uploadFile, campsites, setProgress, setModalOpen, setUploadFile);
+    setComponent(2);
+    return uploadImage(
+      match, filesArray, setFilesArray, campsites, setProgress, setModalOpen, setComponent
+    );
   };
 
   useEffect(() => {
@@ -46,7 +47,7 @@ function Photos({ imgURLs, campsites, match }) {
       // Remove error message after 3 seconds
       setTimeout(() => setUploadLoginError(false), 3000);
     }
-  }, [uploadLoginError, uploadFile]);
+  }, [uploadLoginError, filesArray]);
 
   return (
     <div className="photos-container">
@@ -77,13 +78,14 @@ function Photos({ imgURLs, campsites, match }) {
       {
         (modalOpen) ?
         <UploadContainer
-          handleChange={handleChange}
+          handleFileChange={handleFileChange}
           handleUpload={handleUpload}
-          uploadFile={uploadFile}
+          uploadFile={filesArray}
           progress={progress}
           setModalOpen={setModalOpen}
           displayComponent={displayComponent}
-          setUploadFile={setUploadFile}
+          setUploadFile={setFilesArray}
+          setComponent={setComponent}
         />
         :
         <></>

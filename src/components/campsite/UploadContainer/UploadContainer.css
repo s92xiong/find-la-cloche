@@ -81,10 +81,14 @@
   margin: 4px;
 }
 
-.file-name {
-  margin-top: 3px;
-  font-size: 19px;
-  color: #448c14;
+.pre-upload-list {
+  width: 95%;
+  float: right;
+  height: 70%;
+}
+
+.pre-upload-list li {
+  line-height: 1.7rem;
 }
 
 .upload-button-container {
@@ -117,6 +121,7 @@
 
 .progress-bar {
   /* display: none; */
+  margin: 50px auto 0 auto;
   position: relative;
 }
 

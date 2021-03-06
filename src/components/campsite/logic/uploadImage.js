@@ -1,15 +1,15 @@
 import { auth, firestore, storage } from "../../../firebase";
 
-const uploadImage = (match, uploadFile, campsites, setProgress, setModalOpen, setUploadFile) => {
-  // Prevent non-registered users from uploading images
+const uploadImage = (match, filesArray, setFilesArray, campsites, setProgress, setModalOpen, setComponent) => {
+  // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
-  } else if (!uploadFile) {
+  } else if (!filesArray) {
     return console.log("You must choose a file to upload.");
   }
-
   
-  for (const file of uploadFile) {
+  // Iterate through every file and upload the file to Firebase Storage, also add URL to Firestore
+  for (const file of filesArray) {
     const date = Date.now();
     
     // Upload image to firebase 
@@ -27,9 +27,10 @@ const uploadImage = (match, uploadFile, campsites, setProgress, setModalOpen, se
       async () => {
         const url = await storage.ref(`images/${match.params.id}`).child(`${file.name}-${date}`).getDownloadURL();
         
-        // Close the modal and clear image file state
+        // Close the modal and clear image file state, display 1st component
         setModalOpen(false);
-        setUploadFile(null);
+        setFilesArray(null);
+        setComponent(0);
         
         let index;
         campsites.forEach((campsite, i) => {
@@ -37,7 +38,6 @@ const uploadImage = (match, uploadFile, campsites, setProgress, setModalOpen, se
             index = i;
           }
         });
-  
   
         // Access index of campsite, copy campsite array, update prop, then add to update Firestore
         const newCampsites = [...campsites];

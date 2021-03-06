@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactCustomizableProgressbar from 'react-customizable-progressbar';
 import "./UploadContainer.css";
 import photoIcon from "../../../images/camera-icon.png";
+import getImageName from '../logic/getImageName';
 
 function UploadContainer({ 
-  handleChange, handleUpload, progress, setModalOpen, displayComponent, uploadFile, setUploadFile
+  handleFileChange, handleUpload, progress, setModalOpen, displayComponent, uploadFile, setUploadFile, setComponent
 }) {
+
+  const [imgNames, setImgNames] = useState();
+
+  useEffect(() => {
+    if (uploadFile) {
+      const names = getImageName(uploadFile);
+      setImgNames(names);
+    }
+  }, [uploadFile]);
 
   const closeModal = (e) => {
     if (e.target.className === "upload-modal-bg" || e.target.className === "close-modal-button") {
-      // Close modal & clear image file from state
+      // Close modal & clear image file from state, display first component
       setModalOpen(false);
       setUploadFile(null);
+      setComponent(0);
     }
   };
 
@@ -24,7 +35,7 @@ function UploadContainer({
           className="uploader-input"
           id="select-photo"
           type="file" 
-          onChange={handleChange}
+          onChange={handleFileChange}
           accept="image/x-png,image/jpeg"
           multiple
         />
@@ -38,23 +49,22 @@ function UploadContainer({
             </div>
             <h4>Click to add a photo</h4>
             <p>PNG or JPG</p>
-            {
-              (uploadFile) ? 
-              <span className="file-name">{uploadFile.name}</span>
-              : 
-              <></>
-            }
           </div>
         </label>
         {/* Render list of images to be uploaded */}
         <div className={
           (displayComponent === 1) ? "pre-upload-list" : "pre-upload-list hide"
         }>
-          <li>Jonathan Joestar</li>
-          <li>Joseph Joestar</li>
-          <li>Kujo Jotaro</li>
-          <li>Higashikata Josuke</li>
-          <li>Giorno Giovanna</li>
+          <ol>
+            {
+              (imgNames) ?
+              imgNames.map(name => (
+                <li>{name}</li>
+              ))
+              :
+              <></>
+            }
+          </ol>
         </div>
         {/* Render 'Progress Bar' */}
         <ReactCustomizableProgressbar
@@ -65,17 +75,20 @@ function UploadContainer({
         >
           <span className="progress-num">{progress}%</span>
         </ReactCustomizableProgressbar>
-        <div className="upload-button-container">
-          <button 
-            onClick={handleUpload}
-            className={ 
-              (uploadFile) ? "uploader-button" : "uploader-button-no-file"
-              // (displayComponent === 0) ? "uploader-button" : "uploader-button hide" 
-            }
-          >
-            Upload
-          </button>
-        </div>
+        {
+          (displayComponent !== 2) &&
+          <div className="upload-button-container">
+            <button 
+              onClick={handleUpload}
+              className={ 
+                (uploadFile) ? "uploader-button" : "uploader-button-no-file"
+                // (displayComponent === 0) ? "uploader-button" : "uploader-button hide" 
+              }
+            >
+              Upload
+            </button>
+          </div>
+        }
       </div>
     </div>
   );
