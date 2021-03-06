@@ -1,12 +1,17 @@
 import { auth, firestore, storage } from "../../../firebase";
 
-const uploadImage = (match, filesArray, setFilesArray, campsites, setProgress, setModalOpen, setComponent) => {
+const uploadImage = (
+  match, filesArray, setFilesArray, campsites, setProgress, 
+  setModalOpen, setComponent, setStopModalClose
+) => {
   // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
   } else if (!filesArray) {
     return console.log("You must choose a file to upload.");
   }
+
+  setStopModalClose(true);
   
   // Iterate through every file and upload the file to Firebase Storage, also add URL to Firestore
   for (const file of filesArray) {
@@ -25,12 +30,10 @@ const uploadImage = (match, filesArray, setFilesArray, campsites, setProgress, s
       (error) => console.error(error),
       // Complete/Success function
       async () => {
-        const url = await storage.ref(`images/${match.params.id}`).child(`${file.name}-${date}`).getDownloadURL();
-        
-        // Close the modal and clear image file state, display 1st component
-        setModalOpen(false);
-        setFilesArray(null);
-        setComponent(0);
+        const url = await storage
+                    .ref(`images/${match.params.id}`)
+                    .child(`${file.name}-${date}`)
+                    .getDownloadURL();
         
         let index;
         campsites.forEach((campsite, i) => {
@@ -44,11 +47,15 @@ const uploadImage = (match, filesArray, setFilesArray, campsites, setProgress, s
         newCampsites[index].images = [...campsites[index].images, url];
       
         // Add URL to Firestore collection
-        firestore.collection("campsites").doc(match.params.id).update({
+        await firestore.collection("campsites").doc(match.params.id).update({
           images: newCampsites[index].images
-        })
-        .then(() => console.log("Image URl has been added to Firestore!"))
-        .catch((error) => console.error(error));
+        });
+
+        // Close the modal and clear image file state, display 1st component
+        setModalOpen(false);
+        setFilesArray(null);
+        setComponent(0);
+        setStopModalClose(false);
       }
     );
   }

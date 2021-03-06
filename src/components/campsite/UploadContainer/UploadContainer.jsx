@@ -5,7 +5,8 @@ import photoIcon from "../../../images/camera-icon.png";
 import getImageName from '../logic/getImageName';
 
 function UploadContainer({ 
-  handleFileChange, handleUpload, progress, setModalOpen, displayComponent, uploadFile, setUploadFile, setComponent
+  handleFileChange, handleUpload, progress, setModalOpen, displayComponent, 
+  uploadFile, setUploadFile, setComponent, stopModalClose
 }) {
 
   const [imgNames, setImgNames] = useState();
@@ -18,6 +19,9 @@ function UploadContainer({
   }, [uploadFile]);
 
   const closeModal = (e) => {
+    // Prevent the modal from closing if an upload is occuring
+    if (stopModalClose) return;
+    // Close the modal if the target is the x button or outside of the modal
     if (e.target.className === "upload-modal-bg" || e.target.className === "close-modal-button") {
       // Close modal & clear image file from state, display first component
       setModalOpen(false);

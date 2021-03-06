@@ -24,6 +24,9 @@ function Photos({ imgURLs, campsites, match }) {
   // Render 3 different components (0, 1, 2)
   const [displayComponent, setComponent] = useState(0);
 
+  // Prevent UploadContainer modal from closing when upload progress is occuring
+  const [stopModalClose, setStopModalClose] = useState(false);
+
   const handleClick = () => {
     if (!user) return setUploadLoginError(true);
     setModalOpen(true);
@@ -38,7 +41,7 @@ function Photos({ imgURLs, campsites, match }) {
   const handleUpload = () => {
     setComponent(2);
     return uploadImage(
-      match, filesArray, setFilesArray, campsites, setProgress, setModalOpen, setComponent
+      match, filesArray, setFilesArray, campsites, setProgress, setModalOpen, setComponent, setStopModalClose
     );
   };
 
@@ -86,6 +89,7 @@ function Photos({ imgURLs, campsites, match }) {
           displayComponent={displayComponent}
           setUploadFile={setFilesArray}
           setComponent={setComponent}
+          stopModalClose={stopModalClose}
         />
         :
         <></>
