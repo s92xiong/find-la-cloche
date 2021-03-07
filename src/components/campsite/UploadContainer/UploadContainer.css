@@ -85,6 +85,7 @@
   width: 95%;
   float: right;
   height: 70%;
+  /* overflow: scroll; */
 }
 
 .pre-upload-list li {
