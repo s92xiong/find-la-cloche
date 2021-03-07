@@ -46,18 +46,24 @@ function Photos({ imgURLs, campsites, match }) {
   };
 
   useEffect(() => {
+    console.log(imgURLs);
     if (uploadLoginError) {
       // Remove error message after 3 seconds
       setTimeout(() => setUploadLoginError(false), 3000);
     }
-  }, [uploadLoginError, filesArray]);
+  }, [uploadLoginError, filesArray, imgURLs]);
 
   return (
     <div className="photos-container">
       <div className="add-photos">
         <div className="add-photos-label">
-          <h2>Add photos of this campsite</h2>
-          <p>Photos help others preview the campsite. Upload photos about this campsite to inspire others.</p>
+          {
+            (imgURLs.length > 1) ? <h2>Add photos of this campsite</h2> : <h2>There are currently no photos of this campsite!</h2>
+          }
+          {
+            (imgURLs.length > 1) ? <p>Photos help others preview the campsite. Upload photos about this campsite to inspire others.</p> :
+            <p>Be the first user to post photos of this campsite!</p>
+          }
         </div>
         <div className="upload-photos-container">
           <button onClick={handleClick} className="upload-photos-button">Upload photos</button>
