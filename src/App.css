@@ -11,6 +11,7 @@
 .App {
   max-width: 100%;
   height: auto;
+  min-width: 1070px;
   /* background-image: url("images/algonquin-highlands.jpg");
   background-size: cover;
   background-position: center; */

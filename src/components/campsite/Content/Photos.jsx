@@ -46,7 +46,6 @@ function Photos({ imgURLs, campsites, match }) {
   };
 
   useEffect(() => {
-    console.log(imgURLs);
     if (uploadLoginError) {
       // Remove error message after 3 seconds
       setTimeout(() => setUploadLoginError(false), 3000);

@@ -113,7 +113,7 @@
   transform: rotate(-180deg);
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .navbar {
     height: 160px;
     width: 100vw;
@@ -135,7 +135,6 @@
   .about-nav {
     font-size: 15px;
     margin: 12px;
-    /* display: none; */
   }
 
   .sign-up-button, .log-in-button {
@@ -150,4 +149,4 @@
     height: 35px;
     margin: 0 8px 0 0;
   }
-}
+} */
