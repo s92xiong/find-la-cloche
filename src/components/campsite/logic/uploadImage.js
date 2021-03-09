@@ -1,8 +1,8 @@
 import { auth, firestore, storage } from "../../../firebase";
 
 const uploadImage = (
-  match, filesArray, setFilesArray, campsites, setProgress, 
-  setModalOpen, setComponent, setStopModalClose
+                    match, filesArray, setFilesArray, campsites, setProgress, 
+                    setModalOpen, setComponent, setStopModalClose
 ) => {
   // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
@@ -23,7 +23,7 @@ const uploadImage = (
       // Progress function
       (snapshot) => {
         const percentage = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        console.log(`Upload progress: ${percentage}%`);
+        // console.log(`Upload progress: ${percentage}%`);
         setProgress(percentage);
       },
       // Error function

@@ -40,7 +40,7 @@ function Campsite({ match }) {
           item={item}
           imgURLs={imgURLs}
         />
-        <Content imgURLs={imgURLs} campsites={campsites} match={match} />
+        <Content imgURLs={imgURLs} setImgURLs={setImgURLs} campsites={campsites} match={match} />
         {/* <Carousel
           imgURLs={imgURLs} 
           setImgURLs={setImgURLs}

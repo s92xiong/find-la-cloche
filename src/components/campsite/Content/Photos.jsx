@@ -4,8 +4,9 @@ import { auth } from '../../../firebase';
 import "./styles/Photos.css";
 import uploadImage from "../logic/uploadImage";
 import UploadContainer from "../UploadContainer/UploadContainer";
+import Carousel from '../Carousel/Carousel';
 
-function Photos({ imgURLs, campsites, match }) {
+function Photos({ imgURLs, setImgURLs, campsites, match }) {
 
   // Check if user is logged in
   const [user] = useAuthState(auth);
@@ -19,7 +20,7 @@ function Photos({ imgURLs, campsites, match }) {
   // Show progress as upload occurs
   const [progress, setProgress] = useState(0);
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   // Render 3 different components (0, 1, 2)
   const [displayComponent, setComponent] = useState(0);
@@ -27,9 +28,14 @@ function Photos({ imgURLs, campsites, match }) {
   // Prevent UploadContainer modal from closing when upload progress is occuring
   const [stopModalClose, setStopModalClose] = useState(false);
 
+  // Initialize number to keep track of which img should be opened in the carousel
+  const [imgIndex, setImgIndex] = useState();
+
+  const [isCarouselOpen, setCarouselOpen] = useState(false);
+
   const handleClick = () => {
     if (!user) return setUploadLoginError(true);
-    setModalOpen(true);
+    setUploadModalOpen(true);
   };
 
   const handleFileChange = (e) => {
@@ -41,8 +47,28 @@ function Photos({ imgURLs, campsites, match }) {
   const handleUpload = () => {
     setComponent(2);
     return uploadImage(
-      match, filesArray, setFilesArray, campsites, setProgress, setModalOpen, setComponent, setStopModalClose
+      match, filesArray, setFilesArray, campsites, setProgress, 
+      setUploadModalOpen, setComponent, setStopModalClose
     );
+  };
+
+  const openCarousel = (e) => {
+    // Open specific img clicked on using data attribute
+    const index = Number(e.target.dataset.id);
+
+    // Set the index to the img clicked on
+    setImgIndex(index);
+
+    // Copy and update imgURL state
+    const array = [...imgURLs];
+    array.forEach(item => (item.display) ? item.display = false : null);
+    array[index].display = true;
+    setImgURLs(array);
+
+    // Open carousel
+    setCarouselOpen(true);
+
+    // Hide scroll bar, get access to a document, then update it
   };
 
   useEffect(() => {
@@ -73,24 +99,25 @@ function Photos({ imgURLs, campsites, match }) {
       </div>
       <div className="line-separator"></div>
       <div className="photos-items-container">
+        {/* DISPLAY ALL IMAGES OF THE CAMPSITE */}
         {
           imgURLs.map((url, i) => {
             return (
               <div className="photo-item" key={i}>
-                <img src={url.urlString} alt=""/>
+                <img data-id={i} onClick={openCarousel} src={url.urlString} alt=""/>
               </div>
             );
           })
         }
       </div>
       {
-        (modalOpen) ?
+        (uploadModalOpen) ?
         <UploadContainer
           handleFileChange={handleFileChange}
           handleUpload={handleUpload}
           uploadFile={filesArray}
           progress={progress}
-          setModalOpen={setModalOpen}
+          setModalOpen={setUploadModalOpen}
           displayComponent={displayComponent}
           setUploadFile={setFilesArray}
           setComponent={setComponent}
@@ -99,6 +126,16 @@ function Photos({ imgURLs, campsites, match }) {
         :
         <></>
       }
+      <Carousel 
+        imgURLs={imgURLs}
+        setImgURLs={setImgURLs}
+        campsites={campsites}
+        match={match}
+        imgIndex={imgIndex}
+        setImgIndex={setImgIndex}
+        isCarouselOpen={isCarouselOpen}
+        setCarouselOpen={setCarouselOpen}
+      />
     </div>
   );
 }
