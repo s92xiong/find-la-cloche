@@ -7,10 +7,6 @@
   background-color: #f2f2f2;
 }
 
-.no-scroll {
-  overflow-y: hidden;
-}
-
 .campsite {
   width: 1050px;
   min-height: calc(100vh - 70px);

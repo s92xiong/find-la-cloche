@@ -73,8 +73,8 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
 
     // Hide scroll bar: get access to a document, then update it
     const campsiteContainer = document.querySelector(".campsite-container");
+    campsiteContainer.style.maxHeight = "100px";
     campsiteContainer.style.overflowY = "hidden";
-    console.log(campsiteContainer);
   };
 
   useEffect(() => {

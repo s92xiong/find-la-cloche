@@ -19,8 +19,10 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
   const closeCarousel = () => {
     setCarouselOpen(false);
 
-    // Update DOM to bring back scoll
-    
+    // Update DOM to bring back scroll
+    const campsiteContainer = document.querySelector(".campsite-container");
+    campsiteContainer.style.maxHeight = "auto";
+    campsiteContainer.style.overflowY = "auto";
   };
 
   const pressEsc = (e) => (e.key === "Escape") && closeCarousel();
