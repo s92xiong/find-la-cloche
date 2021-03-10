@@ -72,9 +72,9 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
     setCarouselOpen(true);
 
     // Hide scroll bar: get access to a document, then update it
-    const campsiteContainer = document.querySelector(".campsite-container");
-    campsiteContainer.style.maxHeight = "100px";
-    campsiteContainer.style.overflowY = "hidden";
+    // const campsiteContainer = document.querySelector(".campsite-container");
+    // campsiteContainer.style.minHeight = "0px";
+    // campsiteContainer.style.overflowY = "hidden";
   };
 
   useEffect(() => {
@@ -121,10 +121,10 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
         <UploadContainer
           handleFileChange={handleFileChange}
           handleUpload={handleUpload}
-          uploadFile={filesArray}
           progress={progress}
           setModalOpen={setUploadModalOpen}
           displayComponent={displayComponent}
+          uploadFile={filesArray}
           setUploadFile={setFilesArray}
           setComponent={setComponent}
           stopModalClose={stopModalClose}
@@ -135,8 +135,6 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
       <Carousel 
         imgURLs={imgURLs}
         setImgURLs={setImgURLs}
-        campsites={campsites}
-        match={match}
         imgIndex={imgIndex}
         setImgIndex={setImgIndex}
         isCarouselOpen={isCarouselOpen}

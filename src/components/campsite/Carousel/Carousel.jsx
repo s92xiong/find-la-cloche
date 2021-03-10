@@ -20,24 +20,14 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
     setCarouselOpen(false);
 
     // Update DOM to bring back scroll
-    const campsiteContainer = document.querySelector(".campsite-container");
-    campsiteContainer.style.maxHeight = "auto";
-    campsiteContainer.style.overflowY = "auto";
+    // const campsiteContainer = document.querySelector(".campsite-container");
+    // campsiteContainer.style.minHeight = "calc(100vh - 70px);";
+    // campsiteContainer.style.overflowY = "auto";
   };
 
   const pressEsc = (e) => (e.key === "Escape") && closeCarousel();
-  
-  const pressLeftKey = (e) => {
-    if (e.key === "ArrowLeft") {
-      handleLeftButton();
-    }
-  };
-
-  const pressRightKey = (e) => {
-    if (e.key === "ArrowRight") {
-      handleRightButton();
-    }
-  }
+  const pressLeftKey = (e) => (e.key === "ArrowLeft") && handleLeftButton();
+  const pressRightKey = (e) => (e.key === "ArrowRight") && handleRightButton();
 
   useEffect(() => {
     if (isCarouselOpen) {
