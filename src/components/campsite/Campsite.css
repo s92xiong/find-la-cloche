@@ -1,6 +1,7 @@
 .campsite-container {
   width: 100%;
-  min-height: calc(100vh - 70px);
+  /* min-height: calc(100vh - 70px); */
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

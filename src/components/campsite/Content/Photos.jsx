@@ -12,7 +12,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
   const [user] = useAuthState(auth);
 
   // Render a error message if unauthorized user tries to upload photos
-  const [uploadLoginError, setUploadLoginError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   // File information for photos upload
   const [filesArray, setFilesArray] = useState(null);
@@ -35,7 +35,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
 
   // Run code when user clicks on "Upload Photos" button
   const openUploadModal = () => {
-    if (!user) return setUploadLoginError(true);
+    if (!user) return setErrorMessage(true);
     setUploadModalOpen(true);
   };
 
@@ -72,17 +72,17 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
     setCarouselOpen(true);
 
     // Hide scroll bar: get access to a document, then update it
-    // const campsiteContainer = document.querySelector(".campsite-container");
-    // campsiteContainer.style.minHeight = "0px";
-    // campsiteContainer.style.overflowY = "hidden";
+    const campsiteContainer = document.querySelector(".campsite-container");
+    campsiteContainer.style.height = "0px";
+    campsiteContainer.style.overflowY = "hidden";
   };
 
   useEffect(() => {
-    if (uploadLoginError) {
+    if (errorMessage) {
       // Remove error message after 3 seconds
-      setTimeout(() => setUploadLoginError(false), 3000);
+      setTimeout(() => setErrorMessage(false), 3000);
     }
-  }, [uploadLoginError, filesArray, imgURLs]);
+  }, [errorMessage]);
 
   return (
     <div className="photos-container">
@@ -99,7 +99,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
         <div className="upload-photos-container">
           <button onClick={openUploadModal} className="upload-photos-button">Upload photos</button>
           {
-            (uploadLoginError) ? <span className="upload-error">You must be logged in.</span> : <></>
+            (errorMessage) ? <span className="upload-error">You must be logged in.</span> : <></>
           }
         </div>
       </div>

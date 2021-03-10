@@ -20,9 +20,9 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
     setCarouselOpen(false);
 
     // Update DOM to bring back scroll
-    // const campsiteContainer = document.querySelector(".campsite-container");
-    // campsiteContainer.style.minHeight = "calc(100vh - 70px);";
-    // campsiteContainer.style.overflowY = "auto";
+    const campsiteContainer = document.querySelector(".campsite-container");
+    campsiteContainer.style.height = "auto";
+    campsiteContainer.style.overflowY = "auto";
   };
 
   const pressEsc = (e) => (e.key === "Escape") && closeCarousel();
