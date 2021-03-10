@@ -11,10 +11,10 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
   // Check if user is logged in
   const [user] = useAuthState(auth);
 
-  // Render a message error if unauthorized user tries to upload photos
+  // Render a error message if unauthorized user tries to upload photos
   const [uploadLoginError, setUploadLoginError] = useState(false);
 
-  // File information for upload
+  // File information for photos upload
   const [filesArray, setFilesArray] = useState(null);
 
   // Show progress as upload occurs
@@ -22,28 +22,30 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
 
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
-  // Render 3 different components (0, 1, 2)
+  // Conditionally render 3 different components in UploadContainer (0, 1, 2)
   const [displayComponent, setComponent] = useState(0);
 
   // Prevent UploadContainer modal from closing when upload progress is occuring
   const [stopModalClose, setStopModalClose] = useState(false);
 
-  // Initialize number to keep track of which img should be displayed in the carousel
+  // Keep track of which img should be displayed in the carousel using integers
   const [imgIndex, setImgIndex] = useState();
 
   const [isCarouselOpen, setCarouselOpen] = useState(false);
 
-  const handleClick = () => {
+  // Run code when user clicks on "Upload Photos" button
+  const openUploadModal = () => {
     if (!user) return setUploadLoginError(true);
     setUploadModalOpen(true);
   };
 
+  // Update file state when a new set of files or file is selected
   const handleFileChange = (e) => {
-    // Update file state when a new set of files or file is selected
     setFilesArray(e.target.files);
     setComponent(1);
   };
 
+  // Logic to handle uploading image(s) to Firebase
   const handleUpload = () => {
     setComponent(2);
     return uploadImage(
@@ -52,6 +54,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
     );
   };
 
+  // Open the carousel when a user clicks on any image in the Photos container
   const openCarousel = (e) => {
     // Open specific img clicked on using data attribute
     const index = Number(e.target.dataset.id);
@@ -68,7 +71,10 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
     // Open carousel
     setCarouselOpen(true);
 
-    // Hide scroll bar, get access to a document, then update it
+    // Hide scroll bar: get access to a document, then update it
+    const campsiteContainer = document.querySelector(".campsite-container");
+    campsiteContainer.style.overflowY = "hidden";
+    console.log(campsiteContainer);
   };
 
   useEffect(() => {
@@ -91,7 +97,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
           }
         </div>
         <div className="upload-photos-container">
-          <button onClick={handleClick} className="upload-photos-button">Upload photos</button>
+          <button onClick={openUploadModal} className="upload-photos-button">Upload photos</button>
           {
             (uploadLoginError) ? <span className="upload-error">You must be logged in.</span> : <></>
           }

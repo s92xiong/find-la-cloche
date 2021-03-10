@@ -20,6 +20,7 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
     setCarouselOpen(false);
 
     // Update DOM to bring back scoll
+    
   };
 
   const pressEsc = (e) => (e.key === "Escape") && closeCarousel();
