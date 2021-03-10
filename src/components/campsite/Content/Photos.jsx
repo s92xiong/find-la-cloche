@@ -28,7 +28,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
   // Prevent UploadContainer modal from closing when upload progress is occuring
   const [stopModalClose, setStopModalClose] = useState(false);
 
-  // Initialize number to keep track of which img should be opened in the carousel
+  // Initialize number to keep track of which img should be displayed in the carousel
   const [imgIndex, setImgIndex] = useState();
 
   const [isCarouselOpen, setCarouselOpen] = useState(false);

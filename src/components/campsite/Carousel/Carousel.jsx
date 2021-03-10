@@ -2,8 +2,19 @@ import React, { useEffect } from 'react';
 import "./Carousel.css";
 import leftArrow from "../../../images/arrow-left.png";
 import rightArrow from "../../../images/arrow-right.png";
+import moveIndex from '../logic/moveIndex';
 
 function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
+
+  const handleLeftButton = () => {
+    if (imgIndex === 0) return;
+    moveIndex("left", imgURLs, imgIndex, setImgIndex, setImgURLs);
+  };
+
+  const handleRightButton = () => {
+    if (imgIndex === imgURLs.length - 1) return;
+    moveIndex("right", imgURLs, imgIndex, setImgIndex, setImgURLs);
+  };
 
   const closeCarousel = () => {
     setCarouselOpen(false);
@@ -11,33 +22,7 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
     // Update DOM to bring back scoll
   };
 
-  const moveIndex = (direction) => {
-    let value;
-
-    if (direction === "left") {
-      value = -1;
-    } else if (direction === "right") {
-      value = 1;
-    }
-
-    const array = [...imgURLs];
-    array.forEach(item => (item.display) ? item.display = false : null);
-    array[imgIndex + value].display = true;
-    setImgIndex(imgIndex + value);
-    return setImgURLs(array);
-  };
-
-  const handleLeftButton = () => {
-    if (imgIndex === 0) return console.log("First index");
-    moveIndex("left");
-  };
-
-  const handleRightButton = () => {
-    if (imgIndex === imgURLs.length - 1) return console.log("Last index");
-    moveIndex("right");
-  };
-
-  const pressEsc = (e) => (e.key === "Escape") && setCarouselOpen(false);
+  const pressEsc = (e) => (e.key === "Escape") && closeCarousel();
   
   const pressLeftKey = (e) => {
     if (e.key === "ArrowLeft") {
