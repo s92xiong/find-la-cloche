@@ -40,7 +40,7 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
       document.removeEventListener("keydown", pressEsc);
       document.removeEventListener("keydown", pressLeftKey);
       document.removeEventListener("keydown", pressRightKey);
-    }
+    };
   });
 
   if (!isCarouselOpen) return <></>
