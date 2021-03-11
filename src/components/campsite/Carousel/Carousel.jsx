@@ -19,7 +19,7 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
   const closeCarousel = () => {
     setCarouselOpen(false);
 
-    // Update DOM to bring back scroll
+    // Return scroll functionality to normal
     const campsiteContainer = document.querySelector(".campsite-container");
     campsiteContainer.style.height = "auto";
     campsiteContainer.style.overflowY = "auto";

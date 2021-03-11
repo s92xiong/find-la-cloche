@@ -71,7 +71,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
     // Open carousel
     setCarouselOpen(true);
 
-    // Hide scroll bar: get access to a document, then update it
+    // Hide scroll bar
     const campsiteContainer = document.querySelector(".campsite-container");
     campsiteContainer.style.height = "0px";
     campsiteContainer.style.overflowY = "hidden";
