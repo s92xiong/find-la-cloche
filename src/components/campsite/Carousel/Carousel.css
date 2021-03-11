@@ -37,14 +37,14 @@
 .carousel-left-arrow {
   position: absolute;
   top: 50%;
-  left: 40px;
+  left: 30px;
   transform: translate(0%, -50%);
 }
 
 .carousel-right-arrow {
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 30px;
   transform: translate(0%, -50%);
 }
 
