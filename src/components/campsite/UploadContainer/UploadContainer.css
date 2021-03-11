@@ -21,7 +21,8 @@
   height: 75%;
   width: 450px;
   background-color: #ffffff;
-  border-radius: 15px;
+  border-radius: 16px;
+  color: #414141;
 }
 
 .close-modal-button {
@@ -34,7 +35,6 @@
 }
 
 .upload-modal h1 {
-  color: #363636;
   margin: 15px 0 20px 0;
   font-size: 1.5em;
 }

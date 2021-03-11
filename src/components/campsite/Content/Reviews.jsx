@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./styles/Reviews.css";
+import WriteReview from './WriteReview';
 
-function Reviews() {
+function Reviews({ item }) {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <div className="reviews-container">
-      <span>Reviews Container</span>
+      <button onClick={openModal}>Write review</button>
+      <WriteReview
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        item={item}
+      />
     </div>
   );
 }

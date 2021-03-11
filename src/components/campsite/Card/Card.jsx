@@ -17,7 +17,7 @@ function ModuleCard({ item, imgURLs }) {
         <div className="five-star-rating">
           {
             // Temporary star location
-            [...Array(5)].map((star, i) => <FaStar key={i} size={20} className="campsite-stars" />)
+            [...Array(5)].map((star, i) => <FaStar key={i} size={20} className="campsite-stars campsite-stars-card" />)
           }
         </div>
         <p className="park-name">Killarney Provincial Park</p>

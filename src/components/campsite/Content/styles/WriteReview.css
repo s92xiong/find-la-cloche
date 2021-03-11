@@ -1,0 +1,46 @@
+.write-review-modal-bg {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.411);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 100ms;
+}
+
+.write-review-modal {
+  padding: 30px;
+  width: 45%;
+  height: 80%;
+  background: #fff;
+  border-radius: 16px;
+  color: #414141;
+}
+
+.close-review-modal {
+  color: #5a5a5a;
+  width: auto;
+  height: auto;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.write-review-modal h1 {
+  margin: 20px 0 15px 0;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
