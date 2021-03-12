@@ -17,8 +17,8 @@
 
 .write-review-modal {
   padding: 30px;
-  width: 45%;
-  height: 80%;
+  width: 576px;
+  height: 520px;
   background: #fff;
   border-radius: 16px;
   color: #414141;
@@ -43,4 +43,56 @@
 	100% {
 		opacity: 1;
 	}
+}
+
+.text-box-container {
+  margin-top: 24px;
+  width: 100%;
+  height: 210px;
+}
+
+.review-text-box {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 1px solid rgb(212, 212, 212);
+  border-radius: 10px;
+  padding: 13px;
+  resize: none;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  line-height: 1.5rem;
+}
+
+.review-button-container {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.review-button-next, .review-button-invalid {
+  width: 140px;
+  height: 35px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+.review-button-next {
+  background-color: #448c14;
+  cursor: pointer;
+}
+
+.review-button-next:hover {
+  background-color: #448c148f;
+}
+
+.review-button-invalid {
+  background-color: #448c148f;
+  outline: none;
 }

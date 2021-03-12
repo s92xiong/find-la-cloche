@@ -5,7 +5,7 @@ import Reviews from "./Reviews";
 
 function Content({ imgURLs, setImgURLs, campsites, match, item }) {
 
-  const [toggleState, setToggleState] = useState(0);
+  const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
     setToggleState(index);
