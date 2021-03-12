@@ -37,16 +37,17 @@ function UploadContainer({
         <h1>Upload photos</h1>
         <input 
           className="uploader-input"
-          id="select-photo"
+          id="selectPhoto"
           type="file" 
           onChange={handleFileChange}
           accept="image/x-png,image/jpeg"
           multiple
         />
         {/* Render 'Click to add a Photo' */}
-        <label htmlFor="select-photo" className={
-          (displayComponent === 0) ? "label-select-photo" : "label-select-photo hide"
-        }>
+        <label
+          htmlFor="selectPhoto" 
+          className={(displayComponent === 0) ? "label-select-photo" : "label-select-photo hide"}
+        >
           <div className="label-container">
             <div className="icon-bg">
               <img src={photoIcon} alt=""/>

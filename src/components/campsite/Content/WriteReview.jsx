@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
+import StarRating from './StarRating';
 import "./styles/WriteReview.css";
 
 function WriteReview({ item, modalOpen, setModalOpen }) {
@@ -9,6 +9,7 @@ function WriteReview({ item, modalOpen, setModalOpen }) {
 
   const [canContinue, setContinue] = useState(false);
   const [reviewText, setReviewText] = useState("");
+  const [rating, setRating] = useState(null);
 
   const handleChange = (e) => {
     if (e.target.value.length > 0) {
@@ -23,7 +24,6 @@ function WriteReview({ item, modalOpen, setModalOpen }) {
     console.log(reviewText);
   };
 
-
   if (!modalOpen) return <></>
   return (
     <div className="write-review-modal-bg" onClick={closeModal}>
@@ -36,10 +36,7 @@ function WriteReview({ item, modalOpen, setModalOpen }) {
         </div>
         <h1>{item.name}</h1>
         <div className="five-star-rating">
-          {
-            // Temporary star location
-            [...Array(5)].map((star, i) => <FaStar key={i} size={35} className="campsite-stars" />)
-          }
+          <StarRating rating={rating} setRating={setRating} />
           <div className="text-box-container">
             <textarea 
               placeholder={text}
