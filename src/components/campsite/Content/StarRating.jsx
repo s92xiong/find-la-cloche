@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
-function StarRating({ rating, setRating }) {
+function StarRating({ rating, setRating, userText, setContinue }) {
 
   const [hover, setHover] = useState(null);
+
+  const handleRating = (ratingValue) => {
+    const handler = () => {
+      (userText.length >= 1) && setContinue(true);
+      return setRating(Number(ratingValue));
+    };
+    return handler;
+  };
 
   return (
     [...Array(5)].map((star, i) => {
@@ -15,14 +23,14 @@ function StarRating({ rating, setRating }) {
             name="rating"
             className="radio-star"
             value={ratingValue}
-            onClick={() => setRating(Number(ratingValue))}
+            onClick={handleRating(ratingValue)}
           />
           <FaStar
             size={35}
             className="review-star"
             onMouseEnter={() => setHover(ratingValue)}
             onMouseLeave={() => setHover(null)}
-            color={ (ratingValue <= ( hover || rating)) ? "gold" : "grey" }
+            color={ (ratingValue <= ( hover || rating)) ? "gold" : "#e6e6e6" }
           />
         </label>
       );

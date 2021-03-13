@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./styles/Reviews.css";
 import WriteReview from './WriteReview';
 
-function Reviews({ item }) {
+function Reviews({ item, match, campsites }) {
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -14,9 +14,11 @@ function Reviews({ item }) {
     <div className="reviews-container">
       <button onClick={openModal}>Write review</button>
       <WriteReview
+        match={match}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         item={item}
+        campsites={campsites}
       />
     </div>
   );

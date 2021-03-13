@@ -37,7 +37,7 @@ function Content({ imgURLs, setImgURLs, campsites, match, item }) {
         (toggleState === 0) ?
         <Photos imgURLs={imgURLs} setImgURLs={setImgURLs} campsites={campsites} match={match} />
         :
-        <Reviews item={item} />
+        <Reviews item={item} match={match} campsites={campsites} />
       }
     </div>
 

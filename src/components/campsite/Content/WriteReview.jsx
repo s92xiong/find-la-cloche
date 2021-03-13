@@ -1,27 +1,43 @@
 import React, { useState } from 'react';
+import addReviewToFirestore from '../logic/addReviewToFirestore';
 import StarRating from './StarRating';
 import "./styles/WriteReview.css";
 
-function WriteReview({ item, modalOpen, setModalOpen }) {
+function WriteReview({ match, item, modalOpen, setModalOpen, campsites }) {
 
-  const text = "Give back to the community. Share your thoughts about this campsite so others know what to expect.";
-  const closeModal = (e) => (e.target.className === "write-review-modal-bg") && setModalOpen(false);
-
+  const placeholderText = "Give back to the community. Share your thoughts about this campsite so others know what to expect.";
+  
+  // Highlight the "Next" button if all form fields are valid in the written review modal
   const [canContinue, setContinue] = useState(false);
-  const [reviewText, setReviewText] = useState("");
-  const [rating, setRating] = useState(null);
 
+  // Initialize user string input in textarea
+  const [userText, setUserText] = useState("");
+
+  // Initialize user rating as an integer from 1 to 5, default is null
+  const [rating, setRating] = useState(null);
+  
+  // Close modal if the user clicks outside of the modal (or the "✕" button)
+  const closeModal = (e) => (e.target.className === "write-review-modal-bg") && setModalOpen(false);
+  
+  // Handle textarea input change
   const handleChange = (e) => {
-    if (e.target.value.length > 0) {
+    if (e.target.value.length >= 1 && rating) {
       setContinue(true);
-    } else if (e.target.value.length === 0) {
+    } else if (e.target.value.length < 1) {
       setContinue(false);
     }
-    setReviewText(e.target.value);
+    setUserText(e.target.value);
   };
 
+  // When user clicks on "Next" button, execute the following code
   const handleNext = () => {
-    console.log(reviewText);
+    addReviewToFirestore(match, campsites, rating, userText);
+    // Reset state to default after adding data to Firestore
+    setContinue(false);
+    setUserText("");
+    setRating(null);
+    // Close modal
+    setModalOpen(false);
   };
 
   if (!modalOpen) return <></>
@@ -36,10 +52,15 @@ function WriteReview({ item, modalOpen, setModalOpen }) {
         </div>
         <h1>{item.name}</h1>
         <div className="five-star-rating">
-          <StarRating rating={rating} setRating={setRating} />
+          <StarRating
+            rating={rating}
+            setRating={setRating}
+            userText={userText}
+            setContinue={setContinue}
+          />
           <div className="text-box-container">
             <textarea 
-              placeholder={text}
+              placeholder={placeholderText}
               name="review-text-box"
               id="reviewBox"
               className="review-text-box"
