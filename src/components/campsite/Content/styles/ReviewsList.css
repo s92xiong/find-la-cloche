@@ -1,0 +1,9 @@
+.reviews-list {
+  white-space: pre-line;
+}
+
+.review-container {
+  margin: 20px 0 20px 0;
+  border: 1px solid #bdbdbd;
+  background: #f3e6e6;
+}

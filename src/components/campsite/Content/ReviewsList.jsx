@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../../../firebase';
+import "./styles/ReviewsList.css";
 
 function ReviewsList({ match }) {
 
@@ -25,7 +26,9 @@ function ReviewsList({ match }) {
       {
         list.map(item => {
           return (
-            <li>{item.text}</li>
+            <div className="review-container">
+              <p>{item.text}</p>
+            </div>
           );
         })
       }
