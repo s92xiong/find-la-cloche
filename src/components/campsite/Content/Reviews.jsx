@@ -13,7 +13,9 @@ function Reviews({ item, match, campsites }) {
 
   return (
     <div className="reviews-container">
-      <button onClick={openModal}>Write review</button>
+      <div className="write-review-button-container">
+        <button className="review-button" onClick={openModal}>Write review</button>
+      </div>
       <ReviewsList
         match={match}
       />

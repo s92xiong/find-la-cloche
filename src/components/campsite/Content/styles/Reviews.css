@@ -2,3 +2,29 @@
   width: 100%;
   min-height: 312px;
 }
+
+.write-review-button-container {
+  width: 85%;
+  height: 100px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgb(223, 223, 223);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.review-button {
+  width: 140px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: #448c14;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+}
+
+.review-button:hover {
+  background-color: #448c14c5;
+}
