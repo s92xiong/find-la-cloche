@@ -31,6 +31,8 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites }) {
 
   // When user clicks on "Next" button, execute the following code
   const handleNext = () => {
+    if (!canContinue) return console.log("You must fill in all the required form fields!");
+    console.log("All form fields are valid!");
     addReviewToFirestore(match, campsites, rating, userText);
     // Reset state to default after adding data to Firestore
     setContinue(false);

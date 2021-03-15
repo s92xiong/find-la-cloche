@@ -1,6 +1,9 @@
 import { auth, firestore } from '../../../firebase';
 
 const addReviewToFirestore = async (match, campsites, rating, userText) => {
+  // Prevent function from executing if rating or userText is not available
+  if (!rating || !userText) return;
+  
   // Get index of the current campsite open
   let index;
   campsites.forEach((campsite, i) => {
