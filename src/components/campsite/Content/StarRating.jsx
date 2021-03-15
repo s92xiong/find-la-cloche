@@ -30,7 +30,7 @@ function StarRating({ rating, setRating, userText, setContinue }) {
             className="review-star"
             onMouseEnter={() => setHover(ratingValue)}
             onMouseLeave={() => setHover(null)}
-            color={ (ratingValue <= ( hover || rating)) ? "gold" : "#e6e6e6" }
+            color={ (ratingValue <= ( hover || rating)) ? "ffb400" : "#e6e6e6" }
           />
         </label>
       );

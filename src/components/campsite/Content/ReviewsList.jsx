@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../../../firebase';
+import { FaStar } from 'react-icons/fa';
 import "./styles/ReviewsList.css";
 
 function ReviewsList({ match }) {
@@ -27,7 +28,26 @@ function ReviewsList({ match }) {
         list.map(item => {
           return (
             <div className="review-container">
-              <p>{item.text}</p>
+              <div className="review-user-info">
+                <img src={item.photoURL} alt=""/>
+                <div className="user-review-date">
+                  <h4>{item.name}</h4>
+                  <div>
+                    <div className="user-star-container">
+                      {
+                        // Temporary star location
+                        [...Array(item.rating)].map((star, i) => {
+                          return (
+                            <FaStar key={i} size={20} className="user-star-review" />
+                          )
+                        })
+                      }  
+                    </div>
+                    <p>{item.date}</p>
+                  </div>
+                </div>
+              </div>
+              <p className="review-body">{item.text}</p>
             </div>
           );
         })

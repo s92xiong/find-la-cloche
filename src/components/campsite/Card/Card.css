@@ -17,7 +17,7 @@
   margin: 0 0 20px 20px;
   width: auto;
   max-width: 300px;
-  background: rgba(76, 75, 75, 0.541);
+  background: rgba(76, 75, 75, 0.5);
   border-radius: 5px;
   padding: 5px 0 5px 10px;
   font-family: 'DM Sans', sans-serif;
@@ -29,7 +29,7 @@
 }
 
 .campsite-stars {
-  color: gold;
+  color: #ffb400;
 }
 
 .campsite-stars-card {
