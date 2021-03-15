@@ -5,12 +5,20 @@
 
 .write-review-button-container {
   width: 85%;
-  height: 100px;
+  min-height: 130px;
   margin: 0 auto;
   border-bottom: 1px solid rgb(223, 223, 223);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
+}
+
+.no-reviews h2 {
+  font-size: 1.3rem;
+}
+
+.no-reviews p {
+  font-weight: 300;
 }
 
 .review-button {
