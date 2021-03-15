@@ -7,10 +7,11 @@ import getReviews from "../logic/getReviews";
 function Reviews({ item, match, campsites }) {
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [reviewsList, setReviewsList] = useState(null);
+  const [reviewsList, setReviewsList] = useState([]);
 
   useEffect(() => {
     getReviews(match, reviewsList, setReviewsList);
+    return () => (reviewsList.length > 0) && setReviewsList([]);
   }, [match, reviewsList]);
 
   return (
@@ -25,7 +26,7 @@ function Reviews({ item, match, campsites }) {
           :
           <div className="add-review-message">
             <h2>Have you stayed at this campsite?</h2>
-            <p>Leave a review and help out your fellow hikers and backpackers.</p>
+            <p>Leave a review and help out your fellow hikers and backpackers by adding a review.</p>
           </div>
         }
         <button className="review-button" onClick={() => setModalOpen(true)}>Write review</button>

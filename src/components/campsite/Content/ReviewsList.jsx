@@ -4,7 +4,7 @@ import "./styles/ReviewsList.css";
 
 function ReviewsList({ reviewsList }) {
 
-  if (!reviewsList) return <></>;
+  if (reviewsList.length === 0) return <></>;
   return (
     <div className="reviews-list">
       {

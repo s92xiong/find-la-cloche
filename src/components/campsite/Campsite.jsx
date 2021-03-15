@@ -5,9 +5,7 @@ import getCampsites from '../Home/getCampsites';
 import getImages from './logic/getImages';
 import Header from './Header/Header';
 import ModuleCard from './Card/Card';
-// import Carousel from './Carousel/Carousel';
 import Content from './Content/Content';
-// import UploadContainer from './UploadContainer/UploadContainer';
 
 function Campsite({ match }) {
   // Initialize array of campsites
@@ -47,10 +45,6 @@ function Campsite({ match }) {
           match={match}
           item={item}
         />
-        {/* <Carousel
-          imgURLs={imgURLs} 
-          setImgURLs={setImgURLs}
-        /> */}
       </div>
     </div>
   );

@@ -1,12 +1,17 @@
 import { firestore } from "../../../firebase";
 
 const getReviews = async (match, reviewsList, setReviewsList) => {
-  // Only retrieve data from Firestore once
-  if (reviewsList) return;
+  // Prevent infinite loop
+  if (reviewsList.length > 0) return;
 
-  // Retrieve reviews from Firestore, store data in "list" state
+  // Retrieve reviews from Firestore
   const snapshot = await firestore.collection('campsites').doc(match.params.id).get();
   const data = snapshot.data();
+  
+  // Stop the function if a campsite has no reviews, the array will be left empty
+  if (data.reviews.length === 0) return;
+  
+  // Update reviewsList state
   setReviewsList(data.reviews);
 };
 

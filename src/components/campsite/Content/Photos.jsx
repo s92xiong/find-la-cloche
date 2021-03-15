@@ -104,18 +104,22 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
         </div>
       </div>
       <div className="line-separator"></div>
-      <div className="photos-items-container">
-        {/* DISPLAY ALL IMAGES OF THE CAMPSITE */}
-        {
-          imgURLs.map((url, i) => {
-            return (
-              <div className="photo-item" key={i}>
-                <img data-id={i} onClick={openCarousel} src={url.urlString} alt=""/>
-              </div>
-            );
-          })
-        }
-      </div>
+      {
+        (imgURLs.length > 0) ?
+        <div className="photos-items-container">
+          {
+            imgURLs.map((url, i) => {
+              return (
+                <div className="photo-item" key={i}>
+                  <img data-id={i} onClick={openCarousel} src={url.urlString} alt=""/>
+                </div>
+              );
+            })
+          }
+        </div>
+        :
+        <></>
+      }
       {
         (uploadModalOpen) ?
         <UploadContainer

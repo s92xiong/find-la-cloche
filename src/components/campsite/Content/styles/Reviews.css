@@ -1,6 +1,6 @@
 .reviews-container {
   width: 100%;
-  min-height: 312px;
+  height: auto;
 }
 
 .write-review-button-container {
