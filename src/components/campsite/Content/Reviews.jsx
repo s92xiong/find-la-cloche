@@ -16,10 +16,18 @@ function Reviews({ item, match, campsites }) {
   return (
     <div className="reviews-container">
       <div className="write-review-button-container">
-        <div className="no-reviews">
-          <h2>There are currently no reviews.</h2>
-          <p>Be the first person to review this campsite!</p>
-        </div>
+        {
+          (!reviewsList) ?
+          <div className="no-reviews">
+            <h2>There are currently no reviews.</h2>
+            <p>Be the first person to review this campsite!</p>
+          </div>
+          :
+          <div className="add-review-message">
+            <h2>Have you stayed at this campsite?</h2>
+            <p>Leave a review and help out your fellow hikers and backpackers.</p>
+          </div>
+        }
         <button className="review-button" onClick={() => setModalOpen(true)}>Write review</button>
       </div>
       <ReviewsList

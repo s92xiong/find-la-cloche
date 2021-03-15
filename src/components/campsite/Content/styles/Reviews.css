@@ -13,11 +13,16 @@
   align-items: center;
 }
 
-.no-reviews h2 {
-  font-size: 1.3rem;
+.no-reviews, .add-review-message {
+  width: 430px;
 }
 
-.no-reviews p {
+.no-reviews h2, .add-review-message h2 {
+  font-size: 1.3rem;
+  margin: 5px 0;
+}
+
+.no-reviews p, .add-review-message p {
   font-weight: 300;
 }
 
