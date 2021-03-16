@@ -10,9 +10,9 @@ function Reviews({ item, match, campsites }) {
   const [reviewsList, setReviewsList] = useState([]);
 
   useEffect(() => {
-    getReviews(match, reviewsList, setReviewsList);
-    return () => (reviewsList.length > 0) && setReviewsList([]);
-  }, [match, reviewsList]);
+    getReviews(match, setReviewsList);
+    return () => setReviewsList([]);
+  }, [match]);
 
   return (
     <div className="reviews-container">

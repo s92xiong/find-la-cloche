@@ -1,9 +1,6 @@
 import { firestore } from "../../../firebase";
 
-const getReviews = async (match, reviewsList, setReviewsList) => {
-  // Prevent infinite loop
-  if (reviewsList.length > 0) return;
-
+const getReviews = async (match, setReviewsList) => {
   // Retrieve reviews from Firestore
   const snapshot = await firestore.collection('campsites').doc(match.params.id).get();
   const data = snapshot.data();

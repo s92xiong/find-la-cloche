@@ -30,11 +30,11 @@ function Dropdown({ campsites, match }) {
             {
               campsites.map((campsite) => {
                 // Render the currently active campsite to be a div instead of a link
-                if (campsite.id === match.params.id) return (
-                  <div className="drop-down-item" key={campsite.id}>
-                    <li>{campsite.name}</li>
-                  </div>
-                );
+                // if (campsite.id === match.params.id) return (
+                //   <div className="drop-down-item" key={campsite.id}>
+                //     <li>{campsite.name}</li>
+                //   </div>
+                // );
                 return (
                   <Link className="drop-down-item" key={campsite.id} to={campsite.id}>
                     <li>{campsite.name}</li>

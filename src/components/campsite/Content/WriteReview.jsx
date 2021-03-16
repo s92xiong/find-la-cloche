@@ -3,7 +3,7 @@ import addReviewToFirestore from '../logic/addReviewToFirestore';
 import StarRating from './StarRating';
 import "./styles/WriteReview.css";
 
-function WriteReview({ match, item, modalOpen, setModalOpen, campsites }) {
+function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setReviewsList }) {
 
   const placeholderText = "Give back to the community. Share your thoughts about this campsite so others know what to expect.";
   
@@ -31,14 +31,12 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites }) {
 
   // When user clicks on "Next" button, execute the following code
   const handleNext = () => {
-    if (!canContinue) return console.log("You must fill in all the required form fields!");
-    console.log("All form fields are valid!");
-    addReviewToFirestore(match, campsites, rating, userText);
-    // Reset state to default after adding data to Firestore
+    if (!canContinue) return;
+    addReviewToFirestore(match, campsites, rating, userText, setReviewsList);
+    // Reset state to its default setting
     setContinue(false);
     setUserText("");
     setRating(null);
-    // Close modal
     setModalOpen(false);
   };
 

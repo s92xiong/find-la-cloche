@@ -57,9 +57,7 @@ function UploadContainer({
           </div>
         </label>
         {/* Render list of images to be uploaded */}
-        <div className={
-          (displayComponent === 1) ? "pre-upload-list" : "pre-upload-list hide"
-        }>
+        <div className={ (displayComponent === 1) ? "pre-upload-list" : "pre-upload-list hide" }>
           <ol>
             {
               (imgNames) ?
@@ -71,7 +69,6 @@ function UploadContainer({
             }
           </ol>
         </div>
-        {/* Render 'Progress Bar' */}
         <ReactCustomizableProgressbar
           className={displayComponent === 2 ? "progress-bar" : "progress-bar hide"}
           progress={progress}
@@ -85,10 +82,7 @@ function UploadContainer({
           <div className="upload-button-container">
             <button 
               onClick={handleUpload}
-              className={ 
-                (uploadFile) ? "uploader-button" : "uploader-button-no-file"
-                // (displayComponent === 0) ? "uploader-button" : "uploader-button hide" 
-              }
+              className={ (uploadFile) ? "uploader-button" : "uploader-button-no-file" }
             >
               Upload
             </button>

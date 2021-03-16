@@ -18,7 +18,7 @@ function Campsite({ match }) {
   const [imgURLs, setImgURLs] = useState([]);
 
   // Access the specific campsite
-  const getDoc = async (id) => {
+  const getCampsiteDoc = async (id) => {
     const snapshot = await firestore.collection('campsites').doc(id).get();
     const data = snapshot.data();
     setItem(data);
@@ -26,7 +26,7 @@ function Campsite({ match }) {
 
   useEffect(() => {
     getCampsites(campsites, setCampsites, null);
-    getDoc(match.params.id);
+    getCampsiteDoc(match.params.id);
     getImages(match, setImgURLs);
   }, [match, campsites]);
 
@@ -38,7 +38,7 @@ function Campsite({ match }) {
           item={item}
           imgURLs={imgURLs}
         />
-        <Content 
+        <Content
           imgURLs={imgURLs}
           setImgURLs={setImgURLs}
           campsites={campsites}
