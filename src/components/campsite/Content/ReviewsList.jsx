@@ -8,29 +8,31 @@ function ReviewsList({ reviewsList }) {
   return (
     <div className="reviews-list">
       {
-        reviewsList.map(reviewObj => {
+        reviewsList.map(review => {
+          const rating = review.rating;
           return (
             // Render photoURL, user name, rating, date, and text body
             <div className="review-container">
               <div className="review-user-info">
-                <img src={reviewObj.photoURL} alt=""/>
+                <img src={review.photoURL} alt=""/>
                 <div className="user-review-date">
-                  <h4>{reviewObj.name}</h4>
+                  <h4>{review.name}</h4>
                   <div>
                     <div className="user-star-container">
                       {
-                        [...Array(reviewObj.rating)].map((star, i) => {
+                        [...Array(5)].map((star, i) => {
                           return (
-                            <FaStar key={i} size={20} className="user-star-review" />
+                            // If the index is less than the rating, then render a gold star
+                            <FaStar key={i} size={20} color={(i < rating) ? "#ffb400" : "#00000042"} />
                           )
                         })
-                      }  
+                      }
                     </div>
-                    <p>{reviewObj.date}</p>
+                    <p>{review.date}, Rating: {review.rating}</p>
                   </div>
                 </div>
               </div>
-              <p className="review-body">{reviewObj.text}</p>
+              <p className="review-body">{review.text}</p>
             </div>
           );
         })
