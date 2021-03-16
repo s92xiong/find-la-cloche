@@ -28,7 +28,7 @@ function ReviewsList({ reviewsList }) {
                         })
                       }
                     </div>
-                    <p>{review.date}, Rating: {review.rating}</p>
+                    <p>{review.date}</p>
                   </div>
                 </div>
               </div>
