@@ -23,7 +23,7 @@ function ReviewsList({ reviewsList }) {
                         [...Array(5)].map((star, i) => {
                           return (
                             // If the index is less than the rating, then render a gold star
-                            <FaStar key={i} size={20} color={(i < rating) ? "#ffb400" : "#00000042"} />
+                            <FaStar key={i} size={20} color={(i < rating) ? "#ffb400" : "#00000025"} />
                           )
                         })
                       }
