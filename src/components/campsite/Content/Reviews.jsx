@@ -40,6 +40,7 @@ function Reviews({ item, match, campsites }) {
         setModalOpen={setModalOpen}
         item={item}
         campsites={campsites}
+        setReviewsList={setReviewsList}
       />
     </div>
   );

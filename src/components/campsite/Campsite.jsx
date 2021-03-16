@@ -33,7 +33,7 @@ function Campsite({ match }) {
   return (
     <div className="campsite-container">
       <div className="campsite">
-        <Header item={item} campsites={campsites} />
+        <Header item={item} campsites={campsites} match={match} />
         <ModuleCard 
           item={item}
           imgURLs={imgURLs}
