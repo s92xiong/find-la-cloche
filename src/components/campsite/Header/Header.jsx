@@ -2,10 +2,10 @@ import React from 'react';
 import "./styles/Header.css";
 import Dropdown from "./Dropdown";
 
-function Header({ campsites, match }) {
+function Header({ campsites }) {
   return (
     <div className="campsite-header">
-      <Dropdown campsites={campsites} match={match} />
+      <Dropdown campsites={campsites} />
     </div>
   );
 }
