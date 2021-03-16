@@ -45,20 +45,14 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
 
   if (!isCarouselOpen) return <></>
   return (
-    <div className="carousel">
-      <div className="close-carousel" onClick={closeCarousel}>✕</div>
-      <img 
-        className="carousel-left-arrow" 
-        src={leftArrow}
-        alt="" 
-        onClick={handleLeftButton}
-      />
-      <img
-        className="carousel-right-arrow"
-        src={rightArrow}
-        alt=""
-        onClick={handleRightButton}
-      />
+    <div className="carousel noselect">
+      <div className="close-carousel-button" onClick={closeCarousel}>✕</div>
+      <div className="arrow-container arrow-container-left" onClick={handleLeftButton}>
+        <img src={leftArrow} alt="" />
+      </div>
+      <div className="arrow-container arrow-container-right" onClick={handleRightButton}>
+        <img src={rightArrow} alt="" />
+      </div>
       {
         (imgURLs.length === 0) ?
         <></>
