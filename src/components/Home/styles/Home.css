@@ -8,8 +8,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../../../images/algonquin-highlands.jpg");
-  background-image: url("../../../images/killarney5.jpg");
+  /* background-image: url("../../../images/algonquin-highlands.jpg"); */
+  /* background-image: url("../../../images/killarney5.jpg"); */
+  background-image: url("../../../images/killarney5-min.jpg");
   background-size: cover;
   background-position: center;
 }
