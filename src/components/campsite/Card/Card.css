@@ -28,14 +28,19 @@
 .campsite-title {
   color: white;
   font-size: 1.3rem;
+  margin-bottom: 3px;
+}
+
+.five-star-rating-card {
+  display: flex;
 }
 
 .half-star-container {
   position: relative;
   float: left;
-  width: 10px;
-  height: 30px;
-  overflow: hidden;
+  width: 10px; /* Container width must be 1/2 star width */
+  height: 20px; /* Container height should match height of star */
+  overflow: hidden; /* Hide anything outside of the container */
 }
 
 /* Position both L/R stars to be 50% from the top & reference its center point */

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line no-unused-vars
-import { FaStar } from 'react-icons/fa';
+import AverageRating from './AverageRating';
 import "./Card.css";
-import HalfStar from './HalfStar';
+import getAverageRating from './getAverageRating';
 
-function ModuleCard({ item, imgURLs }) {
+function Card({ item, imgURLs, match, reviewsList }) {
+
+  // Initialize variable for average rating
+  const [average, setAverage] = useState(null);
+
+  useEffect(() => {
+    setAverage(getAverageRating(reviewsList));
+    return () => setAverage(null);
+  }, [match, reviewsList]);
+
   return (
     <div
       // Provide a backup background if there are no images for this campsite
@@ -16,22 +25,11 @@ function ModuleCard({ item, imgURLs }) {
     >
       <div className="module-info">
         <h2 className="campsite-title">{item.name}</h2>
-        <div className="five-star-rating">
-          {
-            // Temporary star location
-            [...Array(5)].map((star, i) => {
-              return (
-                <HalfStar index={i} />
-              )
-            })
-          }
-        </div>
+        <AverageRating average={average} />
         <p className="park-name">Killarney Provincial Park</p>
       </div>
     </div>
   );
 }
 
-export default ModuleCard;
-
-// <FaStar size={20} color="#ffb400" />
+export default Card;

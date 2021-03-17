@@ -4,7 +4,7 @@ import { firestore } from '../../firebase';
 import getCampsites from '../Home/getCampsites';
 import getImages from './logic/getImages';
 import Header from './Header/Header';
-import ModuleCard from './Card/Card';
+import Card from './Card/Card';
 import Content from './Content/Content';
 import getReviews from './logic/getReviews';
 
@@ -43,9 +43,10 @@ function Campsite({ match }) {
     <div className="campsite-container">
       <div className="campsite">
         <Header campsites={campsites} />
-        <ModuleCard 
+        <Card 
           item={item}
           imgURLs={imgURLs}
+          match={match}
           reviewsList={reviewsList}
         />
         <Content
