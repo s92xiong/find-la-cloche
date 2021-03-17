@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
 import WriteReview from './WriteReview';
-import getReviews from "../logic/getReviews";
 
-function Reviews({ item, match, campsites }) {
+function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [reviewsList, setReviewsList] = useState([]);
-
-  useEffect(() => {
-    getReviews(match, setReviewsList);
-    return () => setReviewsList([]);
-  }, [match]);
 
   return (
     <div className="reviews-container">
@@ -26,7 +19,7 @@ function Reviews({ item, match, campsites }) {
           :
           <div className="add-review-message">
             <h2>Reviews ({reviewsList.length})</h2>
-            <p>Help out your fellow hikers and backpackers by adding a review.</p>
+            <p>Help your fellow backpackers by adding a review.</p>
           </div>
         }
         <button className="review-button" onClick={() => setModalOpen(true)}>Write review</button>

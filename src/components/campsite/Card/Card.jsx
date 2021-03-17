@@ -1,6 +1,8 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { FaStar } from 'react-icons/fa';
 import "./Card.css";
+import HalfStar from './HalfStar';
 
 function ModuleCard({ item, imgURLs }) {
   return (
@@ -17,7 +19,11 @@ function ModuleCard({ item, imgURLs }) {
         <div className="five-star-rating">
           {
             // Temporary star location
-            [...Array(5)].map((star, i) => <FaStar key={i} size={20} className="campsite-stars campsite-stars-card" />)
+            [...Array(5)].map((star, i) => {
+              return (
+                <HalfStar index={i} />
+              )
+            })
           }
         </div>
         <p className="park-name">Killarney Provincial Park</p>
@@ -27,3 +33,5 @@ function ModuleCard({ item, imgURLs }) {
 }
 
 export default ModuleCard;
+
+// <FaStar size={20} color="#ffb400" />

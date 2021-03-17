@@ -6,6 +6,7 @@ import getImages from './logic/getImages';
 import Header from './Header/Header';
 import ModuleCard from './Card/Card';
 import Content from './Content/Content';
+import getReviews from './logic/getReviews';
 
 function Campsite({ match }) {
   // Initialize array of campsites
@@ -16,6 +17,9 @@ function Campsite({ match }) {
 
   // Array that contains all of the image urls in a campsite directory
   const [imgURLs, setImgURLs] = useState([]);
+
+  // Initialize state for reviews of a campsite
+  const [reviewsList, setReviewsList] = useState([]);
 
   // Access the specific campsite
   const getCampsiteDoc = async (id) => {
@@ -30,6 +34,11 @@ function Campsite({ match }) {
     getImages(match, setImgURLs);
   }, [match, campsites]);
 
+  useEffect(() => {
+    getReviews(match, setReviewsList);
+    return () => setReviewsList([]);
+  }, [match]);
+
   return (
     <div className="campsite-container">
       <div className="campsite">
@@ -37,6 +46,7 @@ function Campsite({ match }) {
         <ModuleCard 
           item={item}
           imgURLs={imgURLs}
+          reviewsList={reviewsList}
         />
         <Content
           imgURLs={imgURLs}
@@ -44,6 +54,8 @@ function Campsite({ match }) {
           campsites={campsites}
           match={match}
           item={item}
+          reviewsList={reviewsList}
+          setReviewsList={setReviewsList}
         />
       </div>
     </div>
