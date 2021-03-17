@@ -25,7 +25,7 @@ function Reviews({ item, match, campsites }) {
           </div>
           :
           <div className="add-review-message">
-            <h2>Have you stayed at this campsite?</h2>
+            <h2>Reviews ({reviewsList.length})</h2>
             <p>Help out your fellow hikers and backpackers by adding a review.</p>
           </div>
         }
