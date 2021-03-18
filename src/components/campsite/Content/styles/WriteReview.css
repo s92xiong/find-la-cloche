@@ -15,7 +15,7 @@
 	animation-duration: 100ms;
 }
 
-.write-review-modal {
+.write-review-modal-page {
   padding: 30px;
   width: 576px;
   height: 520px;
@@ -41,7 +41,7 @@
   cursor: pointer;
 }
 
-.write-review-modal h1 {
+.write-review-modal-page h1 {
   margin: 20px 0 15px 0;
 }
 

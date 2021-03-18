@@ -52,9 +52,14 @@
   color: #646464;
 }
 
+.review-body-container {
+  margin-left: 30px;
+}
+
 .review-body {
   /* color: #414141; */
   color: #000000;
   font-weight: 300;
   line-height: 25px;
+  margin-left: 70px;
 }

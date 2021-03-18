@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import AverageRating from './AverageRating';
-import "./Card.css";
+import "./styles/Card.css";
 import getAverageRating from './getAverageRating';
 
 function Card({ item, imgURLs, match, reviewsList }) {

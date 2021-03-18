@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
 import addReviewToFirestore from '../logic/addReviewToFirestore';
-import StarRating from './StarRating';
+import ModalPage0 from './ModalPage0';
 import "./styles/WriteReview.css";
 
 function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setReviewsList }) {
-
-  const placeholderText = "Give back to the community. Share your thoughts about this campsite so others know what to expect.";
-  
   // Highlight the "Next" button if all form fields are valid in the written review modal
   const [canContinue, setContinue] = useState(false);
+  
+  // eslint-disable-next-line no-unused-vars
+  const [pageNum, setPageNum] = useState(0);
 
   // Initialize user string input in textarea
   const [userText, setUserText] = useState("");
 
   // Initialize user rating as an integer from 1 to 5, default is null
   const [rating, setRating] = useState(null);
-  
-  // Close modal if the user clicks outside of the modal (or the "✕" button)
-  const closeModal = (e) => (e.target.className === "write-review-modal-bg") && setModalOpen(false);
   
   // Handle textarea input change
   const handleChange = (e) => {
@@ -29,8 +26,15 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
     setUserText(e.target.value);
   };
 
-  // When user clicks on "Next" button, execute the following code
   const handleNext = () => {
+    if (!canContinue) return;
+    console.log("Next button clicked");
+    setPageNum(1);
+  };
+
+  // When user clicks on "Next" button, execute the following code
+  // eslint-disable-next-line no-unused-vars
+  const submitReview = () => {
     if (!canContinue) return;
     addReviewToFirestore(match, campsites, rating, userText, setReviewsList);
     // Reset state to its default setting
@@ -42,38 +46,19 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
 
   if (!modalOpen) return <></>
   return (
-    <div className="write-review-modal-bg" onClick={closeModal}>
+    <div className="write-review-modal-bg">
       <div className="write-review-modal">
-        <div 
-          className="close-review-modal"
-          onClick={() => setModalOpen(false)}
-        >
-          ✕
-        </div>
-        <h1>{item.name}</h1>
-        <div className="five-star-rating">
-          <StarRating
-            rating={rating}
-            setRating={setRating}
-            userText={userText}
-            setContinue={setContinue}
-          />
-          <div className="text-box-container">
-            <textarea 
-              placeholder={placeholderText}
-              name="review-text-box"
-              id="reviewBox"
-              className="review-text-box"
-              onChange={handleChange}
-            ></textarea>
-          </div>
-          <div className="review-button-container">
-            <button 
-              className={ (canContinue) ? "review-button-next" : "review-button-invalid" }
-              onClick={handleNext}
-            >Next</button>
-          </div>
-        </div>
+        <ModalPage0
+          setModalOpen={setModalOpen}
+          item={item}
+          rating={rating}
+          setRating={setRating}
+          userText={userText}
+          setContinue={setContinue}
+          handleChange={handleChange}
+          canContinue={canContinue}
+          handleNext={handleNext}
+        />
       </div>
     </div>
   );
