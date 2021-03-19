@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import addReviewToFirestore from '../logic/addReviewToFirestore';
 import ModalPage0 from './ModalPage0';
+import ModalPage1 from './ModalPage1';
 import "./styles/WriteReview.css";
 
 function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setReviewsList }) {
@@ -33,7 +34,6 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
   };
 
   // When user clicks on "Next" button, execute the following code
-  // eslint-disable-next-line no-unused-vars
   const submitReview = () => {
     if (!canContinue) return;
     addReviewToFirestore(match, campsites, rating, userText, setReviewsList);
@@ -48,17 +48,27 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
   return (
     <div className="write-review-modal-bg">
       <div className="write-review-modal">
-        <ModalPage0
-          setModalOpen={setModalOpen}
-          item={item}
-          rating={rating}
-          setRating={setRating}
-          userText={userText}
-          setContinue={setContinue}
-          handleChange={handleChange}
-          canContinue={canContinue}
-          handleNext={handleNext}
-        />
+        {
+          (pageNum === 0) ?
+          <ModalPage0
+            setModalOpen={setModalOpen}
+            item={item}
+            rating={rating}
+            setRating={setRating}
+            userText={userText}
+            setContinue={setContinue}
+            handleChange={handleChange}
+            canContinue={canContinue}
+            handleNext={handleNext}
+          />
+          :
+          <ModalPage1 
+            item={item}
+            setModalOpen={setModalOpen}
+            canContinue={canContinue}
+            handleSubmit={submitReview}
+          />
+        }
       </div>
     </div>
   );

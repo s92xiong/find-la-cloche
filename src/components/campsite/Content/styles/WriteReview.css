@@ -15,7 +15,16 @@
 	animation-duration: 100ms;
 }
 
-.write-review-modal-page {
+.write-review-modal-0 {
+  padding: 30px;
+  width: 576px;
+  height: 520px;
+  background: #fff;
+  border-radius: 16px;
+  color: #414141;
+}
+
+.write-review-modal-1 {
   padding: 30px;
   width: 576px;
   height: 520px;
@@ -41,7 +50,7 @@
   cursor: pointer;
 }
 
-.write-review-modal-page h1 {
+.modal-title {
   margin: 20px 0 15px 0;
 }
 
@@ -109,4 +118,9 @@
 .review-button-invalid {
   background-color: #448c148f;
   outline: none;
+}
+
+.modal-questions {
+  width: 100%;
+  height: 273px;
 }
