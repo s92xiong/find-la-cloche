@@ -8,22 +8,10 @@
 }
 
 .review-container {
-  /* margin: 20px 0 20px 0; */
   padding: 30px 0;
   height: auto;
   width: 85%;
   border-bottom: 1px solid rgb(223, 223, 223);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.left-review-container {
-
-}
-
-.right-review-container {
-  display: flex;
-  flex-direction: column;
 }
 
 .review-user-info {
@@ -68,9 +56,16 @@
 }
 
 .review-body {
-  /* color: #414141; */
   color: #000000;
   font-weight: 300;
   line-height: 25px;
-  margin-left: 70px;
+}
+
+.questions-container {
+  margin: 10px 0 17px 0;
+}
+
+.questions-container span {
+  margin: 0 20px 0 20px;
+  font-size: 15px;
 }
