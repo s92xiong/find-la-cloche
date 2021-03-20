@@ -28,11 +28,12 @@ function ModalPage0({
             className="review-text-box"
             onChange={handleChange}
             maxlength="8000"
+            value={userText}
           ></textarea>
         </div>
         <div className="review-button-container">
           <button 
-            className={ (canContinue) ? "review-button-next" : "review-button-invalid" }
+            className={ (canContinue) ? "review-button" : "review-button-invalid" }
             onClick={handleNext}
           >
             Next

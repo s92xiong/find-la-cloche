@@ -35,7 +35,6 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
 
   // When user clicks on "Next" button, execute the following code
   const submitReview = () => {
-    if (!canContinue) return;
     addReviewToFirestore(match, campsites, rating, userText, setReviewsList);
     // Reset state to its default setting
     setContinue(false);
@@ -67,6 +66,7 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
             setModalOpen={setModalOpen}
             canContinue={canContinue}
             handleSubmit={submitReview}
+            setPageNum={setPageNum}
           />
         }
       </div>
