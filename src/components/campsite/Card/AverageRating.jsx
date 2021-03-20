@@ -35,7 +35,7 @@ function AverageRating({ average }) {
           if (i < average) {
             return (
               <div className="full-star-container">
-                <FaStar size={20} color="#ffb400" />
+                <FaStar size={20} color="gold" />
               </div>
             );
           } else {

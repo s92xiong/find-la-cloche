@@ -65,7 +65,12 @@
   margin: 10px 0 17px 0;
 }
 
-.questions-container span {
-  margin: 0 20px 0 20px;
+.questions-container p {
+  /* margin: 0 20px 0 20px; */
   font-size: 15px;
+  line-height: 1.5em;
+}
+
+.questions-container span {
+  font-weight: 300;
 }

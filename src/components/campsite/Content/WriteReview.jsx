@@ -32,7 +32,6 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
 
   const handleNext = () => {
     if (!canContinue) return;
-    console.log("Next button clicked");
     setPageNum(1);
   };
 
@@ -45,6 +44,7 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
     setRating(null);
     setModalOpen(false);
     setRadioInputs({});
+    setPageNum(0);
   };
 
   if (!modalOpen) return <></>

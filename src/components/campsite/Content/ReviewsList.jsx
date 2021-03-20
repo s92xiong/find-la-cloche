@@ -31,7 +31,7 @@ function ReviewsList({ reviewsList }) {
                         [...Array(5)].map((star, i) => {
                           return (
                             // If the index is less than the rating, then render a gold star
-                            <FaStar key={i} size={20} color={(i < rating) ? "#ffb400" : "#00000025"} />
+                            <FaStar key={i} size={20} color={(i < rating) ? "gold" : "#00000025"} />
                           )
                         })
                       }
@@ -41,12 +41,12 @@ function ReviewsList({ reviewsList }) {
                 </div>
               </div>
               <div className="questions-container">
-                <span>Firepit: {getYesOrNo(review.questions.firepit)}</span>
-                <span>Seating: {getYesOrNo(review.questions.seating)}</span>
-                <span>Hammock friendly: {getYesOrNo(review.questions.hammock)}</span>
-                <span>Thunderbox: {getYesOrNo(review.questions.thunderbox)}</span>
-                <span>Water access: {getYesOrNo(review.questions.water)}</span>
-                <span>Privacy: {review.questions.privacy}</span>
+                <p>Firepit: {getYesOrNo(review.questions.firepit)}</p>
+                <p>Seating: {getYesOrNo(review.questions.seating)}</p>
+                <p>Hammock friendly: {getYesOrNo(review.questions.hammock)}</p>
+                <p>Thunderbox: {getYesOrNo(review.questions.thunderbox)}</p>
+                <p>Water access: {getYesOrNo(review.questions.water)}</p>
+                <p>Privacy: <span>{review.questions.privacy}</span></p>
               </div>
               <p className="review-body">{review.text}</p>
             </div>
