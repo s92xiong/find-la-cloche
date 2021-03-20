@@ -13,6 +13,17 @@
   height: auto;
   width: 85%;
   border-bottom: 1px solid rgb(223, 223, 223);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.left-review-container {
+
+}
+
+.right-review-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .review-user-info {
