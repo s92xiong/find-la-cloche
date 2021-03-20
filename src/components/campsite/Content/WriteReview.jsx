@@ -16,6 +16,9 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
 
   // Initialize user rating as an integer from 1 to 5, default is null
   const [rating, setRating] = useState(null);
+
+  // User questions for 
+  const [radioInputs, setRadioInputs] = useState({});
   
   // Handle textarea input change
   const handleChange = (e) => {
@@ -35,12 +38,13 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
 
   // When user clicks on "Next" button, execute the following code
   const submitReview = () => {
-    addReviewToFirestore(match, campsites, rating, userText, setReviewsList);
+    addReviewToFirestore(match, campsites, rating, userText, setReviewsList, radioInputs);
     // Reset state to its default setting
     setContinue(false);
     setUserText("");
     setRating(null);
     setModalOpen(false);
+    setRadioInputs({});
   };
 
   if (!modalOpen) return <></>
@@ -67,6 +71,8 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
             canContinue={canContinue}
             handleSubmit={submitReview}
             setPageNum={setPageNum}
+            radioInputs={radioInputs}
+            setRadioInputs={setRadioInputs}
           />
         }
       </div>

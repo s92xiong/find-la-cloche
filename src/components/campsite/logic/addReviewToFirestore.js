@@ -1,7 +1,7 @@
 import { auth, firestore } from '../../../firebase';
 import getReviews from './getReviews';
 
-const addReviewToFirestore = async (match, campsites, rating, userText, setReviewsList) => {
+const addReviewToFirestore = async (match, campsites, rating, userText, setReviewsList, radioInputs) => {
   // Prevent function from executing if rating or userText is not available
   if (!rating || !userText) return;
   
@@ -23,6 +23,7 @@ const addReviewToFirestore = async (match, campsites, rating, userText, setRevie
     date: `${month} ${day}, ${year}`,
     name: auth.currentUser.displayName,
     photoURL: auth.currentUser.photoURL,
+    questions: radioInputs,
     rating: rating,
     text: userText
   });

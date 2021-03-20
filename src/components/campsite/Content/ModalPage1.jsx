@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import CloseModal from './CloseModal';
 
-function ModalPage1({ setModalOpen, item, canContinue, handleSubmit, setPageNum }) {
+function ModalPage1({ setModalOpen, item, canContinue, handleSubmit, setPageNum, radioInputs, setRadioInputs }) {
 
-  const [inputs, setInputs] = useState({});
-
-  const handleChange = (e) => {
-    setInputs({...inputs, [e.target.name]: e.target.value});
-  };
-
-  useEffect(() => {
-    console.table(inputs);
-  })
+  const handleChange = (e) => setRadioInputs({...radioInputs, [e.target.name]: e.target.value});
 
   return (
     <div className="write-review-modal-1">
