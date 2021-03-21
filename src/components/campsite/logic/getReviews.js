@@ -6,10 +6,11 @@ const getReviews = async (match, setReviewsList) => {
   const data = snapshot.data();
   
   // Stop the function if a campsite has no reviews, the array will be left empty
-  if (data.reviews.length === 0) return;
-  
-  // Update reviewsList state
-  setReviewsList(data.reviews);
+  if (data.reviews.length === 0) {
+    setReviewsList(null);
+  } else {
+    setReviewsList(data.reviews);
+  }
 };
 
 export default getReviews;

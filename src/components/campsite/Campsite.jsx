@@ -19,7 +19,7 @@ function Campsite({ match }) {
   const [imgURLs, setImgURLs] = useState([]);
 
   // Initialize state for reviews of a campsite
-  const [reviewsList, setReviewsList] = useState([]);
+  const [reviewsList, setReviewsList] = useState(null);
 
   // Access the specific campsite
   const getCampsiteDoc = async (id) => {

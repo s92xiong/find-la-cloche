@@ -5,6 +5,8 @@ function round(value, step) {
 }
 
 function getAverageReview(reviewsList) {
+  if (!reviewsList) return;
+
   let average;
   let sum = 0;
   for (const obj in reviewsList) {

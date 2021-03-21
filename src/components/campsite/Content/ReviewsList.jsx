@@ -15,17 +15,21 @@ function ReviewsList({ reviewsList, match, setReviewsList }) {
   };
 
   const handleDelete = (e) => {
+    // Popup window to confirm if user wants to delete review
+    const result = window.confirm("Are you sure you want to delete this review?");
+    if (!result) return;
+
     // Get unique id from the element's "data-id"
     const dataID = Number(e.target.dataset.id);
-
+    
     // Delete review by filtering through the reviewsList array state
     const filteredReviews = reviewsList.filter(review => (dataID !== review.reviewID));
-
+    
     // Update Firestore
     deleteReview(match, filteredReviews, setReviewsList);
   };
 
-  if (reviewsList.length === 0) return <></>;
+  if (!reviewsList) return <></>;
   return (
     <div className="reviews-list">
       {

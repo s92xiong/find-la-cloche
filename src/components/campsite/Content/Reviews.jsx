@@ -29,7 +29,7 @@ function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
     <div className="reviews-container">
       <div className="write-review-button-container">
         {
-          (reviewsList.length === 0) ?
+          (!reviewsList) ?
           <div className="no-reviews">
             <h2>There are currently no reviews</h2>
             <p>Be the first person to review this campsite!</p>
