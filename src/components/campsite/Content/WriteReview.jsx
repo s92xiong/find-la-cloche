@@ -18,7 +18,14 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
   const [rating, setRating] = useState(null);
 
   // User questions for 
-  const [radioInputs, setRadioInputs] = useState({});
+  const [radioInputs, setRadioInputs] = useState({
+    firepit: "",
+    hammock: "",
+    privacy: "",
+    seating: "",
+    thunderbox: "",
+    water: "",
+  });
   
   // Handle textarea input change
   const handleChange = (e) => {
@@ -68,7 +75,6 @@ function WriteReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
           <ModalPage1 
             item={item}
             setModalOpen={setModalOpen}
-            canContinue={canContinue}
             handleSubmit={submitReview}
             setPageNum={setPageNum}
             radioInputs={radioInputs}

@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CloseModal from './CloseModal';
 
-function ModalPage1({ setModalOpen, item, canContinue, handleSubmit, setPageNum, radioInputs, setRadioInputs }) {
+function ModalPage1({ setModalOpen, item, handleSubmit, setPageNum, radioInputs, setRadioInputs }) {
 
-  const handleChange = (e) => setRadioInputs({...radioInputs, [e.target.name]: e.target.value});
+  const [showButton, setShowButton] = useState(false);
+
+  const handleChange = (e) => {
+    setRadioInputs({...radioInputs, [e.target.name]: e.target.value});
+    
+    // Check if all buttons are checked, if they are, then allow user to submit form
+    const radioButtons = Array.from(document.querySelectorAll(".radio-button"));
+    let sum = 0;
+    radioButtons.forEach(button => (button.checked) ? sum++ : null);
+    if (sum >= 6) setShowButton(true);
+  };
 
   return (
     <div className="write-review-modal-1">
-      <CloseModal setModalOpen={setModalOpen} />
+      <CloseModal setModalOpen={setModalOpen} setRadioInputs={setRadioInputs} />
       <h1 className="modal-title">{item.name}</h1>
       <form className="modal-questions-form">
         <section className="modal-question">
@@ -62,12 +72,19 @@ function ModalPage1({ setModalOpen, item, canContinue, handleSubmit, setPageNum,
         >
           Back
         </button>
-        <button 
-          className={ (canContinue) ? "review-button" : "review-button-invalid" }
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        {
+          (showButton) ? 
+          <button 
+            className="review-button"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+          :
+          <button className="review-button-invalid">
+            Submit
+          </button>
+        }
       </div>
     </div>
   );
