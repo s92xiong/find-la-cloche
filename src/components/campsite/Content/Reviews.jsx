@@ -52,6 +52,8 @@ function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
       </div>
       <ReviewsList
         reviewsList={reviewsList}
+        match={match}
+        setReviewsList={setReviewsList}
       />
       <WriteReview
         match={match}

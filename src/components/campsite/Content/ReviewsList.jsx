@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaStar, FaCheck, FaTimes } from 'react-icons/fa';
 import { auth } from '../../../firebase';
+import deleteReview from "../logic/deleteReview";
 import "./styles/ReviewsList.css";
 
-function ReviewsList({ reviewsList }) {
+function ReviewsList({ reviewsList, match, setReviewsList }) {
 
   const getYesOrNo = (value) => {
     if (value === "Yes") {
@@ -13,8 +14,15 @@ function ReviewsList({ reviewsList }) {
     }
   };
 
-  const deleteReview = () => {
-    console.log("Deleting review...");
+  const handleDelete = (e) => {
+    // Get unique id from the element's "data-id"
+    const dataID = Number(e.target.dataset.id);
+
+    // Delete review by filtering through the reviewsList array state
+    const filteredReviews = reviewsList.filter(review => (dataID !== review.reviewID));
+
+    // Update Firestore
+    deleteReview(match, filteredReviews, setReviewsList);
   };
 
   if (reviewsList.length === 0) return <></>;
@@ -55,8 +63,8 @@ function ReviewsList({ reviewsList }) {
               </div>
               <p className="review-body">{review.text}</p>
               {
-                (review.id === auth.currentUser.uid) ? 
-                <div className="edit-delete-review" onClick={deleteReview}>
+                (review.userID === auth.currentUser.uid) ? 
+                <div data-id={review.reviewID} className="edit-delete-review" onClick={handleDelete}>
                   Delete
                 </div> 
                 :
