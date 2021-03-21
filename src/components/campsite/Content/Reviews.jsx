@@ -22,11 +22,7 @@ function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
   };
 
   useEffect(() => {
-    if (errorMessage) {
-      setTimeout(() => {
-        setErrorMessage(false);
-      }, 3000);
-    }
+    if (errorMessage) setTimeout(() => setErrorMessage(false), 3000);
   });
 
   return (

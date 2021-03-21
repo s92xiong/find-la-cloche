@@ -4,7 +4,7 @@
   width: 100%;
   height: calc(100vh - 70px);
   background-image: url("../../images/aa2.png");
-  background-position: center;
+  background-position: bottom;
   background-size: cover;
   display: flex;
   justify-content: center;
