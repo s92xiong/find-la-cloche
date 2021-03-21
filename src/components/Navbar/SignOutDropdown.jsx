@@ -15,7 +15,7 @@ function SignOutDropdown() {
   return (
     <ul className="ul-drop-down">
       <li>
-        <a href="/">Profile</a>
+        <a href="/">Home</a>
       </li>
       <li onClick={handleSignOut}>
         <p>Logout</p>
