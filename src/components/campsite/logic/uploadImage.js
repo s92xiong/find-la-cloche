@@ -11,6 +11,7 @@ const uploadImage = (
     return console.log("You must choose a file to upload.");
   }
 
+  setComponent(2);
   setStopModalClose(true);
   
   // Iterate through every file and upload the file to Firebase Storage, also add URL to Firestore

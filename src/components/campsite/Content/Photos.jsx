@@ -47,7 +47,6 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
 
   // Logic to handle uploading image(s) to Firebase
   const handleUpload = () => {
-    setComponent(2);
     return uploadImage(
       match, filesArray, setFilesArray, campsites, setProgress, 
       setUploadModalOpen, setComponent, setStopModalClose

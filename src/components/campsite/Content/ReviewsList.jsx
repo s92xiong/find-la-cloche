@@ -68,7 +68,11 @@ function ReviewsList({ reviewsList, match, setReviewsList }) {
               <p className="review-body">{review.text}</p>
               {
                 (review.userID === auth.currentUser.uid) ? 
-                <div data-id={review.reviewID} className="edit-delete-review" onClick={handleDelete}>
+                <div 
+                  data-id={review.reviewID} 
+                  className="edit-delete-review"
+                  onClick={handleDelete}
+                >
                   Delete
                 </div> 
                 :

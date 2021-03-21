@@ -17,7 +17,7 @@
 
 .upload-modal {
   padding: 30px;
-  width: 500px;
+  width: 550px;
   height: 520px;
   background-color: #ffffff;
   border-radius: 16px;
@@ -81,14 +81,21 @@
 }
 
 .pre-upload-list {
-  width: 95%;
-  float: right;
+  width: 100%;
+  padding: 0 20px;
   height: 70%;
-  /* overflow: scroll; */
+  margin: 0 auto;
+  overflow: auto;
 }
 
-.pre-upload-list li {
-  line-height: 1.7rem;
+.pre-upload-image-container {
+  margin: 15px 0px;
+  border: 1px solid #2fac3fc2;
+  padding: 15px;
+}
+
+.pre-upload-image-container span {
+  font-size: 15px;
 }
 
 .upload-button-container {

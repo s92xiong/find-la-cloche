@@ -58,16 +58,16 @@ function UploadContainer({
         </label>
         {/* Render list of images to be uploaded */}
         <div className={ (displayComponent === 1) ? "pre-upload-list" : "pre-upload-list hide" }>
-          <ol>
-            {
-              (imgNames) ?
-              imgNames.map(name => (
-                <li>{name}</li>
-              ))
-              :
-              <></>
-            }
-          </ol>
+          {
+            (imgNames) ?
+            imgNames.map(name => (
+              <div className="pre-upload-image-container">
+                <span>{name}</span>
+              </div>
+            ))
+            :
+            <></>
+          }
         </div>
         <ReactCustomizableProgressbar
           className={displayComponent === 2 ? "progress-bar" : "progress-bar hide"}
