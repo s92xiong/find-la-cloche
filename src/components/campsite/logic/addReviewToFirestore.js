@@ -25,7 +25,8 @@ const addReviewToFirestore = async (match, campsites, rating, userText, setRevie
     photoURL: auth.currentUser.photoURL,
     questions: radioInputs,
     rating: rating,
-    text: userText
+    text: userText,
+    id: auth.currentUser.uid,
   });
 
   // Add rating and user review (string) to Firestore DB
@@ -38,4 +39,4 @@ const addReviewToFirestore = async (match, campsites, rating, userText, setRevie
   }
 };
 
-export default addReviewToFirestore
+export default addReviewToFirestore;
