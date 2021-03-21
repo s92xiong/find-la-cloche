@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../firebase';
 import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
 import WriteReview from './WriteReview';
 
 function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
 
+  // Check if user is logged in
+  const [user] = useAuthState(auth);
+
+  // Render a error message if unauthorized user tries to upload photos
+  const [errorMessage, setErrorMessage] = useState(false);
+
+  // Check if modal is open or not
   const [modalOpen, setModalOpen] = useState(false);
+
+  const handleWriteReview = () => {
+    if (!user) return setErrorMessage(true);
+    setModalOpen(true);
+  };
+
+  useEffect(() => {
+    if (errorMessage) {
+      setTimeout(() => {
+        setErrorMessage(false);
+      }, 3000);
+    }
+  });
 
   return (
     <div className="reviews-container">
@@ -22,7 +44,15 @@ function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
             <p>Help your fellow backpackers by adding a review.</p>
           </div>
         }
-        <button className="review-button" onClick={() => setModalOpen(true)}>Write review</button>
+        <div>
+          <button className="review-button" onClick={handleWriteReview}>
+            Write review
+            {
+              (errorMessage) ?
+              <span className="upload-error upload-error-review">You must be logged in</span> : <></>
+            }
+          </button>
+        </div>
       </div>
       <ReviewsList
         reviewsList={reviewsList}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaStar, FaCheck, FaTimes } from 'react-icons/fa';
+import { auth } from '../../../firebase';
 import "./styles/ReviewsList.css";
 
 function ReviewsList({ reviewsList }) {
@@ -10,7 +11,11 @@ function ReviewsList({ reviewsList }) {
     } else {
       return <FaTimes color="red" />
     }
-  }; 
+  };
+
+  const deleteReview = () => {
+    console.log("Deleting review...");
+  };
 
   if (reviewsList.length === 0) return <></>;
   return (
@@ -49,6 +54,14 @@ function ReviewsList({ reviewsList }) {
                 <p>Privacy: <span>{review.questions.privacy}</span></p>
               </div>
               <p className="review-body">{review.text}</p>
+              {
+                (review.id === auth.currentUser.uid) ? 
+                <div className="edit-delete-review" onClick={deleteReview}>
+                  Delete
+                </div> 
+                :
+                <></>
+              }
             </div>
           );
         })
