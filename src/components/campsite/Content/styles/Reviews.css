@@ -41,6 +41,7 @@
   font-family: "Lato", sans-serif;
   cursor: pointer;
   position: relative;
+  outline: none;
 }
 
 .review-button:hover {
