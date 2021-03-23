@@ -5,9 +5,18 @@ import { auth } from '../../firebase';
 import GoggleButton from '../SignUp/GoggleButton';
 import InputField from '../SignUp/InputField';
 import CatchLogInError from './CatchLogInError';
-import handleGoogleAuth from '../SignUp/handleGoogleAuth';
+import handleGoogleAuth from '../SignUp/logic/handleGoogleAuth';
 
 function LogIn() {
+
+  // Determine if user is logged in
+  const [user] = useAuthState(auth);
+
+  // Display message to user to verify their email if it is not verified already
+  const [unverifiedEmail, setUnverifiedEmail] = useState(false);
+
+  // Display a message if the login failed (e.g. wrong password)
+  const [loginFailed, setLogInFailed] = useState(false);
 
   const [inputError, setInputError] = useState({
     emailError: false, 
@@ -18,15 +27,6 @@ function LogIn() {
     email: "", 
     password: "",
   });
-
-  // Determine if user is logged in
-  const [user] = useAuthState(auth);
-
-  // Display message to user to verify their email if it is not verified already
-  const [unverifiedEmail, setUnverifiedEmail] = useState(false);
-
-  // Display a message if the login failed (e.g. wrong password)
-  const [loginFailed, setLogInFailed] = useState(false);
 
   const detectInvalidInputs = (valueProp) => {
     const handler = (e) => {
@@ -64,8 +64,8 @@ function LogIn() {
         return setUnverifiedEmail(true);
       }
       
-      setUnverifiedEmail(false);
-      window.location = "/";
+      // setUnverifiedEmail(false);
+      // window.location = "/";
 
     } catch (error) {
       CatchLogInError(error, value, setInputError, setLogInFailed);
@@ -74,10 +74,11 @@ function LogIn() {
 
   useEffect(() => {
     // Redirect to homepage if user is logged in
-    if (user) return window.location = "/";
+    if (user && !unverifiedEmail) return window.location = "/";
     
     // Only display message if the user attempts to log in and the email is not verified
-    document.addEventListener('DOMContentLoaded', () => setUnverifiedEmail(false));
+    // document.addEventListener('DOMContentLoaded', () => setUnverifiedEmail(false));
+    // return () => setUnverifiedEmail(false);
   }, [unverifiedEmail, user]);
 
   return (
@@ -102,12 +103,7 @@ function LogIn() {
           valueProp="password"
           handleInputChange={detectInvalidInputs}
         />
-        {
-          (unverifiedEmail) ? 
-          <span className="invalid-email">You must validate your email to log in.</span> 
-          : 
-          <></>
-        }
+        { (unverifiedEmail) ? <span className="invalid-email">You must validate your email to log in.</span> : <></> }
         { (loginFailed) ? <span className="login-failed-message">Login failed. Please check your email and password.</span> : <></> }
         <button className="log-in-button-form">Log in</button>
         <p>Or</p>

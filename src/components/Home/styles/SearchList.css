@@ -1,15 +1,13 @@
 .search-list {
-  display: block;
   position: absolute;
-  top: 90px;
+  top: 88px;
   left: 0;
   background-color: #fcfcfc;
   width: 100%;
   height: auto;
   max-height: 215px;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 .search-item-link {
@@ -17,7 +15,7 @@
   text-decoration: none;
 }
 
-.search-list-off {
+.hide {
   display: none;
 }
 

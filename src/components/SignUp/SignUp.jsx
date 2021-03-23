@@ -1,33 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import "./styles/SignUp.css";
-import "./styles/SignUpError.css";
-import InputField from './InputField';
-import signInError from './signInError';
-import GoogleButton from "./GoggleButton";
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, firestore } from '../../firebase';
 import EmailVerification from './EmailVerification';
-import { useAuthState } from 'react-firebase-hooks/auth';
-// import UserLoggedIn from "../LogIn/UserLoggedIn";
-import handleGoogleAuth from './handleGoogleAuth';
+import InputField from './InputField';
+import GoogleButton from "./GoggleButton";
+import signInError from './logic/signInError';
+import handleGoogleAuth from './logic/handleGoogleAuth';
+import "./styles/SignUp.css";
+import "./styles/SignUpError.css";
 
 function SignUp() {
 
+  // Check to see if user is logged in
   const [user] = useAuthState(auth);
+
   const [isNewAccountCreated, setNewAccountCreated] = useState(false);
-
-  const [inputError, setInputError] = useState({
-    firstNameError: false, 
-    lastNameError: false, 
-    emailError: false, 
-    passwordError: false,
-  });
-
-  const [value, setValue] = useState({
-    firstName: "", 
-    lastName: "", 
-    email: "", 
-    password: "",
-  });
 
   // Display error message if email is already in use
   const [accountAlreadyInUse, setAccountAlreadyInUse] = useState(false);
@@ -35,9 +22,25 @@ function SignUp() {
   // Display message after the user has successfully created an account
   const [emailVerificationPopup, setEmailVerificationPopup] = useState(false);
 
+  // Initialize state object for invalid inputs
+  const [inputError, setInputError] = useState({
+    firstNameError: false, 
+    lastNameError: false, 
+    emailError: false, 
+    passwordError: false,
+  });
+
+  // Input values for sign-up form field
+  const [value, setValue] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
   const handleInputChange = (valueProp) => {
     const handler = (e) => {
-      // Copy value object state, update "key":"value" pair via dataID attribute
+      // Copy value object state, update the specific "key":"value" pair using dataID attribute
       const newValue = { ...value };
       newValue[valueProp] = e.target.value;
       setValue(newValue);
@@ -46,16 +49,18 @@ function SignUp() {
       const newError = {...inputError};
       const errorProp = `${valueProp}Error`;
 
-      // A valid input requires 6 or more characters
+      // If the input field is for a password, it requires 6 or more characters
+      // For every other input field, the string length must at least be 1 or more characters
       const requiredNumOfChars = (errorProp === "passwordError") ? 6 : 1;
 
       // Determine if there is an error in the input value
       if (newValue[valueProp].length >= requiredNumOfChars) {
-        newError[errorProp] = false;
+        newError[errorProp] = false; // Valid input
       } else {
-        newError[errorProp] = true;
+        newError[errorProp] = true; // Invalid input
       }
 
+      // Update error state
       setInputError(newError);
     };
     return handler;
@@ -96,17 +101,16 @@ function SignUp() {
 
     } catch (error) {
       console.error(error);
-      if (error.code === "auth/email-already-in-use") setAccountAlreadyInUse(true);
+      if (error.code === "auth/email-already-in-use") {
+        setAccountAlreadyInUse(true);
+      }
     }
   };
 
   useEffect(() => {
     // Redirect to homepage if the user is logged in
     if (user && !isNewAccountCreated) window.location = "/";
-    
-    // Prevent rendering of email verification popup on page load
-    // document.addEventListener('DOMContentLoaded', () => setEmailVerificationPopup(false));
-  }, [emailVerificationPopup, user, isNewAccountCreated]);
+  }, [user, isNewAccountCreated]);
 
   // Component prevents users from accessing SignUp component if already logged in
   // if (user) return <UserLoggedIn />;
@@ -164,7 +168,6 @@ function SignUp() {
         <p>Already have an account? <a className="log-in-a-tag" href="/log-in">Log in</a></p>
         <p>Or</p>
         <GoogleButton handleClick={handleGoogleAuth} />
-        <br/>
       </form>
     </div>
   );

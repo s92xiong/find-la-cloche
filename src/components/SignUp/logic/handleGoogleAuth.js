@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import { auth, firestore } from "../../firebase";
+import { auth, firestore } from "../../../firebase";
 
 const handleGoogleAuth = async (e) => {
   e.preventDefault();
@@ -18,8 +18,7 @@ const handleGoogleAuth = async (e) => {
       // Automatically verify user if they signed in via Google auth
       await result.user.updateProfile({ emailVerified: true });
     }
-
-    console.log(result);
+    
     // Redirect to homepage
     window.location = "/";
     

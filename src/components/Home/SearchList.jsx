@@ -5,9 +5,7 @@ import "./styles/SearchList.css";
 function SearchList({ campsites, showCampsiteList, noResults }) {
 
   if (noResults) return (
-    <div className={
-      (showCampsiteList) ? "search-list" : "search-list search-list-off"
-    }>
+    <div className={(showCampsiteList) ? "search-list" : "search-list search-list-off"}>
       <ul>
         <li className="search-item">No results.</li>
       </ul>
@@ -15,16 +13,14 @@ function SearchList({ campsites, showCampsiteList, noResults }) {
   );
 
   return (
-    <div className={
-      (showCampsiteList) ? "search-list" : "search-list search-list-off"
-    }>
+    <div className={(showCampsiteList) ? "search-list" : "search-list hide"}>
       <ul>
         {
-          campsites.map((campsite, i) => {
+          campsites.map((campsite) => {
             return (
               <Link 
                 className="search-item-link" 
-                // to={`campsite/${campsite.name.replace(/\s+/g, '-').toLowerCase()}`} 
+                // to={`/${campsite.name.replace(/\s+/g, '-').toLowerCase()}`}
                 to={campsite.id}
                 key={campsite.id}
               >

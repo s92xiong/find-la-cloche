@@ -2,9 +2,6 @@
   width: 100%;
   height: calc(100vh - 70px);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -21,9 +18,3 @@
   font-weight: 600;
   font-size: 43px;
 }
-
-/* @media (max-width: 500px) {
-  .Home {
-    height: calc(100vh - 160px);
-  }
-} */

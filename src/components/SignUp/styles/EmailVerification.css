@@ -11,8 +11,7 @@
 }
 
 .email-verification-sent img {
-  width: 100px;
-  height: 100px;
+  width: 90px;
   margin: 25px;
 }
 
@@ -30,7 +29,7 @@
 }
 
 .link-to-log-in-button div {
-  margin: 10px 0 20px 0;
+  margin: 10px 3px 20px 0;
   padding: 10px 20px 10px 20px;
   background-color: #2596be;
   cursor: pointer;

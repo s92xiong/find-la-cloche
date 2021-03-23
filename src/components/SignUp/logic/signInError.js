@@ -14,6 +14,7 @@ function signInError(value, inputError, setInputError) {
   if (value.password.length < 6) newError.passwordError = true;
   setInputError(newError);
 
+  // If any values in the error object return true, then return false, else return true
   for (const key in newError) {
     if (newError[key] === true) return false;
   }

@@ -1,15 +1,15 @@
 import { firestore } from "../../firebase";
 
-const getCampsites = (campsites, setCampsites, setAllCampsites) => {
-  if (campsites.length < 1) {
+const getCampsites = (mutableCampsites, setMutableCampsites, setImmutableCampsites) => {
+  if (mutableCampsites.length < 1) {
     return firestore.collection("campsites").orderBy("index").onSnapshot(snapshot => {
       const newCampsites = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
       }));
-      setCampsites(newCampsites);
-      if (!setAllCampsites) return;
-      setAllCampsites(newCampsites);
+      setMutableCampsites(newCampsites);
+      if (!setImmutableCampsites) return;
+      setImmutableCampsites(newCampsites);
     });
   }
 };
