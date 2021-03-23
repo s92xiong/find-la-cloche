@@ -1,5 +1,6 @@
 import React from 'react';
 import { auth } from '../../firebase';
+import { Link } from 'react-router-dom';
 import "./styles/SignOutDropdown.css";
 
 function SignOutDropdown() {
@@ -15,7 +16,9 @@ function SignOutDropdown() {
   return (
     <ul className="ul-drop-down">
       <li>
-        <a href="/">Home</a>
+        <Link className="home-link-dropdown" to="/">
+          Home
+        </Link>
       </li>
       <li onClick={handleSignOut}>
         <p>Logout</p>

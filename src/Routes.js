@@ -20,19 +20,19 @@ function Routes() {
         <Switch>
           <Route 
             exact path="/" 
-            render={ () => <Home /> }
+            component={Home}
           />
           <Route 
             exact path="/about" 
             component={About}
           />
           <Route 
-            exact path="/sign-up" 
-            render={ () => <SignUp /> } 
+            exact path="/sign-up"
+            component={SignUp}
           />
           <Route 
-            exact path="/log-in" 
-            render={ () => <LogIn /> } 
+            exact path="/log-in"
+            component={LogIn}
           />
           <Route path="/:id" component={Campsite} />
         </Switch>
