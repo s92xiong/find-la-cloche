@@ -15,31 +15,20 @@ function SearchBar({ showCampsiteList, setShowCampsites }) {
 
   // Render "No results" in drop down if input doesn't match campsite name
   const [noResults, setNoResults] = useState(false);
- 
-  // Input field state
-  const [inputFieldCampsite, setInputFieldCampsite] = useState("");
 
   // Obtain reference to input field
   const inputRef = useRef();
 
   // Handle input field change
   const handleInputChange = (e) => {
+    // Only show campsites matching user's text-input
     const filteredCampsites = allCampsites.filter(campsite => {
-      // Only show campsites matching text input from user
       return campsite.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
     
     (filteredCampsites.length < 1) ? setNoResults(true) : setNoResults(false);
     setFilteredCampsites(filteredCampsites);
     setShowCampsites(true);
-    setInputFieldCampsite(e.target.value);
-  };
-
-  // Handle Form submission
-  // YOU DON'T NEED A SUBMIT BUTTON!!! EVERYTHING SHOULD BE DONE IN THE ONCHANGE PROP
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(inputFieldCampsite);
   };
 
   const openDropDownList = () => setShowCampsites(true);
@@ -52,7 +41,7 @@ function SearchBar({ showCampsiteList, setShowCampsites }) {
 
   return (
     <div className="search-bar">
-      <form className="search-bar-form" onSubmit={handleSubmit}>
+      <form className="search-bar-form">
         <div className="search-icon">
           <img src={searchIcon} alt=""/>
         </div>
