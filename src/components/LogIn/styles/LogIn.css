@@ -37,7 +37,9 @@
 }
 
 .invalid-email {
+  width: 80%;
   margin-bottom: 7px;
+  text-align: center;
   font-size: 14px;
   color: red;
 }

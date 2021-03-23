@@ -14,6 +14,9 @@ function SignUp() {
   // Check to see if user is logged in
   const [user] = useAuthState(auth);
 
+  // When registering a new account, the user is automatically logged in, but a logged-in user who accesses this page is immediately
+  // redirected to the homepage via useEffect, thus "isNewAccountCreated" prevents page redirect for that brief moment when
+  // the user is logged in and signed out (this enforces user to validate their email)
   const [isNewAccountCreated, setNewAccountCreated] = useState(false);
 
   // Display error message if email is already in use
@@ -108,8 +111,10 @@ function SignUp() {
   };
 
   useEffect(() => {
-    // Redirect to homepage if the user is logged in
-    if (user && !isNewAccountCreated) window.location = "/";
+    // Redirect to homepage if the user is logged in & they aren't registering a new account
+    if (user && !isNewAccountCreated) {
+      return window.location = "/";
+    }
   }, [user, isNewAccountCreated]);
 
   // Component prevents users from accessing SignUp component if already logged in
