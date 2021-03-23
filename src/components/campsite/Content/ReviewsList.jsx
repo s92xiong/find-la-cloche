@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { FaStar, FaCheck, FaTimes } from 'react-icons/fa';
 import { auth } from '../../../firebase';
 import deleteReview from "../logic/deleteReview";
+import userIcon from "../../../images/person_placeholder.png";
 import "./styles/ReviewsList.css";
 
 function ReviewsList({ reviewsList, match, setReviewsList }) {
@@ -43,7 +44,7 @@ function ReviewsList({ reviewsList, match, setReviewsList }) {
             <div className="review-container">
               <div className="left-review-container">
                 <div className="review-user-info">
-                  <img src={review.photoURL} alt=""/>
+                  <img src={(review.photoURL) ? review.photoURL : userIcon} alt=""/>
                   <div className="user-review-date">
                     <h4>{review.name}</h4>
                     <div>
