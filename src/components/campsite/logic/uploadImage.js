@@ -28,13 +28,13 @@ const uploadImage = (
         setProgress(percentage);
       },
       // Error function
-      (error) => console.error(error),
+      (error) => {
+        console.error(error);
+        setStopModalClose(false); // User can close the modal if the upload fails
+      },
       // Complete/Success function
       async () => {
-        const url = await storage
-                    .ref(`images/${match.params.id}`)
-                    .child(`${file.name}-${date}`)
-                    .getDownloadURL();
+        const url = await storage.ref(`images/${match.params.id}`).child(`${file.name}-${date}`).getDownloadURL();
         
         let index;
         campsites.forEach((campsite, i) => {
