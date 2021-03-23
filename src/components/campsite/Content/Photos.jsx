@@ -8,7 +8,6 @@ import Carousel from '../Carousel/Carousel';
 
 function Photos({ imgURLs, setImgURLs, campsites, match }) {
 
-  // Check if user is logged in
   const [user] = useAuthState(auth);
 
   // Render a error message if unauthorized user tries to upload photos
@@ -91,7 +90,9 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
             (imgURLs.length > 1) ? <h2>Add photos of this campsite</h2> : <h2>There are currently no photos of this campsite</h2>
           }
           {
-            (imgURLs.length > 1) ? <p>Photos help others preview the campsite. Upload photos about this campsite to inspire others.</p> :
+            (imgURLs.length > 1) ? 
+            <p>Photos help others preview the campsite. Upload photos about this campsite to inspire others.</p>
+            :
             <p>Be the first user to post photos of this campsite!</p>
           }
         </div>
