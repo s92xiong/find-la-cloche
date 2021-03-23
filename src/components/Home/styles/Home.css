@@ -8,9 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-image: url("../../../images/algonquin-highlands.jpg"); */
-  /* background-image: url("../../../images/killarney5.jpg"); */
-  background-image: url("../../../images/killarney5-min.jpg");
+  background-image: url("../../../images/killarney5.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -24,8 +22,8 @@
   font-size: 43px;
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .Home {
     height: calc(100vh - 160px);
   }
-}
+} */

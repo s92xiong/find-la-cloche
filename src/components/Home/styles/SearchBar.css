@@ -65,7 +65,7 @@
   background-color: #5a9b2fea;
 }
 
-@media (max-width: 750px) {
+/* @media (max-width: 750px) {
   .search-bar h2 {
     font-size: 35px;
   }
@@ -145,4 +145,4 @@
     height: 10px;
     width: 10px;
   }
-}
+} */
