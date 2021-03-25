@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AverageRating from './AverageRating';
-import getAverageRating from './getAverageRating';
+import getAverageRating from '../logic/getAverageRating';
 import "./styles/Card.css";
 
 function Card({ item, imgURLs, match, reviewsList }) {

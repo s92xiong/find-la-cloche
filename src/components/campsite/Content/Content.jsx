@@ -5,7 +5,7 @@ import Reviews from "./Reviews";
 
 function Content({ imgURLs, setImgURLs, campsites, match, item, reviewsList, setReviewsList }) {
 
-  const [toggleState, setToggleState] = useState(1);
+  const [toggleState, setToggleState] = useState(0);
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -21,7 +21,7 @@ function Content({ imgURLs, setImgURLs, campsites, match, item, reviewsList, set
               (toggleState === 0) ? "tab photos-tab tab-indicator" : "tab photos-tab"
             }
           >
-            <span>Photos</span>
+            <span>Reviews</span>
           </div>
           <div 
             onClick={() => toggleTab(1)}
@@ -29,12 +29,12 @@ function Content({ imgURLs, setImgURLs, campsites, match, item, reviewsList, set
               (toggleState === 1) ? "tab reviews-tab tab-indicator" : "tab photos-tab"
             }
           >
-            <span>Reviews</span>
+            <span>Photos</span>
           </div>
         </div>
       </div>
       {
-        (toggleState === 0) ?
+        (toggleState === 1) ?
         <Photos 
           imgURLs={imgURLs}
           setImgURLs={setImgURLs}

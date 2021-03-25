@@ -14,7 +14,6 @@ function AverageRating({ average }) {
               <div key={i} className="full-star-container">
                 <FaStar size={20} color="#f1f1f1" />
               </div>
-              
             );
           })
         }
@@ -28,7 +27,7 @@ function AverageRating({ average }) {
       {
         [...Array(5)].map((star, i) => {
           // Return a 1/2 star given the following condition
-          if (average === i + 0.5 && i === average - 0.5) {
+          if (average === i + 0.5) {
             return <HalfStar index={i} />
           }
           // Return gold star if the index is less than the average
