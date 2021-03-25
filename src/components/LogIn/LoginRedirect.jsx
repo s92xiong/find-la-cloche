@@ -4,7 +4,7 @@ import "./styles/LoginRedirect.css";
 
 function LoginRedirect() {
   return (
-    <div className="log-in-redirect">
+    <div className="log-in">
       <div className="continue-home">
         <h2>You're already logged in!</h2>
         <Link to="/" className="continue-home-button">

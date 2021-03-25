@@ -1,19 +1,7 @@
-.log-in-redirect {
-  width: 100vw;
-  height: calc(100vh - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("../../../images/algonquin-highlands.jpg");
-  background-position: center;
-  background-size: cover;
-  font-family: "Lato", sans-serif;
-}
-
 .continue-home {
   width: 400px;
   height: 230px;
-  background-color: #fcfcfc;
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   align-items: center;

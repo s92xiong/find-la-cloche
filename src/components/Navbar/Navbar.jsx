@@ -1,6 +1,6 @@
 import React from 'react';
 import "./styles/Navbar.css";
-import icon from "../../images/outdoors-4-64.png";
+import logo from "../../images/logo.png";
 import SignOutDropdown from './SignOutDropdown';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
@@ -19,7 +19,7 @@ function Navbar() {
       </Link>
       <div className="logo-title-container">
         <Link to="/">
-          <img src={icon} alt=""/>
+          <img src={logo} alt=""/>
         </Link>
         <h1>
           <Link to="/">

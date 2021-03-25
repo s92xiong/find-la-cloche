@@ -76,6 +76,11 @@ function LogIn() {
     }
   };
 
+  const handleGoogleLogIn = (e) => {
+    handleGoogleAuth(e);
+    setLoginSuccess(true);
+  };
+
   // Route user to homepage if already logged in
   if (user && !loginSuccess) return <LoginRedirect />;
 
@@ -106,7 +111,7 @@ function LogIn() {
         { (loginFailed) ? <span className="login-failed-message">Login failed. Please check your email and password.</span> : <></> }
         <button className="log-in-button-form">Log in</button>
         <p>Or</p>
-        <GoggleButton handleClick={handleGoogleAuth} />
+        <GoggleButton handleClick={handleGoogleLogIn} />
         <br/>
       </form>
     </div>
