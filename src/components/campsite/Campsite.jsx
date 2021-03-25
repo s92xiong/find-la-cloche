@@ -40,8 +40,8 @@ function Campsite({ match }) {
   }, [match]);
 
   return (
-    <div className="campsite-container">
-      <div className="campsite">
+    <div className="campsite-page">
+      <div className="campsite-container">
         <Header campsites={campsites} />
         <Card 
           item={item}

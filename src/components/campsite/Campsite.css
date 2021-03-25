@@ -1,4 +1,4 @@
-.campsite-container {
+.campsite-page {
   width: 100%;
   min-height: calc(100vh - 70px);
   height: auto;
@@ -8,7 +8,7 @@
   background-color: #f2f2f2;
 }
 
-.campsite {
+.campsite-container {
   width: 1050px;
   background-color: #ffffff;
   font-family: 'Lato', sans-serif;
