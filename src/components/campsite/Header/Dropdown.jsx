@@ -12,12 +12,10 @@ function Dropdown({ campsites }) {
   const closeDropDown = () => setDropDownOpen(false);
 
   return (
-    <form className="right-side-header">
+    <div className="right-side-header">
       <OutsideClickHandler onOutsideClick={closeDropDown}>
         <div 
-          className={ 
-            (!isDropDownOpen) ? "drop-down-header noselect" : "drop-down-header noselect dd-bb-radius"
-          } 
+          className={ (!isDropDownOpen) ? "drop-down-header noselect" : "drop-down-header noselect dd-bb-radius" } 
           onClick={openDropDown}
         >
           <span className="drop-down-span" >Select another campsite</span>
@@ -42,7 +40,7 @@ function Dropdown({ campsites }) {
       <div className="green-search-icon noselect">
         <img src={iconImg} alt=""/>
       </div>
-    </form>
+    </div>
   );
 }
 
