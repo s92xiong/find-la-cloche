@@ -4,7 +4,7 @@ import leftArrow from "../../../images/arrow-left.png";
 import rightArrow from "../../../images/arrow-right.png";
 import moveIndex from '../logic/moveIndex';
 
-function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
+function Carousel({ item, imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
 
   const handleLeftButton = () => {
     if (imgIndex === 0) return;
@@ -43,7 +43,7 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
     };
   });
 
-  if (!isCarouselOpen) return <></>
+  if (!isCarouselOpen || !item) return <></>
   return (
     <div className="carousel noselect">
       <div className="close-carousel-button" onClick={closeCarousel}>✕</div>
@@ -54,16 +54,13 @@ function Carousel({ imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, 
         <img src={rightArrow} alt="" />
       </div>
       {
-        (imgURLs.length === 0) ?
-        <></>
-        :
-        imgURLs.map(url => (
+        item.images.map((imgObj, i) => (
           <img 
-            key={url.urlString}
-            src={url.urlString} 
+            key={i}
+            src={imgObj.imgURL} 
             alt="" 
             className={
-              (url.display) ?
+              (imgObj.display) ?
               "campsite-img"
               :
               "campsite-img campsite-img-hidden"

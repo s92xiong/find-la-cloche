@@ -5,7 +5,7 @@ import getImageName from '../logic/getImageName';
 import "./ModalPhoto.css";
 
 function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen, 
-                      filesArray, setFilesArray, currentPage, setCurrentPage, stopModalClose }) {
+                      filesArray, setFilesArray, currModalPage, setCurrModalPage, stopModalClose }) {
 
   const [imgNames, setImgNames] = useState();
 
@@ -23,7 +23,7 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
       // Close modal & clear image file from state, display first component
       setModalOpen(false);
       setFilesArray(null);
-      setCurrentPage(0);
+      setCurrModalPage(0);
     }
   };
 
@@ -43,7 +43,7 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
         {/* Render 'Click to add a Photo' */}
         <label
           htmlFor="selectPhoto" 
-          className={(currentPage === 0) ? "label-select-photo" : "label-select-photo hide"}
+          className={(currModalPage === 0) ? "label-select-photo" : "label-select-photo hide"}
         >
           <div className="label-container">
             <div className="icon-bg">
@@ -54,7 +54,7 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
           </div>
         </label>
         {/* Render list of images to be uploaded */}
-        <div className={ (currentPage === 1) ? "pre-upload-list" : "pre-upload-list hide" }>
+        <div className={ (currModalPage === 1) ? "pre-upload-list" : "pre-upload-list hide" }>
           {
             (imgNames) ?
             imgNames.map(name => (
@@ -67,7 +67,7 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
           }
         </div>
         <ReactCustomizableProgressbar
-          className={currentPage === 2 ? "progress-bar" : "progress-bar hide"}
+          className={currModalPage === 2 ? "progress-bar" : "progress-bar hide"}
           progress={progress}
           radius={100}
           strokeColor="#63d418"
@@ -75,7 +75,7 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
           <span className="progress-num">{progress}%</span>
         </ReactCustomizableProgressbar>
         {
-          (currentPage !== 2) &&
+          (currModalPage !== 2) &&
           <div className="upload-button-container">
             <button 
               onClick={handleUpload}

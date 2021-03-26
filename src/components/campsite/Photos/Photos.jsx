@@ -6,30 +6,29 @@ import ModalPhoto from "../ModalPhoto/ModalPhoto";
 import Carousel from '../Carousel/Carousel';
 import "./styles/Photos.css";
 
-function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
+function Photos({ match, item, imgURLs, setImgURLs }) {
 
   const [user] = useAuthState(auth);
 
   // Render a error message if unauthorized user tries to upload photos
   const [errorMessage, setErrorMessage] = useState(false);
 
+  // MODAL PHOTO STATE:
   // File information for photos upload
   const [filesArray, setFilesArray] = useState(null);
-
   // Show progress as upload occurs in the progress bar, starts at 0
   const [progress, setProgress] = useState(0);
-
+  // Determine is modal is open
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
-
-  // Conditionally render 3 different components in UploadContainer (0, 1, 2)
-  const [currentPage, setCurrentPage] = useState(0);
-
-  // Prevent UploadContainer modal from closing when upload progress is occuring
+  // Conditionally render 3 different components in ModalPhoto
+  const [currModalPage, setCurrModalPage] = useState(0);
+  // Prevent ModalPhoto from closing when upload progress is occuring
   const [stopModalClose, setStopModalClose] = useState(false);
 
+  // CAROUSEL STATE:
   // Keep track of which img should be displayed in the carousel using integers
   const [imgIndex, setImgIndex] = useState();
-
+  // Determine if carousel is open/closed
   const [isCarouselOpen, setCarouselOpen] = useState(false);
 
   // Run code when user clicks on "Upload Photos" button
@@ -41,13 +40,13 @@ function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
   // Update file state when a new set of files or file is selected
   const handleFileChange = (e) => {
     setFilesArray(e.target.files);
-    setCurrentPage(1);
+    setCurrModalPage(1);
   };
 
   // Logic to handle uploading image(s) to Firebase
   const handleUpload = () => {
     return uploadImage(match, filesArray, setFilesArray, setProgress, 
-                      setUploadModalOpen, setCurrentPage, setStopModalClose, item);
+                      setUploadModalOpen, setCurrModalPage, setStopModalClose, item);
   };
 
   // Open the carousel when a user clicks on any image in the Photos container
@@ -129,14 +128,15 @@ function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
           setModalOpen={setUploadModalOpen}
           filesArray={filesArray}
           setFilesArray={setFilesArray}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          currModalPage={currModalPage}
+          setCurrModalPage={setCurrModalPage}
           stopModalClose={stopModalClose}
         />
         :
         <></>
       }
-      <Carousel 
+      <Carousel
+        item={item}
         imgURLs={imgURLs}
         setImgURLs={setImgURLs}
         imgIndex={imgIndex}

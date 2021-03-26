@@ -38,6 +38,7 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
         const newImages = [...item.images, {
           campsite: item.name,
           date: getDate(),
+          display: false,
           imgURL: url,
           name: auth.currentUser.displayName,
           userID: auth.currentUser.uid,

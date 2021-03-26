@@ -33,11 +33,10 @@ function ActionBar({ imgURLs, setImgURLs, campsites, match, item, reviewsList, s
       {
         (toggleState === 1) ?
         <Photos
+          match={match}
           item={item}
           imgURLs={imgURLs}
           setImgURLs={setImgURLs}
-          campsites={campsites}
-          match={match}
         />
         :
         <Reviews
