@@ -5,7 +5,7 @@ import getCampsites from '../Home/getCampsites';
 import getImages from './logic/getImages';
 import Header from './Header/Header';
 import Card from './Card/Card';
-import Content from './Content/Content';
+import ActionBar from './ActionBar/ActionBar';
 import getReviews from './logic/getReviews';
 
 function Campsite({ match }) {
@@ -49,7 +49,7 @@ function Campsite({ match }) {
           match={match}
           reviewsList={reviewsList}
         />
-        <Content
+        <ActionBar
           imgURLs={imgURLs}
           setImgURLs={setImgURLs}
           campsites={campsites}

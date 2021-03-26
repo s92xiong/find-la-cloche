@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
-import CloseModal from './CloseModal';
+import React from 'react';
 
-function ModalPage1({ setModalOpen, item, handleSubmit, setPageNum, radioInputs, setRadioInputs }) {
-
-  const [showButton, setShowButton] = useState(false);
+function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
 
   const handleChange = (e) => {
     setRadioInputs({...radioInputs, [e.target.name]: e.target.value});
@@ -12,13 +9,11 @@ function ModalPage1({ setModalOpen, item, handleSubmit, setPageNum, radioInputs,
     const radioButtons = Array.from(document.querySelectorAll(".radio-button"));
     let sum = 0;
     radioButtons.forEach(button => (button.checked) ? sum++ : null);
-    if (sum >= 6) setShowButton(true);
+    if (sum >= 6) setShowSubmitButton(true);
   };
 
   return (
-    <div className="write-review-modal-1">
-      <CloseModal setModalOpen={setModalOpen} setRadioInputs={setRadioInputs} />
-      <h1 className="modal-title">{item.name}</h1>
+    <div className="review-modal-1">
       <form className="modal-questions-form">
         <section className="modal-question">
           <p className="review-question">1. Firepit:</p>
@@ -65,29 +60,8 @@ function ModalPage1({ setModalOpen, item, handleSubmit, setPageNum, radioInputs,
           <label htmlFor="privacyVeryGood" className="radio-label">Very Good</label>
         </section>
       </form>
-      <div className="review-button-container">
-        <button 
-          className="review-button-back"
-          onClick={ () => setPageNum(0)}
-        >
-          Back
-        </button>
-        {
-          (showButton) ? 
-          <button 
-            className="review-button"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-          :
-          <button className="review-button-invalid">
-            Submit
-          </button>
-        }
-      </div>
     </div>
   );
 }
 
-export default ModalPage1;
+export default Page1;

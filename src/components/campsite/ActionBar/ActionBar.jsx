@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import "./styles/Content.css";
-import Photos from "./Photos";
-import Reviews from "./Reviews";
+import "./styles/ActionBar.css";
+import Photos from "../Photos/Photos";
+import Reviews from "../Reviews/Reviews";
 
-function Content({ imgURLs, setImgURLs, campsites, match, item, reviewsList, setReviewsList }) {
+function ActionBar({ imgURLs, setImgURLs, campsites, match, item, reviewsList, setReviewsList }) {
 
   const [toggleState, setToggleState] = useState(0);
-
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
+  const toggleTab = (number) => setToggleState(number);
 
   return (
     <div className="content">
@@ -54,4 +51,4 @@ function Content({ imgURLs, setImgURLs, campsites, match, item, reviewsList, set
   );
 }
 
-export default Content;
+export default ActionBar;

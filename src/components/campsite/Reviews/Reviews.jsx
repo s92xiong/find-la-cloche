@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase';
 import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
-import WriteReview from './WriteReview';
+import ModalReview from './Modal/ModalReview';
 
 function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
 
@@ -55,7 +55,7 @@ function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
         match={match}
         setReviewsList={setReviewsList}
       />
-      <WriteReview
+      <ModalReview
         match={match}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
