@@ -1,7 +1,7 @@
 import { auth, firestore, storage } from "../../../firebase";
 import getDate from "./getDate";
 
-const uploadImage = (match, filesArray, setProgress, setCurrModalPage, setStopModalClose, item) => {
+const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrModalPage, setStopModalClose, item) => {
   // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
@@ -34,24 +34,30 @@ const uploadImage = (match, filesArray, setProgress, setCurrModalPage, setStopMo
       async () => {
         // Get url of the image added to Storage
         const url = await storage.ref(`images/${match.params.id}`).child(`${file.name}-${date}`).getDownloadURL();
-
-        const newItem = {...item};
-        newItem.images.push({
+       
+        const newImages = {...item}.images;
+        newImages.push({
           campsite: item.name,
           date: getDate(),
-          display: false,
           imgURL: url,
           name: auth.currentUser.displayName,
-          userID: auth.currentUser.uid,
           userIcon: auth.currentUser.photoURL,
+          userID: auth.currentUser.uid,
         });
       
         // Add URL to Firestore collection
-        await firestore.collection("campsites").doc(match.params.id).update({ images: newItem.images });
+        await firestore.collection("campsites").doc(match.params.id).update({
+          images: newImages
+        });
+
+        // Close the modal and clear image file state, display 1st component
+        setUploadModalOpen(false);
+        setFilesArray(null);
+        setCurrModalPage(0);
+        setStopModalClose(false);
       }
     );
   }
-  return true;
 };
 
 export default uploadImage;

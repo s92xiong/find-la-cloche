@@ -13,6 +13,8 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
     if (!filesArray) return;
     const names = getImageName(filesArray);
     setImgNames(names);
+
+    return () => setImgNames(null);
   }, [filesArray]);
 
   const closeModal = (e) => {

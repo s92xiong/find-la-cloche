@@ -6,7 +6,7 @@ import ModalPhoto from "../ModalPhoto/ModalPhoto";
 import Carousel from '../Carousel/Carousel';
 import "./styles/Photos.css";
 
-function Photos({ imgURLs, setImgURLs, match, item, setItem }) {
+function Photos({ match, item, setItem }) {
 
   const [user] = useAuthState(auth);
 
@@ -45,8 +45,7 @@ function Photos({ imgURLs, setImgURLs, match, item, setItem }) {
 
   // Logic to handle uploading image(s) to Firebase
   const handleUpload = () => {
-    return uploadImage(match, filesArray, setFilesArray, setProgress, 
-                      setUploadModalOpen, setCurrModalPage, setStopModalClose, item);
+    return uploadImage(match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrModalPage, setStopModalClose, item);
   };
 
   // Open the carousel when a user clicks on any image in the Photos container
