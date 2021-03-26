@@ -16,7 +16,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
   // File information for photos upload
   const [filesArray, setFilesArray] = useState(null);
 
-  // Show progress as upload occurs
+  // Show progress as upload occurs in the progress bar, starts at 0
   const [progress, setProgress] = useState(0);
 
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
@@ -46,10 +46,8 @@ function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
 
   // Logic to handle uploading image(s) to Firebase
   const handleUpload = () => {
-    return uploadImage(
-      match, filesArray, setFilesArray, campsites, setProgress, 
-      setUploadModalOpen, setCurrentPage, setStopModalClose, item
-    );
+    return uploadImage(match, filesArray, setFilesArray, setProgress, 
+                      setUploadModalOpen, setCurrentPage, setStopModalClose, item);
   };
 
   // Open the carousel when a user clicks on any image in the Photos container
@@ -86,7 +84,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
     <div className="photos-container">
       <div className="add-photos">
         {
-          (imgURLs.length >= 1) ?
+          (item && item.images.length > 0) ?
           <div className="add-photos-label">
             <h2>Add photos of this campsite</h2>
             <p>Photos help others preview the campsite. Upload photos about this campsite to inspire others.</p>
@@ -107,13 +105,13 @@ function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
       <div className="line-separator"></div>
       {
         // Display photos if they exist
-        (imgURLs.length > 0) ?
+        (item && item.images.length > 0) ?
         <div className="photos-items-container">
           {
-            imgURLs.map((url, i) => {
+            item.images.map((imgObj, i) => {
               return (
                 <div className="photo-item" key={i}>
-                  <img data-id={i} onClick={openCarousel} src={url.urlString} alt=""/>
+                  <img data-id={i} onClick={openCarousel} src={imgObj.imgURL} alt=""/>
                 </div>
               );
             })
@@ -129,10 +127,10 @@ function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
           handleUpload={handleUpload}
           progress={progress}
           setModalOpen={setUploadModalOpen}
-          currentPage={currentPage}
           filesArray={filesArray}
           setFilesArray={setFilesArray}
-          setComponent={setCurrentPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
           stopModalClose={stopModalClose}
         />
         :

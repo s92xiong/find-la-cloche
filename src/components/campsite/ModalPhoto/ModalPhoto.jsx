@@ -4,18 +4,15 @@ import photoIcon from "../../../images/camera-icon.png";
 import getImageName from '../logic/getImageName';
 import "./ModalPhoto.css";
 
-function ModalPhoto({ 
-  handleFileChange, handleUpload, progress, setModalOpen, currentPage, 
-  filesArray, setFilesArray, setComponent, stopModalClose
-}) {
+function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen, 
+                      filesArray, setFilesArray, currentPage, setCurrentPage, stopModalClose }) {
 
   const [imgNames, setImgNames] = useState();
 
   useEffect(() => {
-    if (filesArray) {
-      const names = getImageName(filesArray);
-      setImgNames(names);
-    }
+    if (!filesArray) return;
+    const names = getImageName(filesArray);
+    setImgNames(names);
   }, [filesArray]);
 
   const closeModal = (e) => {
@@ -26,7 +23,7 @@ function ModalPhoto({
       // Close modal & clear image file from state, display first component
       setModalOpen(false);
       setFilesArray(null);
-      setComponent(0);
+      setCurrentPage(0);
     }
   };
 

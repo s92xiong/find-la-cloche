@@ -1,10 +1,7 @@
 import { auth, firestore, storage } from "../../../firebase";
 import getDate from "./getDate";
 
-const uploadImage = (
-  match, filesArray, setFilesArray, campsites, setProgress, 
-  setModalOpen, setComponent, setStopModalClose, item
-) => {
+const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrentPage, setStopModalClose, item) => {
   // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
@@ -12,7 +9,7 @@ const uploadImage = (
     return console.log("You must choose a file to upload.");
   }
 
-  setComponent(2);
+  setCurrentPage(2);
   setStopModalClose(true);
   
   // Iterate through every file and upload the file to Firebase Storage, also add URL to Firestore
@@ -51,9 +48,9 @@ const uploadImage = (
         await firestore.collection("campsites").doc(match.params.id).update({ images: newImages });
 
         // Close the modal and clear image file state, display 1st component
-        setModalOpen(false);
+        setUploadModalOpen(false);
         setFilesArray(null);
-        setComponent(0);
+        setCurrentPage(0);
         setStopModalClose(false);
       }
     );
