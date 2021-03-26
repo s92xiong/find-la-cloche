@@ -1,4 +1,4 @@
-const moveIndex = (direction, imgURLs, imgIndex, setImgIndex, setImgURLs) => {
+const moveIndex = (direction, imgIndex, setImgIndex, item, setItem) => {
   let value;
 
   if (direction === "left") {
@@ -7,11 +7,11 @@ const moveIndex = (direction, imgURLs, imgIndex, setImgIndex, setImgURLs) => {
     value = 1;
   }
 
-  const array = [...imgURLs];
-  array.forEach(item => (item.display) ? item.display = false : null);
-  array[imgIndex + value].display = true;
+  const newItem = {...item};
+  newItem.images.forEach(imgObj => (imgObj.display) ? imgObj.display = false : null);
+  newItem.images[imgIndex + value].display = true;
   setImgIndex(imgIndex + value);
-  return setImgURLs(array);
+  return setItem(newItem);
 };
 
 export default moveIndex;

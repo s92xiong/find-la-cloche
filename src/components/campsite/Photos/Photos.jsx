@@ -6,7 +6,7 @@ import ModalPhoto from "../ModalPhoto/ModalPhoto";
 import Carousel from '../Carousel/Carousel';
 import "./styles/Photos.css";
 
-function Photos({ match, item, imgURLs, setImgURLs }) {
+function Photos({ imgURLs, setImgURLs, match, item, setItem }) {
 
   const [user] = useAuthState(auth);
 
@@ -57,11 +57,17 @@ function Photos({ match, item, imgURLs, setImgURLs }) {
     // Set the index to the img clicked on
     setImgIndex(index);
 
-    // Copy and update imgURL state
-    const array = [...imgURLs];
-    array.forEach(item => (item.display) ? item.display = false : null);
-    array[index].display = true;
-    setImgURLs(array);
+    // Copy and update item
+    const updatedImages = {...item}.images;
+    updatedImages.forEach(imgObj => (imgObj.display) ? imgObj.display = false : null);
+    updatedImages[index].display = true;
+
+    // Fix this code here
+    setItem({
+      ...item,
+      images: updatedImages
+    });
+    // setImgURLs(array);
 
     // Open carousel
     setCarouselOpen(true);
@@ -137,8 +143,7 @@ function Photos({ match, item, imgURLs, setImgURLs }) {
       }
       <Carousel
         item={item}
-        imgURLs={imgURLs}
-        setImgURLs={setImgURLs}
+        setItem={setItem}
         imgIndex={imgIndex}
         setImgIndex={setImgIndex}
         isCarouselOpen={isCarouselOpen}

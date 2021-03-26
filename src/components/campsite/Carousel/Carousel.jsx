@@ -4,16 +4,16 @@ import leftArrow from "../../../images/arrow-left.png";
 import rightArrow from "../../../images/arrow-right.png";
 import moveIndex from '../logic/moveIndex';
 
-function Carousel({ item, imgURLs, setImgURLs, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
+function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
 
   const handleLeftButton = () => {
     if (imgIndex === 0) return;
-    moveIndex("left", imgURLs, imgIndex, setImgIndex, setImgURLs);
+    moveIndex("left", imgIndex, setImgIndex, item, setItem);
   };
 
   const handleRightButton = () => {
-    if (imgIndex === imgURLs.length - 1) return;
-    moveIndex("right", imgURLs, imgIndex, setImgIndex, setImgURLs);
+    if (imgIndex === item.images.length - 1) return;
+    moveIndex("right", imgIndex, setImgIndex, item, setItem);
   };
 
   const closeCarousel = () => {
@@ -54,10 +54,13 @@ function Carousel({ item, imgURLs, setImgURLs, imgIndex, setImgIndex, isCarousel
         <img src={rightArrow} alt="" />
       </div>
       {
+        (item.images.length === 0) ?
+        <></>
+        :
         item.images.map((imgObj, i) => (
           <img 
             key={i}
-            src={imgObj.imgURL} 
+            src={imgObj.imgURL}
             alt="" 
             className={
               (imgObj.display) ?

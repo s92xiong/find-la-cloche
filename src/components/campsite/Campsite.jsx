@@ -54,6 +54,7 @@ function Campsite({ match }) {
           campsites={campsites}
           match={match}
           item={item}
+          setItem={setItem}
           reviewsList={reviewsList}
           setReviewsList={setReviewsList}
         />

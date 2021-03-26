@@ -1,7 +1,7 @@
 import { auth, firestore, storage } from "../../../firebase";
 import getDate from "./getDate";
 
-const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrentPage, setStopModalClose, item) => {
+const uploadImage = (match, filesArray, setProgress, setCurrModalPage, setStopModalClose, item) => {
   // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
@@ -9,7 +9,7 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
     return console.log("You must choose a file to upload.");
   }
 
-  setCurrentPage(2);
+  setCurrModalPage(2);
   setStopModalClose(true);
   
   // Iterate through every file and upload the file to Firebase Storage, also add URL to Firestore
@@ -34,8 +34,9 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
       async () => {
         // Get url of the image added to Storage
         const url = await storage.ref(`images/${match.params.id}`).child(`${file.name}-${date}`).getDownloadURL();
-       
-        const newImages = [...item.images, {
+
+        const newItem = {...item};
+        newItem.images.push({
           campsite: item.name,
           date: getDate(),
           display: false,
@@ -43,20 +44,14 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
           name: auth.currentUser.displayName,
           userID: auth.currentUser.uid,
           userIcon: auth.currentUser.photoURL,
-        }];
+        });
       
         // Add URL to Firestore collection
-        await firestore.collection("campsites").doc(match.params.id).update({ images: newImages });
-
-        // Close the modal and clear image file state, display 1st component
-        setUploadModalOpen(false);
-        setFilesArray(null);
-        setCurrentPage(0);
-        setStopModalClose(false);
+        await firestore.collection("campsites").doc(match.params.id).update({ images: newItem.images });
       }
     );
   }
-
+  return true;
 };
 
 export default uploadImage;
