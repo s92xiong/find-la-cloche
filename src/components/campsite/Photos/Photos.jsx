@@ -8,67 +8,64 @@ import "./styles/Photos.css";
 
 function Photos({ match, item, setItem }) {
 
+  // Check if user is logged in
   const [user] = useAuthState(auth);
 
-  // Render a error message if unauthorized user tries to upload photos
+  // Show error message if unauthorized user clicks on "Upload photos" button
   const [errorMessage, setErrorMessage] = useState(false);
 
-  // MODAL PHOTO STATE:
+  
+  // ------- MODAL PHOTO STATE -------
+  
   // File information for photos upload
   const [filesArray, setFilesArray] = useState(null);
+  
   // Show progress as upload occurs in the progress bar, starts at 0
   const [progress, setProgress] = useState(0);
+  
   // Determine is modal is open
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  
   // Conditionally render 3 different components in ModalPhoto
   const [currModalPage, setCurrModalPage] = useState(0);
+  
   // Prevent ModalPhoto from closing when upload progress is occuring
   const [stopModalClose, setStopModalClose] = useState(false);
 
-  // CAROUSEL STATE:
+  
+  // ------- CAROUSEL STATE -------
+
   // Keep track of which img should be displayed in the carousel using integers
   const [imgIndex, setImgIndex] = useState();
   // Determine if carousel is open/closed
   const [isCarouselOpen, setCarouselOpen] = useState(false);
 
-  // Run code when user clicks on "Upload Photos" button
+  
+  // ------- EVENT HANDLERS -------
+
   const openModal = () => {
     if (!user) return setErrorMessage(true);
     setUploadModalOpen(true);
   };
 
-  // Update file state when a new set of files or file is selected
   const handleFileChange = (e) => {
     setFilesArray(e.target.files);
     setCurrModalPage(1);
   };
 
-  // Logic to handle uploading image(s) to Firebase
-  const handleUpload = () => {
-    return uploadImage(match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrModalPage, setStopModalClose, item);
-  };
+  const handleUpload = () => uploadImage(match, filesArray, setFilesArray, setProgress, 
+                              setUploadModalOpen, setCurrModalPage, setStopModalClose, item);
 
-  // Open the carousel when a user clicks on any image in the Photos container
   const openCarousel = (e) => {
-    // Open specific img clicked on using data attribute
+    // Open specific image clicked on using data attribute
     const index = Number(e.target.dataset.id);
-
-    // Set the index to the img clicked on
     setImgIndex(index);
 
-    // Copy and update item
+    // Copy campsite obj, set all to display none, then set the image w/ index to be displayed
     const updatedImages = {...item}.images;
     updatedImages.forEach(imgObj => (imgObj.display) ? imgObj.display = false : null);
     updatedImages[index].display = true;
-
-    // Fix this code here
-    setItem({
-      ...item,
-      images: updatedImages
-    });
-    // setImgURLs(array);
-
-    // Open carousel
+    setItem({ ...item, images: updatedImages });
     setCarouselOpen(true);
 
     // Hide scroll bar
@@ -108,8 +105,8 @@ function Photos({ match, item, setItem }) {
       </div>
       <div className="line-separator"></div>
       {
-        // Display photos if they exist
-        (item && item.images.length > 0) ?
+        // Display photos if there are any and if campsite item exists
+        (item && item.images.length > 0) &&
         <div className="photos-items-container">
           {
             item.images.map((imgObj, i) => {
@@ -121,11 +118,9 @@ function Photos({ match, item, setItem }) {
             })
           }
         </div>
-        :
-        <></>
       }
       {
-        (uploadModalOpen) ?
+        (uploadModalOpen) &&
         <ModalPhoto
           handleFileChange={handleFileChange}
           handleUpload={handleUpload}
@@ -137,8 +132,6 @@ function Photos({ match, item, setItem }) {
           setCurrModalPage={setCurrModalPage}
           stopModalClose={stopModalClose}
         />
-        :
-        <></>
       }
       <Carousel
         item={item}

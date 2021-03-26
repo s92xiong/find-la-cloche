@@ -9,6 +9,7 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
     return console.log("You must choose a file to upload.");
   }
 
+  // Display 3rd page of the ModalPhoto, prevent modal from being closed
   setCurrModalPage(2);
   setStopModalClose(true);
   

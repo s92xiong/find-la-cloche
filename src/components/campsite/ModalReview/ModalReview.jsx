@@ -75,7 +75,7 @@ function ModalReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
       <div className="review-modal-container">
         <div className="review-modal-top-section-container">
           <div className="close-modal-button" onClick={closeReviewModal}>✕</div>
-          <h1 className="modal-title">{item.name}</h1>
+          <h1 className="modal-title">{(item) && item.name}</h1>
         </div>
         {
           (pageNum === 0) ?
