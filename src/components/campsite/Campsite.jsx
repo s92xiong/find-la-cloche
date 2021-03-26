@@ -13,7 +13,7 @@ function Campsite({ match }) {
   const [campsites, setCampsites] = useState([]);
 
   // For the currently active campsite
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState();
 
   // Array that contains all of the image urls in a campsite directory
   const [imgURLs, setImgURLs] = useState([]);
@@ -45,7 +45,6 @@ function Campsite({ match }) {
         <Header campsites={campsites} />
         <Card 
           item={item}
-          imgURLs={imgURLs}
           match={match}
           reviewsList={reviewsList}
         />

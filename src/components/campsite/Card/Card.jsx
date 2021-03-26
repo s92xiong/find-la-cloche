@@ -3,7 +3,7 @@ import AverageRating from './AverageRating';
 import getAverageRating from '../logic/getAverageRating';
 import "./styles/Card.css";
 
-function Card({ item, imgURLs, match, reviewsList }) {
+function Card({ item, match, reviewsList }) {
 
   // Initialize variable for average rating
   const [average, setAverage] = useState(null);
@@ -16,14 +16,14 @@ function Card({ item, imgURLs, match, reviewsList }) {
   return (
     <div
       // Provide a default background if there are no images for this campsite
-      className={ (imgURLs.length >= 1) ? "module-card" : "module-card module-card-no-bg" }
+      className={ (item && item.images.length >= 1) ? "module-card" : "module-card module-card-no-bg" }
       style={{
         // If the campsite has images, display the first image in the array
-        backgroundImage: (imgURLs.length >= 1) && `url(${imgURLs[0].urlString})`
+        backgroundImage: (item && item.images.length >= 1) && `url(${item.images[0].imgURL})`
       }}
     >
       <div className="module-info">
-        <h2 className="campsite-title">{item.name}</h2>
+        <h2 className="campsite-title">{(item) && item.name}</h2>
         <AverageRating average={average} />
         <p className="park-name">Killarney Provincial Park</p>
       </div>
