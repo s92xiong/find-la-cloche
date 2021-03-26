@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase';
-import "./styles/Photos.css";
 import uploadImage from "../logic/uploadImage";
-import UploadContainer from "../UploadContainer/UploadContainer";
+import ModalPhoto from "../ModalPhoto/ModalPhoto";
 import Carousel from '../Carousel/Carousel';
+import "./styles/Photos.css";
 
-function Photos({ imgURLs, setImgURLs, campsites, match }) {
+function Photos({ imgURLs, setImgURLs, campsites, match, item }) {
 
   const [user] = useAuthState(auth);
 
@@ -22,7 +22,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   // Conditionally render 3 different components in UploadContainer (0, 1, 2)
-  const [displayComponent, setComponent] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   // Prevent UploadContainer modal from closing when upload progress is occuring
   const [stopModalClose, setStopModalClose] = useState(false);
@@ -33,7 +33,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
   const [isCarouselOpen, setCarouselOpen] = useState(false);
 
   // Run code when user clicks on "Upload Photos" button
-  const openUploadModal = () => {
+  const openModal = () => {
     if (!user) return setErrorMessage(true);
     setUploadModalOpen(true);
   };
@@ -41,14 +41,14 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
   // Update file state when a new set of files or file is selected
   const handleFileChange = (e) => {
     setFilesArray(e.target.files);
-    setComponent(1);
+    setCurrentPage(1);
   };
 
   // Logic to handle uploading image(s) to Firebase
   const handleUpload = () => {
     return uploadImage(
       match, filesArray, setFilesArray, campsites, setProgress, 
-      setUploadModalOpen, setComponent, setStopModalClose
+      setUploadModalOpen, setCurrentPage, setStopModalClose, item
     );
   };
 
@@ -85,19 +85,20 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
   return (
     <div className="photos-container">
       <div className="add-photos">
-        <div className="add-photos-label">
-          {
-            (imgURLs.length > 1) ? <h2>Add photos of this campsite</h2> : <h2>There are currently no photos of this campsite</h2>
-          }
-          {
-            (imgURLs.length > 1) ? 
+        {
+          (imgURLs.length >= 1) ?
+          <div className="add-photos-label">
+            <h2>Add photos of this campsite</h2>
             <p>Photos help others preview the campsite. Upload photos about this campsite to inspire others.</p>
-            :
+          </div>
+          :
+          <div className="add-photos-label">
+            <h2>There are currently no photos of this campsite</h2>
             <p>Be the first user to post photos of this campsite!</p>
-          }
-        </div>
+          </div>
+        }
         <div className="upload-photos-container">
-          <button onClick={openUploadModal} className="upload-photos-button">Upload photos</button>
+          <button onClick={openModal} className="upload-photos-button">Upload photos</button>
           {
             (errorMessage) ? <span className="upload-error">You must be logged in.</span> : <></>
           }
@@ -105,6 +106,7 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
       </div>
       <div className="line-separator"></div>
       {
+        // Display photos if they exist
         (imgURLs.length > 0) ?
         <div className="photos-items-container">
           {
@@ -122,15 +124,15 @@ function Photos({ imgURLs, setImgURLs, campsites, match }) {
       }
       {
         (uploadModalOpen) ?
-        <UploadContainer
+        <ModalPhoto
           handleFileChange={handleFileChange}
           handleUpload={handleUpload}
           progress={progress}
           setModalOpen={setUploadModalOpen}
-          displayComponent={displayComponent}
-          uploadFile={filesArray}
-          setUploadFile={setFilesArray}
-          setComponent={setComponent}
+          currentPage={currentPage}
+          filesArray={filesArray}
+          setFilesArray={setFilesArray}
+          setComponent={setCurrentPage}
           stopModalClose={stopModalClose}
         />
         :

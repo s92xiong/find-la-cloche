@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import addReviewToFirestore from '../../logic/addReviewToFirestore';
+import addReviewToFirestore from '../logic/addReviewToFirestore';
 import Page0 from './Page0';
 import Page1 from './Page1';
 import "./ModalReview.css";
@@ -58,6 +58,7 @@ function ModalReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
   
   const handleBackButton = () => {
     setPageNum(0);
+    setRadioInputs({});
     setShowSubmitButton(false); // User must re-input radio buttons
   };
 

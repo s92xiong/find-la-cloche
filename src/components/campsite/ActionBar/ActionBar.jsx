@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./styles/ActionBar.css";
-import Photos from "../Photos/Photos";
 import Reviews from "../Reviews/Reviews";
+import Photos from '../Photos/Photos';
 
 function ActionBar({ imgURLs, setImgURLs, campsites, match, item, reviewsList, setReviewsList }) {
 
@@ -32,7 +32,8 @@ function ActionBar({ imgURLs, setImgURLs, campsites, match, item, reviewsList, s
       </div>
       {
         (toggleState === 1) ?
-        <Photos 
+        <Photos
+          item={item}
           imgURLs={imgURLs}
           setImgURLs={setImgURLs}
           campsites={campsites}

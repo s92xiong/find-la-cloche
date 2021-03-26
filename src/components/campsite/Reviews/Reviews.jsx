@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase';
 import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
-import ModalReview from './Modal/ModalReview';
+import ModalReview from '../ModalReview/ModalReview';
 
 function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
 

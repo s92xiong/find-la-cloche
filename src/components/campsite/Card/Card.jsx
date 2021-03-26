@@ -16,10 +16,10 @@ function Card({ item, imgURLs, match, reviewsList }) {
   return (
     <div
       // Provide a default background if there are no images for this campsite
-      className={ (imgURLs.length > 1) ? "module-card" : "module-card module-card-no-bg" }
+      className={ (imgURLs.length >= 1) ? "module-card" : "module-card module-card-no-bg" }
       style={{
         // If the campsite has images, display the first image in the array
-        backgroundImage: (imgURLs.length > 1) && `url(${imgURLs[0].urlString})`
+        backgroundImage: (imgURLs.length >= 1) && `url(${imgURLs[0].urlString})`
       }}
     >
       <div className="module-info">

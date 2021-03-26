@@ -1,8 +1,9 @@
 import { auth, firestore, storage } from "../../../firebase";
+import getDate from "./getDate";
 
 const uploadImage = (
-                    match, filesArray, setFilesArray, campsites, setProgress, 
-                    setModalOpen, setComponent, setStopModalClose
+  match, filesArray, setFilesArray, campsites, setProgress, 
+  setModalOpen, setComponent, setStopModalClose, item
 ) => {
   // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
@@ -34,23 +35,20 @@ const uploadImage = (
       },
       // Complete/Success function
       async () => {
+        // Get url of the image added to Storage
         const url = await storage.ref(`images/${match.params.id}`).child(`${file.name}-${date}`).getDownloadURL();
-        
-        let index;
-        campsites.forEach((campsite, i) => {
-          if (campsite.id === match.params.id) {
-            index = i;
-          }
-        });
-  
-        // Access index of campsite, copy campsite array, update prop, then add to update Firestore
-        const newCampsites = [...campsites];
-        newCampsites[index].images = [...campsites[index].images, url];
+       
+        const newImages = [...item.images, {
+          campsite: item.name,
+          date: getDate(),
+          imgURL: url,
+          name: auth.currentUser.displayName,
+          userID: auth.currentUser.uid,
+          userIcon: auth.currentUser.photoURL,
+        }];
       
         // Add URL to Firestore collection
-        await firestore.collection("campsites").doc(match.params.id).update({
-          images: newCampsites[index].images
-        });
+        await firestore.collection("campsites").doc(match.params.id).update({ images: newImages });
 
         // Close the modal and clear image file state, display 1st component
         setModalOpen(false);

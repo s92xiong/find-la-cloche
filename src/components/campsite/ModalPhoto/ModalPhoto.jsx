@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import ReactCustomizableProgressbar from 'react-customizable-progressbar';
-import "./UploadContainer.css";
 import photoIcon from "../../../images/camera-icon.png";
 import getImageName from '../logic/getImageName';
+import "./ModalPhoto.css";
 
-function UploadContainer({ 
-  handleFileChange, handleUpload, progress, setModalOpen, displayComponent, 
-  uploadFile, setUploadFile, setComponent, stopModalClose
+function ModalPhoto({ 
+  handleFileChange, handleUpload, progress, setModalOpen, currentPage, 
+  filesArray, setFilesArray, setComponent, stopModalClose
 }) {
 
   const [imgNames, setImgNames] = useState();
 
   useEffect(() => {
-    if (uploadFile) {
-      const names = getImageName(uploadFile);
+    if (filesArray) {
+      const names = getImageName(filesArray);
       setImgNames(names);
     }
-  }, [uploadFile]);
+  }, [filesArray]);
 
   const closeModal = (e) => {
     // Prevent the modal from closing if an upload is occuring
@@ -25,7 +25,7 @@ function UploadContainer({
     if (e.target.className === "upload-modal-bg" || e.target.className === "close-modal-button") {
       // Close modal & clear image file from state, display first component
       setModalOpen(false);
-      setUploadFile(null);
+      setFilesArray(null);
       setComponent(0);
     }
   };
@@ -46,7 +46,7 @@ function UploadContainer({
         {/* Render 'Click to add a Photo' */}
         <label
           htmlFor="selectPhoto" 
-          className={(displayComponent === 0) ? "label-select-photo" : "label-select-photo hide"}
+          className={(currentPage === 0) ? "label-select-photo" : "label-select-photo hide"}
         >
           <div className="label-container">
             <div className="icon-bg">
@@ -57,7 +57,7 @@ function UploadContainer({
           </div>
         </label>
         {/* Render list of images to be uploaded */}
-        <div className={ (displayComponent === 1) ? "pre-upload-list" : "pre-upload-list hide" }>
+        <div className={ (currentPage === 1) ? "pre-upload-list" : "pre-upload-list hide" }>
           {
             (imgNames) ?
             imgNames.map(name => (
@@ -70,7 +70,7 @@ function UploadContainer({
           }
         </div>
         <ReactCustomizableProgressbar
-          className={displayComponent === 2 ? "progress-bar" : "progress-bar hide"}
+          className={currentPage === 2 ? "progress-bar" : "progress-bar hide"}
           progress={progress}
           radius={100}
           strokeColor="#63d418"
@@ -78,11 +78,11 @@ function UploadContainer({
           <span className="progress-num">{progress}%</span>
         </ReactCustomizableProgressbar>
         {
-          (displayComponent !== 2) &&
+          (currentPage !== 2) &&
           <div className="upload-button-container">
             <button 
               onClick={handleUpload}
-              className={ (uploadFile) ? "uploader-button" : "uploader-button-no-file" }
+              className={ (filesArray) ? "uploader-button" : "uploader-button-no-file" }
             >
               Upload
             </button>
@@ -93,4 +93,4 @@ function UploadContainer({
   );
 }
 
-export default UploadContainer;
+export default ModalPhoto;
