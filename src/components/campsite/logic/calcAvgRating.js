@@ -4,7 +4,7 @@ function round(value, step) {
   return Math.round(value * inv) / inv;
 }
 
-function getAverageReview(item) {
+function calcAvgRating(item) {
   // Cancel if campsite item doesn't exist
   if (!item) return;
 
@@ -20,4 +20,4 @@ function getAverageReview(item) {
   if (average) return round(average, 0.5);
 }
 
-export default getAverageReview;
+export default calcAvgRating;

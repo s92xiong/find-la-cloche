@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AverageRating from './AverageRating';
-import getAverageRating from '../logic/getAverageRating';
+import calcAvgRating from '../logic/calcAvgRating';
 import "./styles/Card.css";
 
 function Card({ match, item }) {
@@ -9,13 +9,13 @@ function Card({ match, item }) {
   const [average, setAverage] = useState(null);
 
   useEffect(() => {
-    setAverage(getAverageRating(item));
+    setAverage(calcAvgRating(item));
     return () => setAverage(null);
   }, [match, item]);
 
   return (
     <div
-      // Provide a default background if there are no images for this campsite
+      // Render default background if there are no images for this campsite
       className={ (item && item.images.length >= 1) ? "module-card" : "module-card module-card-no-bg" }
       style={{
         // If the campsite has images, display the first image in the array

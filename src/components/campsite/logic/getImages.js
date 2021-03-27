@@ -1,5 +1,7 @@
 import { storage } from "../../../firebase";
 
+// THIS FUNCTION IS NOT IN USE!! Use this if you're trying to get images from Firebase Storage
+
 const getImages = async (match, setImgURLs) => {
   // Initialize empty array that will eventually contain promises
   const promiseArray = [];
