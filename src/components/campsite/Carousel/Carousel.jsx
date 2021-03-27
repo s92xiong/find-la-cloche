@@ -84,7 +84,10 @@ function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCar
               </div>
             </div>
             <div className="carousel-bottom-right">
-              { (auth.currentUser.uid === imgObj.userID) && <p onClick={deleteImg}>Remove photo</p> }
+              {
+                (auth.currentUser.uid === imgObj.userID) && 
+                <p className="carousel-delete" onClick={deleteImg}>Remove photo</p>
+              }
               <p className="carousel-date">{imgObj.date}</p>
             </div>
           </div>

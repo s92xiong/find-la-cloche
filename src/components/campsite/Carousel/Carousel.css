@@ -119,7 +119,14 @@
 .carousel-bottom-right {
   color: #fff;
   font-size: 14px;
+}
+
+.carousel-delete {
   cursor: pointer;
+}
+
+.carousel-delete:hover {
+  color: rgba(255, 255, 255, 0.877);
 }
 
 .carousel-date {
