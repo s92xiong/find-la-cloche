@@ -4,7 +4,7 @@ import Page0 from './Page0';
 import Page1 from './Page1';
 import "./ModalReview.css";
 
-function ModalReview({ match, item, modalOpen, setModalOpen, campsites, setReviewsList }) {
+function ModalReview({ match, item, modalOpen, setModalOpen, setReviewsList }) {
   // Highlight the "Next" button if all form fields are valid in the 1st page of the modal
   const [canContinue, setContinue] = useState(false);
   

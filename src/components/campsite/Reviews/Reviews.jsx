@@ -60,7 +60,6 @@ function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         item={item}
-        campsites={campsites}
         setReviewsList={setReviewsList}
       />
     </div>
