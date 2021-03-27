@@ -5,7 +5,7 @@ import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
 import ModalReview from '../ModalReview/ModalReview';
 
-function Reviews({ item, match, campsites, reviewsList, setReviewsList }) {
+function Reviews({ item, match, reviewsList, setReviewsList }) {
 
   // Check if user is logged in
   const [user] = useAuthState(auth);

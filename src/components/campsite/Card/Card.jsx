@@ -3,7 +3,7 @@ import AverageRating from './AverageRating';
 import getAverageRating from '../logic/getAverageRating';
 import "./styles/Card.css";
 
-function Card({ item, match, reviewsList }) {
+function Card({ match, item, reviewsList }) {
 
   // Initialize variable for average rating
   const [average, setAverage] = useState(null);

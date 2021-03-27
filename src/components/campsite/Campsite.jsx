@@ -39,12 +39,11 @@ function Campsite({ match }) {
       <div className="campsite-container">
         <Header campsites={campsites} />
         <Card 
-          item={item}
           match={match}
+          item={item}
           reviewsList={reviewsList}
         />
         <ActionBar
-          campsites={campsites}
           match={match}
           item={item}
           setItem={setItem}
