@@ -3,6 +3,7 @@ import "./Carousel.css";
 import leftArrow from "../../../images/arrow-left.png";
 import rightArrow from "../../../images/arrow-right.png";
 import moveIndex from '../logic/moveIndex';
+import { auth } from '../../../firebase';
 
 function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
 
@@ -83,7 +84,7 @@ function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCar
               </div>
             </div>
             <div className="carousel-bottom-right">
-              <p onClick={deleteImg}>Remove photo</p>
+              { (auth.currentUser.uid === imgObj.userID) && <p onClick={deleteImg}>Remove photo</p> }
               <p className="carousel-date">{imgObj.date}</p>
             </div>
           </div>
