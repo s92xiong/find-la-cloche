@@ -58,6 +58,12 @@
 .campsite-img {
   max-width: 100vw;
   max-height: 100vh;
+  /* Position image in centre of screen */
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: -1;
 }
 
 .campsite-img-hidden {
@@ -72,4 +78,56 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+.carousel-bar {
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+  /* position info bar at the bottom */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px 0 15px;
+}
+
+.carousel-img-info {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-user-icon {
+  width: 40px;
+  height: auto;
+}
+
+.carousel-img-info div {
+  margin: 0 0 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-img-info p {
+  line-height: 1.4em;
+  color: #fff;
+  font-size: 14px;
+}
+
+.carousel-bottom-right {
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.carousel-date {
+  margin-top: 3px;
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.hide {
+  display: none;
 }

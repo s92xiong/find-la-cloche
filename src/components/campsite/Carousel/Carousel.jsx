@@ -29,6 +29,10 @@ function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCar
   const pressLeftKey = (e) => (e.key === "ArrowLeft") && handleLeftButton();
   const pressRightKey = (e) => (e.key === "ArrowRight") && handleRightButton();
 
+  const deleteImg = () => {
+    console.log("Deleting image..");
+  };
+
   useEffect(() => {
     if (isCarouselOpen) {
       document.addEventListener("keydown", pressEsc);
@@ -58,17 +62,31 @@ function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCar
         <></>
         :
         item.images.map((imgObj, i) => (
-          <img 
-            key={i}
-            src={imgObj.imgURL}
-            alt="" 
-            className={
-              (imgObj.display) ?
-              "campsite-img"
-              :
-              "campsite-img campsite-img-hidden"
-            }
-          />
+          // conditional prevents overlapping of bars on top of each other
+          <div className={ (imgObj.display) ? "carousel-bar" : "carousel-bar hide" }>
+            <img 
+              key={i}
+              src={imgObj.imgURL}
+              alt="" 
+              className={
+                (imgObj.display) ?
+                "campsite-img"
+                :
+                "campsite-img campsite-img-hidden"
+              }
+            />
+            <div className="carousel-img-info">
+              <img className="carousel-user-icon" src={imgObj.userIcon} alt=""/>
+              <div>
+                <p>{imgObj.name}</p>
+                <p>{imgObj.campsite}</p>
+              </div>
+            </div>
+            <div className="carousel-bottom-right">
+              <p onClick={deleteImg}>Remove photo</p>
+              <p className="carousel-date">{imgObj.date}</p>
+            </div>
+          </div>
         ))
       }
     </div>
