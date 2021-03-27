@@ -5,7 +5,7 @@ import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
 import ModalReview from '../ModalReview/ModalReview';
 
-function Reviews({ item, match, reviewsList, setReviewsList }) {
+function Reviews({ item, setItem, match, reviewsList, setReviewsList }) {
 
   // Check if user is logged in
   const [user] = useAuthState(auth);
@@ -51,15 +51,17 @@ function Reviews({ item, match, reviewsList, setReviewsList }) {
         </div>
       </div>
       <ReviewsList
-        reviewsList={reviewsList}
         match={match}
+        item={item}
+        setItem={setItem}
+        reviewsList={reviewsList}
         setReviewsList={setReviewsList}
       />
       <ModalReview
         match={match}
+        item={item}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        item={item}
         setReviewsList={setReviewsList}
       />
     </div>

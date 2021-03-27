@@ -40,6 +40,7 @@ function ActionBar({ match, item, setItem, reviewsList, setReviewsList }) {
         :
         <Reviews
           item={item}
+          setItem={setItem}
           match={match}
           reviewsList={reviewsList}
           setReviewsList={setReviewsList}

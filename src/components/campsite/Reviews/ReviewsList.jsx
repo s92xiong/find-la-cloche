@@ -6,7 +6,7 @@ import deleteReview from "../logic/deleteReview";
 import userIcon from "../../../images/person_placeholder.png";
 import "./styles/ReviewsList.css";
 
-function ReviewsList({ reviewsList, match, setReviewsList }) {
+function ReviewsList({ match, item, reviewsList, setReviewsList }) {
 
   const [user] = useAuthState(auth);
 
@@ -33,11 +33,11 @@ function ReviewsList({ reviewsList, match, setReviewsList }) {
     deleteReview(match, filteredReviews, setReviewsList);
   };
 
-  if (!reviewsList) return <></>;
+  if (!item || item.reviews.length < 1) return <></>;
   return (
     <div className="reviews-list">
       {
-        reviewsList.map(review => {
+        item.reviews.map(review => {
           const rating = review.rating;
           return (
             // Render photoURL, user name, rating, date, and text body
@@ -64,7 +64,7 @@ function ReviewsList({ reviewsList, match, setReviewsList }) {
                 </div>
                 <p className="review-body">{review.text}</p>
               </div>
-              <div className="questions-container right-review-container">
+              <div className="questions-container">
                 <p>Firepit: {getYesOrNo(review.questions.firepit)}</p>
                 <p>Seating: {getYesOrNo(review.questions.seating)}</p>
                 <p>Hammock friendly: {getYesOrNo(review.questions.hammock)}</p>
@@ -73,18 +73,14 @@ function ReviewsList({ reviewsList, match, setReviewsList }) {
                 <p>Privacy: <span>{review.questions.privacy}</span></p>
               </div>
               {
-                (user) ? (review.userID === auth.currentUser.uid) ? 
+                (user && review.userID === auth.currentUser.uid) && 
                 <div 
                   data-id={review.reviewID} 
                   className="edit-delete-review"
                   onClick={handleDelete}
                 >
                   Delete
-                </div> 
-                :
-                <></>
-                :
-                <></>
+                </div>
               }
             </div>
           );
