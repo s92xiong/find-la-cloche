@@ -134,6 +134,7 @@ function Photos({ match, item, setItem }) {
         />
       }
       <Carousel
+        match={match}
         item={item}
         setItem={setItem}
         imgIndex={imgIndex}

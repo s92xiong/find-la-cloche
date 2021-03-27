@@ -4,8 +4,9 @@ import leftArrow from "../../../images/arrow-left.png";
 import rightArrow from "../../../images/arrow-right.png";
 import moveIndex from '../logic/moveIndex';
 import { auth } from '../../../firebase';
+import deleteImage from '../logic/deleteImage';
 
-function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
+function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
 
   const handleLeftButton = () => {
     if (imgIndex === 0) return;
@@ -30,8 +31,9 @@ function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCar
   const pressLeftKey = (e) => (e.key === "ArrowLeft") && handleLeftButton();
   const pressRightKey = (e) => (e.key === "ArrowRight") && handleRightButton();
 
-  const deleteImg = () => {
-    console.log("Deleting image..");
+  const handleRemovePhoto = (e) => {
+    const url = e.target.dataset.url;
+    deleteImage(match, item, setItem, url);
   };
 
   useEffect(() => {
@@ -48,7 +50,7 @@ function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCar
     };
   });
 
-  if (!isCarouselOpen || !item) return <></>
+  if (!isCarouselOpen || !item) return <></>;
   return (
     <div className="carousel noselect">
       <div className="close-carousel-button" onClick={closeCarousel}>✕</div>
@@ -86,7 +88,7 @@ function Carousel({ item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCar
             <div className="carousel-bottom-right">
               {
                 (auth.currentUser.uid === imgObj.userID) && 
-                <p className="carousel-delete" onClick={deleteImg}>Remove photo</p>
+                <p data-url={imgObj.imgURL} className="carousel-delete" onClick={handleRemovePhoto}>Remove photo</p>
               }
               <p className="carousel-date">{imgObj.date}</p>
             </div>
