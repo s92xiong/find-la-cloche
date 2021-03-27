@@ -17,7 +17,7 @@ function Campsite({ match }) {
   // Initialize state for reviews of a campsite
   const [reviewsList, setReviewsList] = useState(null);
 
-  // Access the specific campsite
+  // Access document of the campsite you are currently viewing
   const getCampsiteDoc = async (id) => {
     const snapshot = await firestore.collection('campsites').doc(id).get();
     const data = snapshot.data();
