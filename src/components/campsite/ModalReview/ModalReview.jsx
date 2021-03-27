@@ -5,21 +5,22 @@ import Page1 from './Page1';
 import "./ModalReview.css";
 
 function ModalReview({ match, item, modalOpen, setModalOpen, campsites, setReviewsList }) {
-  // Highlight the "Next" button if all form fields are valid in the written review modal
+  // Highlight the "Next" button if all form fields are valid in the 1st page of the modal
   const [canContinue, setContinue] = useState(false);
   
-  // eslint-disable-next-line no-unused-vars
+  // Track which page user is on (2 pages total)
   const [pageNum, setPageNum] = useState(0);
 
-  // Initialize user string input in textarea
+  // Textarea value
   const [userText, setUserText] = useState("");
 
-  // Initialize user rating as an integer from 1 to 5, default is null
+  // Campsite rating, ranging from 1 to 5 stars
   const [rating, setRating] = useState(null);
 
+  // Prevent submitting review if the form fields haven't been fully completed
   const [showSubmitButton, setShowSubmitButton] = useState(false);
 
-  // User questions for 
+  // Questions to ask the user about the campsite, string values
   const [radioInputs, setRadioInputs] = useState({
     firepit: "",
     hammock: "",
@@ -40,9 +41,8 @@ function ModalReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
     setShowSubmitButton(false);
   };
 
-  const closeReviewModal = () => {
-    defaultSettings();
-  };
+  // If user closes modal before submitting a review, reset values back to default settings
+  const closeReviewModal = () => defaultSettings();
   
   // Handle textarea input change
   const handleChange = (e) => {
@@ -54,18 +54,19 @@ function ModalReview({ match, item, modalOpen, setModalOpen, campsites, setRevie
     setUserText(e.target.value);
   };
 
+  // Move onto the 2nd page (index 1) if canContinue is true
   const handleNextButton = () => (!canContinue) ? null : setPageNum(1);
   
+  // Go back to the 1st page
   const handleBackButton = () => {
     setPageNum(0);
     setRadioInputs({});
     setShowSubmitButton(false); // User must re-input radio buttons
   };
 
-  // When user clicks on "Next" button, execute the following code
   const handleSubmit = () => {
-    if (!showSubmitButton) return;
-    addReviewToFirestore(match, campsites, rating, userText, setReviewsList, radioInputs);
+    if (!showSubmitButton) return console.log("Fill in all form fields in order to submit review!");
+    addReviewToFirestore(match, item, rating, userText, setReviewsList, radioInputs);
     defaultSettings();
   };
 
