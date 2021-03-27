@@ -1,10 +1,10 @@
 import { firestore } from "../../../firebase";
-import getReviews from "./getReviews";
 
-async function deleteReview(match, filteredReviews, setReviewsList) {
+async function deleteReview(match, filteredReviews, item, setItem) {
   try {
+    // Add filtered reviews to Firestore and update the current to state
     await firestore.collection("campsites").doc(match.params.id).update({ reviews: filteredReviews });
-    getReviews(match, setReviewsList);
+    setItem({...item, reviews: filteredReviews});
   } catch (error) {
     console.error(error);
   }

@@ -6,7 +6,7 @@ import deleteReview from "../logic/deleteReview";
 import userIcon from "../../../images/person_placeholder.png";
 import "./styles/ReviewsList.css";
 
-function ReviewsList({ match, item, reviewsList, setReviewsList }) {
+function ReviewsList({ match, item, setItem }) {
 
   const [user] = useAuthState(auth);
 
@@ -27,10 +27,10 @@ function ReviewsList({ match, item, reviewsList, setReviewsList }) {
     const dataID = Number(e.target.dataset.id);
     
     // Delete review by filtering through the reviewsList array state
-    const filteredReviews = reviewsList.filter(review => (dataID !== review.reviewID));
+    const filteredReviews = item.reviews.filter(review => (dataID !== review.reviewID));
     
     // Update Firestore
-    deleteReview(match, filteredReviews, setReviewsList);
+    deleteReview(match, filteredReviews, item, setItem);
   };
 
   if (!item || item.reviews.length < 1) return <></>;

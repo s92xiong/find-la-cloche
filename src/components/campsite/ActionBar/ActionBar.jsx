@@ -3,7 +3,7 @@ import "./styles/ActionBar.css";
 import Reviews from "../Reviews/Reviews";
 import Photos from '../Photos/Photos';
 
-function ActionBar({ match, item, setItem, reviewsList, setReviewsList }) {
+function ActionBar({ match, item, setItem }) {
 
   const [toggleState, setToggleState] = useState(0);
   const toggleTab = (number) => setToggleState(number);
@@ -42,8 +42,6 @@ function ActionBar({ match, item, setItem, reviewsList, setReviewsList }) {
           item={item}
           setItem={setItem}
           match={match}
-          reviewsList={reviewsList}
-          setReviewsList={setReviewsList}
         />
       }
     </div>

@@ -4,8 +4,11 @@ function round(value, step) {
   return Math.round(value * inv) / inv;
 }
 
-function getAverageReview(reviewsList) {
-  if (!reviewsList) return;
+function getAverageReview(item) {
+  // Cancel if campsite item doesn't exist
+  if (!item) return;
+
+  const reviewsList = item.reviews;
 
   let average;
   let sum = 0;

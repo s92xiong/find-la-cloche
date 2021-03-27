@@ -5,7 +5,6 @@ import getCampsites from '../Home/getCampsites';
 import Header from './Header/Header';
 import Card from './Card/Card';
 import ActionBar from './ActionBar/ActionBar';
-import getReviews from './logic/getReviews';
 
 function Campsite({ match }) {
   // Initialize array of campsites
@@ -13,9 +12,6 @@ function Campsite({ match }) {
 
   // For the currently active campsite
   const [item, setItem] = useState();
-
-  // Initialize state for reviews of a campsite
-  const [reviewsList, setReviewsList] = useState(null);
 
   // Access document of the campsite you are currently viewing
   const getCampsiteDoc = async (id) => {
@@ -29,11 +25,6 @@ function Campsite({ match }) {
     getCampsiteDoc(match.params.id);
   }, [match, campsites]);
 
-  useEffect(() => {
-    getReviews(match, setReviewsList);
-    return () => setReviewsList([]);
-  }, [match]);
-
   return (
     <div className="campsite-page">
       <div className="campsite-container">
@@ -41,14 +32,11 @@ function Campsite({ match }) {
         <Card 
           match={match}
           item={item}
-          reviewsList={reviewsList}
         />
         <ActionBar
           match={match}
           item={item}
           setItem={setItem}
-          reviewsList={reviewsList}
-          setReviewsList={setReviewsList}
         />
       </div>
     </div>

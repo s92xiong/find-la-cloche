@@ -3,15 +3,15 @@ import AverageRating from './AverageRating';
 import getAverageRating from '../logic/getAverageRating';
 import "./styles/Card.css";
 
-function Card({ match, item, reviewsList }) {
+function Card({ match, item }) {
 
   // Initialize variable for average rating
   const [average, setAverage] = useState(null);
 
   useEffect(() => {
-    setAverage(getAverageRating(reviewsList));
+    setAverage(getAverageRating(item));
     return () => setAverage(null);
-  }, [match, reviewsList]);
+  }, [match, item]);
 
   return (
     <div

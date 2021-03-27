@@ -5,7 +5,7 @@ import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
 import ModalReview from '../ModalReview/ModalReview';
 
-function Reviews({ item, setItem, match, reviewsList, setReviewsList }) {
+function Reviews({ item, setItem, match }) {
 
   // Check if user is logged in
   const [user] = useAuthState(auth);
@@ -29,14 +29,14 @@ function Reviews({ item, setItem, match, reviewsList, setReviewsList }) {
     <div className="reviews-container">
       <div className="write-review-button-container">
         {
-          (!reviewsList) ?
+          (!item) ?
           <div className="no-reviews">
             <h2>There are currently no reviews</h2>
             <p>Be the first person to review this campsite!</p>
           </div>
           :
           <div className="add-review-message">
-            <h2>Reviews ({reviewsList.length})</h2>
+            <h2>Reviews ({item.reviews.length})</h2>
             <p>Help your fellow backpackers by adding a review.</p>
           </div>
         }
@@ -54,15 +54,13 @@ function Reviews({ item, setItem, match, reviewsList, setReviewsList }) {
         match={match}
         item={item}
         setItem={setItem}
-        reviewsList={reviewsList}
-        setReviewsList={setReviewsList}
       />
       <ModalReview
         match={match}
         item={item}
+        setItem={setItem}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        setReviewsList={setReviewsList}
       />
     </div>
   );

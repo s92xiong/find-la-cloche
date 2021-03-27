@@ -1,8 +1,7 @@
 import { auth, firestore } from '../../../firebase';
-import getReviews from './getReviews';
 import getDate from "./getDate";
 
-const addReviewToFirestore = async (match, item, rating, userText, setReviewsList, radioInputs) => {
+const addReviewToFirestore = async (match, item, setItem, rating, userText, radioInputs) => {
   // Prevent function from executing if rating or userText is not available
   if (!rating || !userText || !item) return;
 
@@ -24,8 +23,8 @@ const addReviewToFirestore = async (match, item, rating, userText, setReviewsLis
   // Add rating and user review (string) to Firestore DB
   try {
     await firestore.collection("campsites").doc(match.params.id).update({ reviews: newReviews });
-    // Update DOM after submitting review to Firestore db
-    getReviews(match, setReviewsList);
+    // Update state to render new review
+    setItem({...item, reviews: newReviews});
   } catch (error) {
     console.error(error);
   }
