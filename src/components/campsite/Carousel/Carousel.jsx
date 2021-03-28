@@ -32,8 +32,8 @@ function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen,
   const pressRightKey = (e) => (e.key === "ArrowRight") && handleRightButton();
 
   const handleRemovePhoto = (e) => {
-    const url = e.target.dataset.url;
-    deleteImage(match, item, setItem, url);
+    const fileName = e.target.dataset.url;
+    deleteImage(match, item, setItem, fileName);
   };
 
   useEffect(() => {
@@ -88,7 +88,7 @@ function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen,
             <div className="carousel-bottom-right">
               {
                 (auth.currentUser.uid === imgObj.userID) && 
-                <p data-url={imgObj.imgURL} className="carousel-delete" onClick={handleRemovePhoto}>Remove photo</p>
+                <p data-url={imgObj.fileName} className="carousel-delete" onClick={handleRemovePhoto}>Remove photo</p>
               }
               <p className="carousel-date">{imgObj.date}</p>
             </div>
