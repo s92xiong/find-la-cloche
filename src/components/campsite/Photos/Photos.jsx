@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase';
 import uploadImage from "../logic/uploadImage";
+import { hideContainer } from "../logic/showHideContainer";
 import ModalPhoto from "../ModalPhoto/ModalPhoto";
 import Carousel from '../Carousel/Carousel';
 import "./styles/Photos.css";
@@ -69,9 +70,7 @@ function Photos({ match, item, setItem }) {
     setCarouselOpen(true);
 
     // Hide scroll bar
-    const campsiteContainer = document.querySelector(".campsite-container");
-    campsiteContainer.style.height = "0px";
-    campsiteContainer.style.overflowY = "hidden";
+    hideContainer();
   };
 
   useEffect(() => {

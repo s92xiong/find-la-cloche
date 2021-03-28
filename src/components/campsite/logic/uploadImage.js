@@ -40,6 +40,7 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
         newImages.push({
           campsite: item.name,
           date: getDate(),
+          display: false,
           fileName: `${file.name}-${date}`, // Must be the same as the ref argument
           imgURL: url,
           name: auth.currentUser.displayName,

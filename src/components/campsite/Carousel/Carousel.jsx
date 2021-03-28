@@ -5,6 +5,7 @@ import rightArrow from "../../../images/arrow-right.png";
 import moveIndex from '../logic/moveIndex';
 import { auth } from '../../../firebase';
 import deleteImage from '../logic/deleteImage';
+import { showContainer } from '../logic/showHideContainer';
 
 function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
 
@@ -31,9 +32,18 @@ function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen,
   const pressLeftKey = (e) => (e.key === "ArrowLeft") && handleLeftButton();
   const pressRightKey = (e) => (e.key === "ArrowRight") && handleRightButton();
 
-  const handleRemovePhoto = (e) => {
+  const handleRemovePhoto = async (e) => {
+    // Prompt user
+    const result = window.confirm("Are you sure you want to delete this photo?");
+    if (!result) return;
+
+    // Get file name and delete image
     const fileName = e.target.dataset.url;
-    deleteImage(match, item, setItem, fileName);
+    await deleteImage(match, item, setItem, fileName);
+
+    // Close carousel after deleting image
+    setCarouselOpen(false);
+    showContainer();
   };
 
   useEffect(() => {
@@ -67,10 +77,10 @@ function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen,
         item.images.map((imgObj, i) => (
           // conditional prevents overlapping of bars on top of each other
           <div className={ (imgObj.display) ? "carousel-bar" : "carousel-bar hide" }>
-            <img 
+            <img
               key={i}
               src={imgObj.imgURL}
-              alt="" 
+              alt=""
               className={
                 (imgObj.display) ?
                 "campsite-img"
