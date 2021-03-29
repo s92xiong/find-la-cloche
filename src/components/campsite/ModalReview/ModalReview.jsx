@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import addReviewToFirestore from '../logic/addReviewToFirestore';
 import Page0 from './Page0';
 import Page1 from './Page1';
@@ -71,6 +71,9 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
     addReviewToFirestore(match, item, setItem, rating, userText, radioInputs);
     defaultSettings();
   };
+
+  const pressEsc = (e) => (e.key === "Escape") && closeReviewModal();
+  useEffect(() => document.addEventListener("keydown", pressEsc));
 
   if (!modalOpen) return <></>
   return (

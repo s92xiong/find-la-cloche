@@ -10,19 +10,11 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
 
   const [imgNames, setImgNames] = useState();
 
-  useEffect(() => {
-    if (!filesArray) return;
-    const names = getImageName(filesArray);
-    setImgNames(names);
-
-    return () => setImgNames(null);
-  }, [filesArray]);
-
   const closeModal = (e) => {
     // Prevent the modal from closing if an upload is occuring
     if (stopModalClose) return;
     // Close the modal if the target is the x button or outside of the modal
-    if (e.target.className === "upload-modal-bg" || e.target.className === "close-modal-button") {
+    if (e.target.className === "upload-modal-bg" || e.target.className === "close-modal-button" || e.key === "Escape") {
       // Close modal & clear image file from state, display first component
       setModalOpen(false);
       setFilesArray(null);
@@ -30,6 +22,16 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
       showContainer();
     }
   };
+
+  useEffect(() => document.addEventListener("keydown", closeModal));
+
+  useEffect(() => {
+    if (!filesArray) return;
+    const names = getImageName(filesArray);
+    setImgNames(names);
+
+    return () => setImgNames(null);
+  }, [filesArray]);
 
   return (
     <div className="upload-modal-bg" onClick={closeModal}>

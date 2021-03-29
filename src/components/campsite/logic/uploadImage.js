@@ -65,7 +65,6 @@ const uploadImage = async (match, filesArray, setFilesArray, setProgress, setUpl
         // Get url of the image added to Storage
         const url = await storage.ref(`images/${match.params.id}`).child(`${filesArray[i].name}-${date}`).getDownloadURL();
 
-        //
         tempArray.push({
           campsite: item.name,
           date: getDate(),
