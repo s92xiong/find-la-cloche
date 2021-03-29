@@ -33,13 +33,13 @@ function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen,
   const pressRightKey = (e) => (e.key === "ArrowRight") && handleRightButton();
 
   const handleRemovePhoto = async (e) => {
-    // Prompt user
+    // Prompt user to confirm photo delete
     const result = window.confirm("Are you sure you want to delete this photo?");
     if (!result) return;
 
     // Get file name and delete image
-    const fileName = e.target.dataset.url;
-    await deleteImage(match, item, setItem, fileName);
+    const imgName = e.target.dataset.url;
+    await deleteImage(match, item, setItem, imgName);
 
     // Close carousel after deleting image
     setCarouselOpen(false);
