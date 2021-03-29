@@ -57,6 +57,7 @@ const uploadImage = async (match, filesArray, setFilesArray, setProgress, setUpl
         console.error(error);
         tempArray.push(null);
         alert(`File size of ${filesArray[i].name} must be less than 20 MB!`);
+        // Filter, sort, and add imgURLs to Firestore even if the last uploaded image fails
         if (tempArray.length === filesArray.length) filterSortUpload();
       },
       // Complete/Success function
@@ -77,7 +78,7 @@ const uploadImage = async (match, filesArray, setFilesArray, setProgress, setUpl
           userID: auth.currentUser.uid,
         });
 
-        // Execute code below only if all photos have been successfully uploaded
+        // Execute function only if this is the last image to be uploaded
         if (tempArray.length === filesArray.length) filterSortUpload();
       }
     );
