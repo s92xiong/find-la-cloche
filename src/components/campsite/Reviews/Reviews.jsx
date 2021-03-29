@@ -25,11 +25,12 @@ function Reviews({ item, setItem, match }) {
     if (errorMessage) setTimeout(() => setErrorMessage(false), 3000);
   });
 
+  if (!item) return <></>;
   return (
     <div className="reviews-container">
       <div className="write-review-button-container">
         {
-          (!item) ?
+          (item.reviews.length < 1) ?
           <div className="no-reviews">
             <h2>There are currently no reviews</h2>
             <p>Be the first person to review this campsite!</p>

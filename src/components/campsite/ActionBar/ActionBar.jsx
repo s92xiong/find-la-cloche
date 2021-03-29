@@ -5,7 +5,7 @@ import Photos from '../Photos/Photos';
 
 function ActionBar({ match, item, setItem }) {
 
-  const [toggleState, setToggleState] = useState(1);
+  const [toggleState, setToggleState] = useState(0);
   const toggleTab = (number) => setToggleState(number);
 
   return (
