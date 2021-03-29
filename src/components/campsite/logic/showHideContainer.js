@@ -1,7 +1,7 @@
 const hideContainer = () => {
   // Hide scroll bar
   const campsiteContainer = document.querySelector(".campsite-container");
-  campsiteContainer.style.height = "0px";
+  campsiteContainer.style.height = "calc(100vh - 120px)"; // 120px prevents scrolling on most window sizes
   campsiteContainer.style.overflowY = "hidden";    
 };
 

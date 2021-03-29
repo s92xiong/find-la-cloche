@@ -3,6 +3,7 @@ import addReviewToFirestore from '../logic/addReviewToFirestore';
 import Page0 from './Page0';
 import Page1 from './Page1';
 import "./ModalReview.css";
+import { showContainer } from '../logic/showHideContainer';
 
 function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
   // Highlight the "Next" button if all form fields are valid in the 1st page of the modal
@@ -39,6 +40,7 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
     setRadioInputs({});
     setPageNum(0);
     setShowSubmitButton(false);
+    showContainer();
   };
 
   // If user closes modal before submitting a review, reset values back to default settings

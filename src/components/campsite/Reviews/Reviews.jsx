@@ -4,6 +4,7 @@ import { auth } from '../../../firebase';
 import ReviewsList from './ReviewsList';
 import "./styles/Reviews.css";
 import ModalReview from '../ModalReview/ModalReview';
+import { hideContainer } from '../logic/showHideContainer';
 
 function Reviews({ item, setItem, match }) {
 
@@ -16,8 +17,9 @@ function Reviews({ item, setItem, match }) {
   // Check if modal is open or not
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleWriteReview = () => {
+  const openReviewModal = () => {
     if (!user) return setErrorMessage(true);
+    hideContainer();
     setModalOpen(true);
   };
 
@@ -42,7 +44,7 @@ function Reviews({ item, setItem, match }) {
           </div>
         }
         <div>
-          <button className="review-button" onClick={handleWriteReview}>
+          <button className="review-button" onClick={openReviewModal}>
             Write review
             {
               (errorMessage) ?
