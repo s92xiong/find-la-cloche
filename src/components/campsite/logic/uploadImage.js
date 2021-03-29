@@ -1,7 +1,8 @@
 import { auth, firestore, storage } from "../../../firebase";
 import getDate from "./getDate";
+import { showContainer } from "./showHideContainer";
 
-const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrModalPage, setStopModalClose, item) => {
+const uploadImage = async (match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrModalPage, setStopModalClose, item) => {
   // Prevent unauthorized users from uploading images
   if (!auth.currentUser) {
     return console.log("User must be logged in to upload images!!");
@@ -9,16 +10,41 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
     return console.log("You must choose a file to upload.");
   }
 
+  const defaultSettings = () => {
+    setUploadModalOpen(false);
+    setFilesArray(null);
+    setCurrModalPage(0);
+    setStopModalClose(false);
+    showContainer();
+  };
+
+  const filterSortUpload = async () => {
+      // Filter out any invalid/unsucessful uploads, sort objects by upload index
+    const newImages = tempArray.filter((obj) => (obj !== null )).sort((a, b) => (a.uploadIndex > b.uploadIndex) ? 1 : -1);
+    const imagesCopy = {...item}.images;
+
+    // Add URL to Firestore collection
+    await firestore.collection("campsites").doc(match.params.id).update({
+      images: imagesCopy.concat(newImages)
+    });
+
+    defaultSettings();
+  };
+
   // Display 3rd page of the ModalPhoto, prevent modal from being closed
   setCurrModalPage(2);
   setStopModalClose(true);
+
+  // Initialize temporary array to be added to Firestore
+  const tempArray = [];
   
-  // Iterate through every file and upload the file to Firebase Storage, also add URL to Firestore
-  for (const file of filesArray) {
-    const date = Date.now();
+  // Iterate through every file in filesArray, upload file to Storage & add URL to Firestore
+  for (let i = 0; i < filesArray.length; i++) {
+    
+    const date = Date.now(); // Get date to generate unique file-name id
     
     // Upload image to firebase 
-    const uploadTask = storage.ref(`images/${match.params.id}/${file.name}-${date}`).put(file);
+    const uploadTask = storage.ref(`images/${match.params.id}/${filesArray[i].name}-${date}`).put(filesArray[i]);
     uploadTask.on("state_changed",
       // Progress function
       (snapshot) => {
@@ -29,35 +55,30 @@ const uploadImage = (match, filesArray, setFilesArray, setProgress, setUploadMod
       // Error function
       (error) => {
         console.error(error);
-        setStopModalClose(false); // User can close the modal if the upload fails
+        tempArray.push(null);
+        alert(`File size of ${filesArray[i].name} must be less than 20 MB!`);
+        if (tempArray.length === filesArray.length) filterSortUpload();
       },
       // Complete/Success function
       async () => {
         // Get url of the image added to Storage
-        const url = await storage.ref(`images/${match.params.id}`).child(`${file.name}-${date}`).getDownloadURL();
-       
-        const newImages = {...item}.images;
-        newImages.push({
+        const url = await storage.ref(`images/${match.params.id}`).child(`${filesArray[i].name}-${date}`).getDownloadURL();
+
+        //
+        tempArray.push({
           campsite: item.name,
           date: getDate(),
           display: false,
-          fileName: `${file.name}-${date}`, // Must be the same as the ref argument
+          fileName: `${filesArray[i].name}-${date}`, // Must be the same as the ref argument
           imgURL: url,
           name: auth.currentUser.displayName,
+          uploadIndex: i, // key:value sorts uploaded images in original order
           userIcon: auth.currentUser.photoURL,
           userID: auth.currentUser.uid,
         });
-      
-        // Add URL to Firestore collection
-        await firestore.collection("campsites").doc(match.params.id).update({
-          images: newImages
-        });
 
-        // Close the modal and clear image file state, display 1st component
-        setUploadModalOpen(false);
-        setFilesArray(null);
-        setCurrModalPage(0);
-        setStopModalClose(false);
+        // Execute code below only if all photos have been successfully uploaded
+        if (tempArray.length === filesArray.length) filterSortUpload();
       }
     );
   }

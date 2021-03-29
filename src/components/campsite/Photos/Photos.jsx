@@ -55,8 +55,9 @@ function Photos({ match, item, setItem }) {
     setCurrModalPage(1);
   };
 
-  const handleUpload = () => uploadImage(match, filesArray, setFilesArray, setProgress, 
-                              setUploadModalOpen, setCurrModalPage, setStopModalClose, item);
+  const handleUpload = () => {
+    return uploadImage(match, filesArray, setFilesArray, setProgress, setUploadModalOpen, setCurrModalPage, setStopModalClose, item, setItem);
+  };
 
   const openCarousel = (e) => {
     // Open specific image clicked on using data attribute
