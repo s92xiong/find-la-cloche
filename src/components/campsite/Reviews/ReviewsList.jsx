@@ -71,6 +71,7 @@ function ReviewsList({ match, item, setItem }) {
                 <p>Thunderbox: {getYesOrNo(review.questions.thunderbox)}</p>
                 <p>Water access: {getYesOrNo(review.questions.water)}</p>
                 <p>Privacy: <span>{review.questions.privacy}</span></p>
+                <p>Tent spacing: <span>{review.questions.tentSpacing}</span></p>
               </div>
               {
                 (user && review.userID === auth.currentUser.uid) && 

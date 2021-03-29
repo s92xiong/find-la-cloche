@@ -29,6 +29,7 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
     seating: "",
     thunderbox: "",
     water: "",
+    tentSpacing: "",
   });
 
   const defaultSettings = () => {

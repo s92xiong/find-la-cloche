@@ -9,7 +9,7 @@ function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
     const radioButtons = Array.from(document.querySelectorAll(".radio-button"));
     let sum = 0;
     radioButtons.forEach(button => (button.checked) ? sum++ : null);
-    if (sum >= 6) setShowSubmitButton(true);
+    if (sum >= 7) setShowSubmitButton(true);
   };
 
   return (
@@ -58,6 +58,15 @@ function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
           <label htmlFor="privacyGood" className="radio-label">Good</label>
           <input onChange={handleChange} type="radio" id="privacyVeryGood" name="privacy" value="Very Good" className="radio-button"/>
           <label htmlFor="privacyVeryGood" className="radio-label">Very Good</label>
+        </section>
+        <section className="modal-question">
+          <p className="review-question">7. Spacing for multiple tents:</p>
+          <input onChange={handleChange} type="radio" id="spacingSat" name="tentSpacing" value="Satisfactory" className="radio-button"/>
+          <label htmlFor="spacingSat" className="radio-label">Satisfactory</label>
+          <input onChange={handleChange} type="radio" id="spacingGood" name="tentSpacing" value="Good" className="radio-button"/>
+          <label htmlFor="spacingGood" className="radio-label">Good</label>
+          <input onChange={handleChange} type="radio" id="spacingVeryGood" name="tentSpacing" value="Very Good" className="radio-button"/>
+          <label htmlFor="spacingVeryGood" className="radio-label">Very Good</label>
         </section>
       </form>
     </div>
