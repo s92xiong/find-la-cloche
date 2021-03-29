@@ -47,6 +47,7 @@ function Photos({ match, item, setItem }) {
   const openModal = () => {
     if (!user) return setErrorMessage(true);
     setUploadModalOpen(true);
+    hideContainer();
   };
 
   const handleFileChange = (e) => {

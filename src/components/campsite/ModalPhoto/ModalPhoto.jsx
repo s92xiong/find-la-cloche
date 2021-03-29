@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactCustomizableProgressbar from 'react-customizable-progressbar';
 import photoIcon from "../../../images/camera-icon.png";
 import getImageName from '../logic/getImageName';
+import { showContainer } from '../logic/showHideContainer';
 import "./ModalPhoto.css";
 
 function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen, 
@@ -26,6 +27,7 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
       setModalOpen(false);
       setFilesArray(null);
       setCurrModalPage(0);
+      showContainer();
     }
   };
 
