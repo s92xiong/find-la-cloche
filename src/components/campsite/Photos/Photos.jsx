@@ -88,7 +88,7 @@ function Photos({ match, item, setItem }) {
         {
           (item && item.images.length > 0) ?
           <div className="add-photos-label">
-            <h2>Add photos of this campsite</h2>
+            <h2>Photos ({item.images.length})</h2>
             <p>Photos help others preview the campsite. Upload photos about this campsite to inspire others.</p>
           </div>
           :

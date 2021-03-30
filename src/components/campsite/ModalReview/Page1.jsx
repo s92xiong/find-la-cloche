@@ -23,7 +23,7 @@ function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
           <label htmlFor="firepitNo" className="radio-label">No</label>
         </section>
         <section className="modal-question">
-          <p className="review-question">2. Campsite seating:</p>
+          <p className="review-question">2. Sitting logs:</p>
           <input onChange={handleChange} type="radio" id="seatingYes" name="seating" value="Yes" className="radio-button"/>
           <label htmlFor="seatingYes" className="radio-label">Yes</label>
           <input onChange={handleChange} type="radio" id="seatingNo" name="seating" value="No" className="radio-button"/>

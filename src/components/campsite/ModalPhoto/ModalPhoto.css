@@ -90,12 +90,14 @@
 
 .pre-upload-image-container {
   margin: 15px 0px;
-  border: 1px solid #2fac3fc2;
+  border: 1px solid #2c9139c2;
+  border-radius: 8px;
   padding: 15px;
 }
 
 .pre-upload-image-container span {
-  font-size: 15px;
+  font-size: 0.95rem;
+  font-weight: 300;
 }
 
 .upload-button-container {

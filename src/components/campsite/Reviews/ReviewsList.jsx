@@ -66,7 +66,7 @@ function ReviewsList({ match, item, setItem }) {
               </div>
               <div className="questions-container">
                 <p>Firepit: {getYesOrNo(review.questions.firepit)}</p>
-                <p>Seating: {getYesOrNo(review.questions.seating)}</p>
+                <p>Sitting logs: {getYesOrNo(review.questions.seating)}</p>
                 <p>Hammock friendly: {getYesOrNo(review.questions.hammock)}</p>
                 <p>Thunderbox: {getYesOrNo(review.questions.thunderbox)}</p>
                 <p>Water access: {getYesOrNo(review.questions.water)}</p>
