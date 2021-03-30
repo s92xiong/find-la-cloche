@@ -66,15 +66,15 @@ function ReviewsList({ match, item, setItem }) {
               </div>
               <div className="questions-container">
                 <p>Firepit: {getYesOrNo(review.questions.firepit)}</p>
-                <p>Sitting logs: {getYesOrNo(review.questions.seating)}</p>
-                <p>Hammock friendly: {getYesOrNo(review.questions.hammock)}</p>
+                <p>Tent pad: <span>{getYesOrNo(review.questions.tentpad)}</span></p>
                 <p>Thunderbox: {getYesOrNo(review.questions.thunderbox)}</p>
-                <p>Water access: {getYesOrNo(review.questions.water)}</p>
+                <p>Hammock friendly: {getYesOrNo(review.questions.hammock)}</p>
+                <p>Water quality: <span>{review.questions.water}</span></p>
                 <p>Privacy: <span>{review.questions.privacy}</span></p>
-                <p>Tent spacing: <span>{review.questions.tentSpacing}</span></p>
               </div>
               {
-                (user && review.userID === auth.currentUser.uid) && 
+                (user) ? 
+                (review.userID === auth.currentUser.uid) ?
                 <div 
                   data-id={review.reviewID} 
                   className="edit-delete-review"
@@ -82,6 +82,10 @@ function ReviewsList({ match, item, setItem }) {
                 >
                   Delete
                 </div>
+                :
+                <></>
+                :
+                <></>
               }
             </div>
           );

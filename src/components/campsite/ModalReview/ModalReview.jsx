@@ -26,10 +26,9 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
     firepit: "",
     hammock: "",
     privacy: "",
-    seating: "",
+    tentpad: "",
     thunderbox: "",
     water: "",
-    tentSpacing: "",
   });
 
   const defaultSettings = () => {

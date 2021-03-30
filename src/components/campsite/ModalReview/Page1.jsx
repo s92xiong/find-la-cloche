@@ -9,7 +9,7 @@ function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
     const radioButtons = Array.from(document.querySelectorAll(".radio-button"));
     let sum = 0;
     radioButtons.forEach(button => (button.checked) ? sum++ : null);
-    if (sum >= 7) setShowSubmitButton(true);
+    if (sum >= 6) setShowSubmitButton(true);
   };
 
   return (
@@ -23,11 +23,11 @@ function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
           <label htmlFor="firepitNo" className="radio-label">No</label>
         </section>
         <section className="modal-question">
-          <p className="review-question">2. Sitting logs:</p>
-          <input onChange={handleChange} type="radio" id="seatingYes" name="seating" value="Yes" className="radio-button"/>
-          <label htmlFor="seatingYes" className="radio-label">Yes</label>
-          <input onChange={handleChange} type="radio" id="seatingNo" name="seating" value="No" className="radio-button"/>
-          <label htmlFor="seatingNo" className="radio-label">No</label>
+          <p className="review-question">2. Tent pad:</p>
+          <input onChange={handleChange} type="radio" id="tentpadYes" name="tentpad" value="Yes" className="radio-button"/>
+          <label htmlFor="tentpadYes" className="radio-label">Yes</label>
+          <input onChange={handleChange} type="radio" id="tentpadNo" name="tentpad" value="No" className="radio-button"/>
+          <label htmlFor="tentpadNo" className="radio-label">No</label>
         </section>
         <section className="modal-question">
           <p className="review-question">3. Hammock friendly:</p>
@@ -44,11 +44,13 @@ function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
           <label htmlFor="thunderboxNo" className="radio-label">No</label>
         </section>
         <section className="modal-question">
-          <p className="review-question">5. Access to water:</p>
-          <input onChange={handleChange} type="radio" id="waterYes" name="water" value="Yes" className="radio-button"/>
-          <label htmlFor="waterYes" className="radio-label">Yes</label>
-          <input onChange={handleChange} type="radio" id="waterNo" name="water" value="No" className="radio-button"/>
-          <label htmlFor="waterNo" className="radio-label">No</label>
+          <p className="review-question">5. Water quality:</p>
+          <input onChange={handleChange} type="radio" id="dirtyWater" name="water" value="Dirty" className="radio-button"/>
+          <label htmlFor="dirtyWater" className="radio-label">Dirty</label>
+          <input onChange={handleChange} type="radio" id="filterable" name="water" value="Filterable" className="radio-button"/>
+          <label htmlFor="filterable" className="radio-label">Filterable</label>
+          <input onChange={handleChange} type="radio" id="veryClean" name="water" value="Very clean" className="radio-button"/>
+          <label htmlFor="veryClean" className="radio-label">Very clean</label>
         </section>
         <section className="modal-question">
           <p className="review-question">6. Privacy:</p>
@@ -56,17 +58,8 @@ function Page1({ radioInputs, setRadioInputs, setShowSubmitButton }) {
           <label htmlFor="privacySat" className="radio-label">Satisfactory</label>
           <input onChange={handleChange} type="radio" id="privacyGood" name="privacy" value="Good" className="radio-button"/>
           <label htmlFor="privacyGood" className="radio-label">Good</label>
-          <input onChange={handleChange} type="radio" id="privacyVeryGood" name="privacy" value="Very Good" className="radio-button"/>
+          <input onChange={handleChange} type="radio" id="privacyVeryGood" name="privacy" value="Very good" className="radio-button"/>
           <label htmlFor="privacyVeryGood" className="radio-label">Very Good</label>
-        </section>
-        <section className="modal-question">
-          <p className="review-question">7. Spacing for multiple tents:</p>
-          <input onChange={handleChange} type="radio" id="spacingSat" name="tentSpacing" value="Satisfactory" className="radio-button"/>
-          <label htmlFor="spacingSat" className="radio-label">Satisfactory</label>
-          <input onChange={handleChange} type="radio" id="spacingGood" name="tentSpacing" value="Good" className="radio-button"/>
-          <label htmlFor="spacingGood" className="radio-label">Good</label>
-          <input onChange={handleChange} type="radio" id="spacingVeryGood" name="tentSpacing" value="Very Good" className="radio-button"/>
-          <label htmlFor="spacingVeryGood" className="radio-label">Very Good</label>
         </section>
       </form>
     </div>
