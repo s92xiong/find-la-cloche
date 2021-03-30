@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, firestore } from '../../firebase';
+import { auth } from '../../firebase';
 import EmailVerification from './EmailVerification';
 import InputField from './InputField';
 import GoogleButton from "./GoggleButton";
@@ -87,11 +87,11 @@ function SignUp() {
       });
 
       // Add user to Firestore
-      await firestore.collection("users").add({
-        email: value.email,
-        reviews: [],
-        uid: userCredential.user.uid,
-      });
+      // await firestore.collection("users").add({
+      //   email: value.email,
+      //   reviews: [],
+      //   uid: userCredential.user.uid,
+      // });
 
       // Send an email verification letter to the newly registered user
       await auth.currentUser.sendEmailVerification();
