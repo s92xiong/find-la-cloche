@@ -6,6 +6,7 @@ import moveIndex from '../logic/moveIndex';
 import { auth } from '../../../firebase';
 import deleteImage from '../logic/deleteImage';
 import { showContainer } from '../logic/showHideContainer';
+import placeholderUser from "../../../images/person_placeholder.png";
 
 function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
 
@@ -89,7 +90,7 @@ function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen,
               }
             />
             <div className="carousel-img-info">
-              <img className="carousel-user-icon" src={imgObj.userIcon} alt=""/>
+              <img className="carousel-user-icon" src={(imgObj.userIcon) ? imgObj.userIcon : placeholderUser} alt=""/>
               <div>
                 <p>{imgObj.name}</p>
                 <p>{imgObj.campsite}</p>
