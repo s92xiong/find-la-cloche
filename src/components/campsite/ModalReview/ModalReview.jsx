@@ -23,12 +23,12 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
 
   // Questions to ask the user about the campsite, string values
   const [radioInputs, setRadioInputs] = useState({
-    firepit: "",
-    hammock: "",
-    privacy: "",
-    tentpad: "",
-    thunderbox: "",
-    water: "",
+    firepit: undefined,
+    hammock: undefined,
+    privacy: undefined,
+    tentpad: undefined,
+    thunderbox: undefined,
+    water: undefined,
   });
 
   const defaultSettings = () => {
