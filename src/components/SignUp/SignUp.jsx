@@ -117,9 +117,6 @@ function SignUp() {
     }
   }, [user, isNewAccountCreated]);
 
-  // Component prevents users from accessing SignUp component if already logged in
-  // if (user) return <UserLoggedIn />;
-
   // Render component if a new account is created & an email verification letter is sent
   if (emailVerificationPopup) return <EmailVerification />;
 
@@ -159,7 +156,7 @@ function SignUp() {
           classInput="password"
           inputType="password"
           placeholderText="Password"
-          errorMessage="Password must be 6 characters long."
+          errorMessage="Password must be at least 6 characters long."
           valueProp="password"
           handleInputChange={handleInputChange}
         />
