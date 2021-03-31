@@ -7,8 +7,11 @@ import { auth } from '../../../firebase';
 import deleteImage from '../logic/deleteImage';
 import { showContainer } from '../logic/showHideContainer';
 import placeholderUser from "../../../images/person_placeholder.png";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen, setCarouselOpen }) {
+
+  const [user] = useAuthState(auth);
 
   const handleLeftButton = () => {
     if (imgIndex === 0) return;
@@ -98,7 +101,7 @@ function Carousel({ match, item, setItem, imgIndex, setImgIndex, isCarouselOpen,
             </div>
             <div className="carousel-bottom-right">
               {
-                (auth.currentUser.uid === imgObj.userID) && 
+                (user && user.uid === imgObj.userID) && 
                 <p data-url={imgObj.fileName} className="carousel-delete" onClick={handleRemovePhoto}>Remove photo</p>
               }
               <p className="carousel-date">{imgObj.date}</p>
