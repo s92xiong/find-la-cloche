@@ -73,8 +73,7 @@ function ReviewsList({ match, item, setItem }) {
                 <p>Privacy: <span>{review.questions.privacy}</span></p>
               </div>
               {
-                (user) ? 
-                (review.userID === auth.currentUser.uid) ?
+                (user && review.userID === user.uid) &&
                 <div 
                   data-id={review.reviewID} 
                   className="edit-delete-review"
@@ -82,10 +81,6 @@ function ReviewsList({ match, item, setItem }) {
                 >
                   Delete
                 </div>
-                :
-                <></>
-                :
-                <></>
               }
             </div>
           );
