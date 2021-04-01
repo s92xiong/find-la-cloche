@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./styles/SearchList.css";
 
-function SearchList({ campsites, showCampsiteList, noResults }) {
+function SearchList({ campsites, showCampsiteList, noResults, currIndex }) {
 
   if (noResults) return (
     <div className={(showCampsiteList) ? "search-list" : "search-list search-list-off"}>
@@ -16,16 +16,16 @@ function SearchList({ campsites, showCampsiteList, noResults }) {
     <div className={(showCampsiteList) ? "search-list" : "search-list hide"}>
       <ul>
         {
-          campsites.map((campsite) => {
+          campsites.map((campsite, i) => {
             return (
               <Link 
-                className="search-item-link" 
+                className="search-item-link"
                 // to={`/${campsite.name.replace(/\s+/g, '-').toLowerCase()}`}
                 to={campsite.id}
                 key={campsite.id}
               >
                 <li 
-                  className="search-item"
+                  className={ (i !== currIndex) ? "search-item" : "search-item item-highlighted" }
                 >
                   {campsite.name}
                 </li>
