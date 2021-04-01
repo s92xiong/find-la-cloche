@@ -73,7 +73,11 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
   };
 
   const pressEsc = (e) => (e.key === "Escape") && closeReviewModal();
-  useEffect(() => document.addEventListener("keydown", pressEsc));
+  
+  useEffect(() => {
+    document.addEventListener("keydown", pressEsc);
+    return () => document.removeEventListener("keydown", pressEsc)
+  });
 
   if (!modalOpen) return <></>
   return (

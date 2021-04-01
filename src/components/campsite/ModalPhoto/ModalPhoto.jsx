@@ -23,7 +23,10 @@ function ModalPhoto({ handleFileChange, handleUpload, progress, setModalOpen,
     }
   };
 
-  useEffect(() => document.addEventListener("keydown", closeModal));
+  useEffect(() => {
+    document.addEventListener("keydown", closeModal)
+    return () => document.removeEventListener("keydown", closeModal);
+  });
 
   useEffect(() => {
     if (!filesArray) return;
