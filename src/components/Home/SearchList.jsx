@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./styles/SearchList.css";
 
-function SearchList({ campsites, showCampsiteList, noResults, currIndex }) {
+function SearchList({ campsites, showCampsiteList, noResults, currIndex, setCurrIndex }) {
 
   if (noResults) return (
     <div className={(showCampsiteList) ? "search-list" : "search-list search-list-off"}>
@@ -26,6 +26,8 @@ function SearchList({ campsites, showCampsiteList, noResults, currIndex }) {
               >
                 <li 
                   className={ (i !== currIndex) ? "search-item" : "search-item item-highlighted" }
+                  onMouseEnter={() => setCurrIndex(i)}
+                  onMouseLeave={() => setCurrIndex(-1)}
                 >
                   {campsite.name}
                 </li>

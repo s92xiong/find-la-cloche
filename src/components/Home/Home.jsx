@@ -7,11 +7,11 @@ function Home() {
   // Input field is selected
   const [showCampsiteList, setShowCampsites] = useState(false);
 
-  // Select a campsite name in the list to highlight
+  // Selects or highlights a campsite in the SearchList dropdown menu using Up & Down arow keys
   const [currIndex, setCurrIndex] = useState(-1);
 
   const hideCampsites = (e) => {
-    // If the user clicks on the Home component or title, close the dropdown list
+    // Close SearchList if the user clicks on the Home component or h1 tag
     if (e.target.className === "Home" || e.target.className === "home-title") {
       setShowCampsites(false);
       setCurrIndex(-1);
