@@ -9,6 +9,4 @@ Find La Cloche is a web application that provides access to a database containin
 
 ## Routes.js
 
-Originally named "App.js" in its default form when built by Create React App, Routes.js handles all of the routes in the project, a requirement for having multiple pages in this app.
-
-React Router Dom is used to manage routing. This was the first personal project that required me to implement dynamic routes using react , as there are 
+Originally titled "App.js" as its default name when built via Create React App, Routes.js handles all of the routes in this project. Routes returns a BrowserRouter that encapsulates a div element with the className of "App". The App element contains: (1) A Navbar component that can be accessed on any page, and (2) A Switch tag that nests all of the major components or routes of this application.
