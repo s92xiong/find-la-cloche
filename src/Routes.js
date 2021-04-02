@@ -30,7 +30,10 @@ function Routes() {
             exact path="/log-in"
             component={LogIn}
           />
-          <Route path="/:id" component={Campsite} />
+          <Route 
+            path="/:id" 
+            component={Campsite}
+          />
         </Switch>
       </div>
     </BrowserRouter>
