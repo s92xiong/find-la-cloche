@@ -8,6 +8,7 @@ import signInError from './logic/signInError';
 import handleGoogleAuth from './logic/handleGoogleAuth';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
+import emailAuth from './logic/emailAuth';
 
 function SignUp() {
 
@@ -69,52 +70,13 @@ function SignUp() {
     return handler;
   };
 
-  const createUserEmailPassword = async (e) => {
-    e.preventDefault();
-
-    // Prevent form submission if any input fields are invalid
-    const areAllIputFieldsValid = signInError(value, inputError, setInputError);
-    if (!areAllIputFieldsValid) return console.log("Please fill in all input fields");
-
-    try {
-      // Prevent useEffect from automatically redirecting to homepage upon logging in
-      setNewAccountCreated(true);
-
-      // Create user and automatically log in
-      const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
-      await userCredential.user.updateProfile({
-        displayName: `${value.firstName} ${value.lastName}`,
-      });
-
-      // Add user to Firestore
-      // await firestore.collection("users").add({
-      //   email: value.email,
-      //   reviews: [],
-      //   uid: userCredential.user.uid,
-      // });
-
-      // Send an email verification letter to the newly registered user
-      await auth.currentUser.sendEmailVerification();
-
-      // Sign user out immediately, they should only be able to sign back in if they have verified their email
-      await auth.signOut();
-
-      // Render a pop-up div when the user has signed in
-      setEmailVerificationPopup(true);
-
-    } catch (error) {
-      console.error(error);
-      if (error.code === "auth/email-already-in-use") {
-        setAccountAlreadyInUse(true);
-      }
-    }
-  };
+  const { submitEmailAuth } = emailAuth(
+    value, inputError, setInputError, signInError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse
+  );
 
   useEffect(() => {
     // Redirect to homepage if the user is logged in & they aren't registering a new account
-    if (user && !isNewAccountCreated) {
-      return window.location = "/";
-    }
+    if (user && !isNewAccountCreated) return window.location = "/";
   }, [user, isNewAccountCreated]);
 
   // Render component if a new account is created & an email verification letter is sent
@@ -122,7 +84,7 @@ function SignUp() {
 
   return (
     <div className="sign-up">
-      <form className="sign-up-form" onSubmit={createUserEmailPassword}>
+      <form className="sign-up-form" onSubmit={submitEmailAuth}>
         <h2 className="create-an-account">Create an account</h2>
         <InputField 
           error={inputError}
