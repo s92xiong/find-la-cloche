@@ -23,8 +23,8 @@ function LogIn() {
   const [loginFailed, setLogInFailed] = useState(false);
 
   const [inputError, setInputError] = useState({
-    emailError: false, 
-    passwordError: false,
+    email: false, 
+    password: false,
   });
 
   const [value, setValue] = useState({
@@ -41,7 +41,7 @@ function LogIn() {
 
       // Copy error object state
       const newError = {...inputError};
-      const errorProp = `${valueProp}Error`;
+      const errorProp = valueProp;
 
       // Determine if there is an error in the input value
       if (newValue[valueProp].length >= 1) {

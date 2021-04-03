@@ -37,23 +37,23 @@ Custom form validation was implemented for email authentication and requires 4 i
 **How to use InputField.jsx to build your own custom client-side form validation:**
 Using the component InputField.jsx will allow users to create their own client-side form validation, which they can adjust to their preferred styling and design.
 
-To implement this component, the developer must initialize a useState object twice: one object will keep track of all the input fields and their string values, the other is an object of booleans that track their validity.
+To implement this component, the developer must initialize a useState object twice: one object will keep track of the input fields and their string values, the other is an object of booleans that track errors in the input fields. Property names must be the same between both state objects.
 
 ```
 const [values, setValues] = { firstName: "", lastName: "", email: "", password: "" };
 const [errors, setErrors] = { firstName: false, lastName: false, email: false, password: false };
 ```
 
-The InputField function component takes in 7 arguments
-1. handleInputChange - updates {values} and {errors}
+InputField component has 7 arguments:
+1. handleInputChange - updates {values} and {errors}, **This event handler is a function that must return a function!**
 2. error - renders error message below input field
 3. classInput - a className for the input field 
-4. inputType - 
+4. inputType - text, email, password
 5. placeholderText
 6. errorMessage - error message the user wants to display
-7. valueProp - 
+7. valueProp - the specific property name in the state object to update, e.g. "firstName" or "email"
 
-An additional eventHandler function is required to update state to reflect the status of the input fields being valid or invalid. This function should be written by the developer as every project have specific conditions for what is  .
+**Important note**: handleInputChange is a function that must return a function (e.g. function call), it uses the valueProp as an argument when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
 
 **Google Auth**
 A simple and quicker alternative is for users to register via Google auth.
