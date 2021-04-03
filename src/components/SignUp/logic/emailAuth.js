@@ -1,6 +1,7 @@
 import { auth } from "../../../firebase";
+import signInError from './signInError';
 
-const emailAuth = (value, inputError, setInputError, signInError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse) => {
+const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse) => {
   const submitEmailAuth = async (e) => {
     e.preventDefault();
 

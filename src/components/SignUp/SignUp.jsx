@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
-import EmailVerification from './EmailVerification';
 import InputField from './InputField';
+import emailAuth from './logic/emailAuth';
+import EmailVerification from './EmailVerification';
 import GoogleButton from "./GoggleButton";
-import signInError from './logic/signInError';
 import handleGoogleAuth from './logic/handleGoogleAuth';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
-import emailAuth from './logic/emailAuth';
 
 function SignUp() {
 
@@ -28,10 +27,10 @@ function SignUp() {
 
   // Initialize state object for invalid inputs
   const [inputError, setInputError] = useState({
-    firstNameError: false, 
-    lastNameError: false, 
-    emailError: false, 
-    passwordError: false,
+    firstName: false, 
+    lastName: false, 
+    email: false, 
+    password: false,
   });
 
   // Input values for sign-up form field
@@ -51,11 +50,11 @@ function SignUp() {
 
       // Copy error object state
       const newError = {...inputError};
-      const errorProp = `${valueProp}Error`;
+      const errorProp = valueProp;
 
       // If the input field is for a password, it requires 6 or more characters
       // For every other input field, the string length must at least be 1 or more characters
-      const requiredNumOfChars = (errorProp === "passwordError") ? 6 : 1;
+      const requiredNumOfChars = (errorProp === "password") ? 6 : 1;
 
       // Determine if there is an error in the input value
       if (newValue[valueProp].length >= requiredNumOfChars) {
@@ -71,7 +70,7 @@ function SignUp() {
   };
 
   const { submitEmailAuth } = emailAuth(
-    value, inputError, setInputError, signInError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse
+    value, inputError, setInputError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse
   );
 
   useEffect(() => {
