@@ -7,6 +7,10 @@ Find your campsite on the La Cloche Silhouette Trail.
 
 Find La Cloche is a web app that provides access to a database containing crowdsourced images and reviews for all 34 campsites along the La Cloche Silhouette Trail (LCST) in Killarney, Ontario, Canada. Inspired by [AllTrails](https://www.alltrails.com/), this app serves as a guide for backpacking enthusiasts to gain insight into the conditions of their reserved campsites.
 
+## Why I built this project, what I hope it solves
+
+With COVID-19 keeping people indoors during the pandemic, the outdoors have become increasingly popular in the summer months for both the backcountry and frontcountry camping in Killarney. The LCST is one of the most popular backpacking trails in Ontario, but I've noticed it is very difficult to find information about the campsites which are essential to complete a multi-day backpacking trip. Ontario Parks reservation system doesn't provide any images nor information of the campsites. Some important questions that I have when reserving a campsite: does this campsite have access to clean water? Will a tree fall over on me? How is the privacy? Is there a place where I can safely hang my food? These are all questions I'm sure other people are asking as well. I hope this web app can be an opportunity for backpackers to come together online and help contribute to the outdoors community.
+
 
 ## Frameworks
 
