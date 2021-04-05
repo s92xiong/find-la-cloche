@@ -1,59 +1,89 @@
 # Find La Cloche - Documentation
 
-This project was built using React (Create React App) and Firebase (Authentication, Firestore, Storage, and Hosting).
+Find your campsite on the La Cloche Silhouette Trail.
 
 
 ## About This Project
 
-Find La Cloche is a web application that provides access to a database containing crowdsourced images and reviews for all 34 campsites along the La Cloche Silhouette Trail (LCST) in Killarney, Ontario, Canada. The LCST is a ~100 km, multi-day backpacking trail that requires significant planning and preparation to complete. Campsite reservations are specific to a single campsite per night. Ontario Parks reservation system provides little information regarding these campsites nor do they provide any campsite images in the backcountry. Therefore, this app was built to help future LCST backpackers gain insight into the conditions of their reserved campsites.
+Find La Cloche is a web app that provides access to a database containing crowdsourced images and reviews for all 34 campsites along the La Cloche Silhouette Trail (LCST) in Killarney, Ontario, Canada. Inspired by [AllTrails](https://www.alltrails.com/), this app serves as a guide for backpacking enthusiasts to gain insight into the conditions of their reserved campsites.
 
 
-## Important SRC Files
+## Frameworks
 
-### Routes.js
-
-Originally titled "App.js" as its default name when built via Create React App, Routes.js handles all of the routes in this project. Routes returns a BrowserRouter that encapsulates a div element with the className of "App". The App element contains: (1) A Navbar component that can be accessed on any page, and (2) A Switch tag that nests all of the major components.
-
-### firebase.js
-
-Firebase was chosen to build the backend. It uses Authentication to register users and log in/out, Firestore to store information, Storage for upload images, and hosting to deploy this application. Configuration is accomplished in the firebase.js file with the api key hidden using the .env.local file.
+This project was built using React (Create React App) and Firebase. The Firebase services used in this project are Authentication, Firestore Database, Storage, and Hosting.
 
 
-## Main Components
+## Features
+* Email Sign Up
+* Email Verification
+* Sign In
+* Sign Out
+* Google Sign In (no email verification)
+* Database with users, reviews, and images
 
-### Navbar
 
-The Navbar component has three main parts: A link to an About page, a logo and title link, and a container div that conditionally renders either SignUp and Login buttons or the user name with a profile icon. Hovering over the username or icon will render a dropdown list showing a Home button and Signout button (SignoutDropdown.jsx).
+## Project setup
 
-### About
+### Installation and Firebase setup
+* Create a new Firebase project
+* Go to Authentication, under *Sign-in providers* enable Email/Password and Google
+* Go to *Project Overview* and register a web app
+* Activate Firestore & Storage
+* Fork & clone the repository
+* Add Firebase credentials
+  * ```npm install dotenv```
+  * ```npm install firebase```
+  * In the root folder of the respository, create a file called *.env.local*
 
-A simple React component that details the purpose of this app and its intended audience.
+The .env.local file should look like the following:
 
-### SignUp
+```
+REACT_APP_API_KEY=apiKeyValue
+REACT_APP_AUTH_DOMAIN=authDomainValue
+REACT_APP_DATABASE_URL=projectIdValue
+REACT_APP_PROJECT_ID=storageBucketValue
+REACT_APP_STORAGE_BUCKET=messagingSenderIdValue
+REACT_APP_MESSAGING_SENDER_ID=appIdValue
+```
 
-**Email Auth:** 
-Custom form validation was implemented for email authentication and requires 4 input fields: first name, last name, email, and password. Successful completion of the form renders a component named EmailVerification and sends an email verification letter to verify the user's account.
+### Firestore Database Setup
 
-**How to use InputField.jsx to build your own custom client-side form validation:**
-Using the component InputField.jsx will allow users to create their own client-side form validation, which they can adjust to their preferred styling and design.
+Campsite data was manually added into Firestore, taken from ontarioparks.com/reservations. Developers must create a collection titled "campsites" (case sensitive) and in that collection, create 34 documents. For every document, add 4 fields:
 
-To implement this component, the developer must initialize a useState object twice: one object will keep track of the input fields and their string values, the other is an object of booleans that track errors in the input fields. Property names must be the same between both state objects.
+```
+1. images: []
+2. index: number
+3. name: "campsite name"
+4. reviews: []
+```
+
+**Important Note regarding index and name properties:** 
+The index property determines the order of campsites encountered when hiking clockwise along the LCST, from H1 to H54. e.g. H1 has an index of 0, H59 index: 12, H54 index: 33. For better understanding of the order of campsites, use ontarioparks.com/reservations, find a map online, or use this web app. Additionally, the name property is the full name of the campsite, e.g. "H1 Lumsden Lake". The images and reviews properties are left as empty arrays. This must be done for all 34 campsites.
+
+For more in depth coverage of how to setup Firebase and its services, read the [documentation](https://firebase.google.com/docs/web/setup).
+
+### Dependencies
+```npm install dotenv```
+```npm install firebase```
+```npm install --save react-router-dom```
+```npm install --save react-firebase-hooks```
+```npm install react-icons --save```
+```npm install react-outside-click-handler```
+```npm install --save react-customizable-progressbar```
+```npm install -g firebase-tools```
+
+
+## Reusing generic components
+
+**Use InputField.jsx to build your own custom client-side form validation:**
+*InputField.jsx* component allow users to create their own client-side form validation, which can be adjusted to one's preferred styling.
+
+To implement this component, the developer must initialize a useState object twice. The first object will keep track of the input fields and their string values, the second object is a set of booleans that monitors errors in the input fields. Property names must be the exact same between both state objects. For example: 
 
 ```
 const [values, setValues] = { firstName: "", lastName: "", email: "", password: "" };
 const [errors, setErrors] = { firstName: false, lastName: false, email: false, password: false };
 ```
 
-InputField component has 7 arguments:
-1. handleInputChange - updates {values} and {errors}, **This event handler is a function that must return a function!**
-2. error - renders error message below input field
-3. classInput - a className for the input field 
-4. inputType - text, email, password
-5. placeholderText
-6. errorMessage - error message the user wants to display
-7. valueProp - the specific property name in the state object to update, e.g. "firstName" or "email"
+**Important Note**: handleInputChange is a function that must return a function (e.g. function call), it uses the valueProp as an argument (property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
 
-**Important note**: handleInputChange is a function that must return a function (e.g. function call), it uses the valueProp as an argument when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
-
-**Google Auth**
-A simple and quicker alternative is for users to register via Google auth.
