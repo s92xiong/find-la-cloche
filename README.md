@@ -9,7 +9,9 @@ Find La Cloche is a web app that provides access to a database containing crowds
 
 ## Why I built this project, what I hope it solves
 
-With COVID-19 keeping people indoors during the pandemic, the outdoors have become increasingly popular in the summer months for both the backcountry and frontcountry camping in Killarney. The LCST is one of the most popular backpacking trails in Ontario, but I've noticed it is very difficult to find information about the campsites which are essential to complete a multi-day backpacking trip. Ontario Parks reservation system doesn't provide any images nor information of the campsites. Some important questions that I have when reserving a campsite: does this campsite have access to clean water? Will a tree fall over on me? How is the privacy? Is there a place where I can safely hang my food? These are all questions I'm sure other people are asking as well. I hope this web app can be an opportunity for backpackers to come together online and help contribute to the outdoors community.
+The LCST is one of the most popular backpacking trails in Ontario, but I've noticed it is very difficult to find information about the campsites which are essential to complete a multi-day backpacking trip. Ontario Parks reservation system doesn't provide any images nor information of the campsites, and any information one can find is scattered online, on multiple blogs, requiring users to conduct extensive research.
+
+Some important questions that I have when reserving a campsite: does this campsite have access to clean water? Will a tree fall over on me? How is the privacy? Is there a place where I can safely hang my food? These are all questions I'm sure other people are asking too. I hope this website can serve as an opportunity for backpackers to come together online and help contribute to the outdoors community.
 
 
 ## Frameworks
@@ -62,20 +64,21 @@ Campsite data was manually added into Firestore, taken from ontarioparks.com/res
 ```
 
 **Important Note regarding index and name properties:** 
-The index property determines the order of campsites encountered when hiking clockwise along the LCST, from H1 to H54. e.g. H1 has an index of 0, H59 index: 12, H54 index: 33. For better understanding of the order of campsites, use ontarioparks.com/reservations, find a map online, or use this web app. Additionally, the name property is the full name of the campsite, e.g. "H1 Lumsden Lake". The images and reviews properties are left as empty arrays. This must be done for all 34 campsites.
+The index property determines the order of campsites encountered when hiking clockwise along the LCST, from H1 to H54. e.g. H1 has an index of 0, H59 index: 12 (because it is 13 campsites away from the start of the trail), H54 index: 33. For better understanding of the order of campsites, use the Killarney map on ontarioparks.com/reservations or use this web app. Additionally, the name property is the full name of the campsite, e.g. "H1 Lumsden Lake". The images and reviews properties are left as empty arrays. This must be done for all 34 campsites.
 
 For more in depth coverage of how to setup Firebase and its services, read the [documentation](https://firebase.google.com/docs/web/setup).
 
 ### Dependencies
-```npm install dotenv```
-```npm install firebase```
-```npm install --save react-router-dom```
-```npm install --save react-firebase-hooks```
-```npm install react-icons --save```
-```npm install react-outside-click-handler```
-```npm install --save react-customizable-progressbar```
-```npm install -g firebase-tools```
-
+```
+npm install dotenv
+npm install firebase
+npm install --save react-router-dom
+npm install --save react-firebase-hooks
+npm install react-icons --save
+npm install react-outside-click-handler
+npm install --save react-customizable-progressbar
+npm install -g firebase-tools
+```
 
 ## Reusing generic components
 
@@ -89,5 +92,5 @@ const [values, setValues] = { firstName: "", lastName: "", email: "", password: 
 const [errors, setErrors] = { firstName: false, lastName: false, email: false, password: false };
 ```
 
-**Important Note**: handleInputChange is a function that must return a function (e.g. function call), it uses the valueProp as an argument (property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
+**Important Note**: handleInputChange is a function that must return a function (e.g. function call), it uses the valueProp as an argument (the property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
 
