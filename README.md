@@ -9,9 +9,9 @@ Find La Cloche is a web app that provides access to a database containing crowds
 
 ## Why I built this project, what I hope it solves
 
-The LCST is one of the most popular backpacking trails in Ontario, but I've noticed it is very difficult to find information about the campsites which are essential to complete a multi-day backpacking trip. Ontario Parks reservation system doesn't provide any images nor information of the campsites, and any information one can find is scattered online, on multiple blogs, requiring users to conduct extensive research.
+The LCST is one of the most popular backpacking trails in Ontario. Despite its popularity, it is difficult to find information about Killarney campsites which are essential to complete a multi-day backpacking trip. Ontario Parks reservation provides few details nor any images of the campsites, and any information one can find is scattered online, requiring users to conduct extensive research.
 
-Some important questions that I have when reserving a campsite: does this campsite have access to clean water? Will a tree fall over on me? How is the privacy? Is there a place where I can safely hang my food? These are all questions I'm sure other people are asking too. I hope this website can serve as an opportunity for backpackers to come together online and help contribute to the outdoors community.
+Some important questions that I have when reserving a campsite in the backcountry: does this location have access to clean water? Will a tree fall over on me? Is the ground flat? How is the privacy? Is there a place where I can safely hang my food? Are the conditions adequate to set up my tent or hammock? I am confident that others are asking these same questions. Thus, I built this application to serve as an opportunity for backpackers to come together and help contribute to the outdoors community.
 
 
 ## Frameworks
@@ -25,7 +25,7 @@ This project was built using React (Create React App) and Firebase. The Firebase
 * Sign In
 * Sign Out
 * Google Sign In (no email verification)
-* Database with users, reviews, and images
+* Database with users, campsite reviews and images
 
 
 ## Project setup
@@ -41,7 +41,7 @@ This project was built using React (Create React App) and Firebase. The Firebase
   * ```npm install firebase```
   * In the root folder of the respository, create a file called *.env.local*
 
-The .env.local file should look like the following:
+The .env.local file should have the following:
 
 ```
 REACT_APP_API_KEY=apiKeyValue
@@ -54,7 +54,7 @@ REACT_APP_MESSAGING_SENDER_ID=appIdValue
 
 ### Firestore Database Setup
 
-Campsite data was manually added into Firestore, taken from ontarioparks.com/reservations. Developers must create a collection titled "campsites" (case sensitive) and in that collection, create 34 documents. For every document, add 4 fields:
+Campsite data was manually added into Firestore, taken from ontarioparks.com/reservations. Create a collection titled "campsites" (case sensitive) and in that collection, create 34 documents. For every document, add 4 fields:
 
 ```
 1. images: []
@@ -82,7 +82,7 @@ npm install -g firebase-tools
 
 ## Reusing generic components
 
-**Use InputField.jsx to build your own custom client-side form validation:**
+### Use InputField.jsx to build your own custom client-side form validation:
 *InputField.jsx* component allow users to create their own client-side form validation, which can be adjusted to one's preferred styling.
 
 To implement this component, the developer must initialize a useState object twice. The first object will keep track of the input fields and their string values, the second object is a set of booleans that monitors errors in the input fields. Property names must be the exact same between both state objects. For example: 
@@ -92,5 +92,6 @@ const [values, setValues] = { firstName: "", lastName: "", email: "", password: 
 const [errors, setErrors] = { firstName: false, lastName: false, email: false, password: false };
 ```
 
-**Important Note**: handleInputChange is a function that must return a function (e.g. function call), it uses the valueProp as an argument (the property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
+**Important Note**: handleInputChange is a function that must return a function, it uses the valueProp argument (property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
 
+### 

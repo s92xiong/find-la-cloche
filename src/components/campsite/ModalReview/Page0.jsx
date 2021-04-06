@@ -1,7 +1,7 @@
 import React from 'react';
 import StarRating from './StarRating';
 
-function Page0({ rating, setRating, userText, setContinue, handleChange }) {
+function Page0({ rating, userText, handleRating, handleChange }) {
   
   const placeholderText = "Give back to the community. Share your thoughts about this campsite so others know what to expect.";
 
@@ -10,9 +10,7 @@ function Page0({ rating, setRating, userText, setContinue, handleChange }) {
       <div className="five-star-rating">
         <StarRating
           rating={rating}
-          setRating={setRating}
-          userText={userText}
-          setContinue={setContinue}
+          handleRating={handleRating}
         />
         <div className="text-box-container">
           <textarea 

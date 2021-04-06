@@ -45,6 +45,16 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
 
   // If user closes modal before submitting a review, reset values back to default settings
   const closeReviewModal = () => defaultSettings();
+
+  // Execute event handler when user clicks on any the 5 stars
+  const handleRating = (ratingValue) => {
+    const handler = () => {
+      // Activate/highlight the "Next" button so the user can proceed to the next page
+      (userText.length >= 1) && setContinue(true);
+      return setRating(Number(ratingValue));
+    };
+    return handler;
+  };
   
   // Handle textarea input change
   const handleChange = (e) => {
@@ -91,9 +101,8 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
           (pageNum === 0) ?
           <Page0
             rating={rating}
-            setRating={setRating}
             userText={userText}
-            setContinue={setContinue}
+            handleRating={handleRating}
             handleChange={handleChange}
           />
           :
