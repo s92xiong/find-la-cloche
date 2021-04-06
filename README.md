@@ -66,6 +66,10 @@ Campsite data was manually added into Firestore, taken from ontarioparks.com/res
 4. reviews: []
 ```
 
+Your document should look like the following: 
+
+![Image of Firebase document fields](https://firebasestorage.googleapis.com/v0/b/find-la-cloche-campsite.appspot.com/o/Screen%20Shot%202021-04-05%20at%2010.52.01%20PM.png?alt=media&token=621bebe8-964d-4096-ac49-ed53332b8637)
+
 **Important Note regarding index and name properties:** 
 The index property determines the order of campsites encountered when hiking clockwise along the LCST, from H1 to H54. e.g. H1 has an index of 0, H59 index: 12 (because it is 13 campsites away from the start of the trail), H54 index: 33. For better understanding of the order of campsites, use the Killarney map on ontarioparks.com/reservations or use this web app. Additionally, the name property is the full name of the campsite, e.g. "H1 Lumsden Lake". The images and reviews properties are left as empty arrays.
 
