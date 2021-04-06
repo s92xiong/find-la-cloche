@@ -85,7 +85,7 @@ npm install -g firebase-tools
 ### Use InputField.jsx to build your own custom client-side form validation:
 *InputField.jsx* component allow users to create their own client-side form validation, which can be adjusted to one's preferred styling.
 
-To implement this component, the developer must initialize a useState object twice. The first object will keep track of the input fields and their string values, the second object is a set of booleans that monitors errors in the input fields. Property names must be the exact same between both state objects. For example: 
+To implement this component, the developer must initialize a useState object twice. The first object will keep track of the input fields and their string values, the second object is a set of booleans that monitors errors in the input fields. Property names must be the exact same between both state objects. For example:
 
 ```
 const [values, setValues] = { firstName: "", lastName: "", email: "", password: "" };
@@ -94,4 +94,21 @@ const [errors, setErrors] = { firstName: false, lastName: false, email: false, p
 
 **Important Note**: handleInputChange is a function that must return a function, it uses the valueProp argument (property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
 
-### 
+### Using StarRating.jsx to implement a 5-star rating system:
+
+Install the required dependency:
+```npm install react-icons --save```
+
+Depending on your component heirarchy, you want to initialize a variable state somewhere up the component chain:
+```const [rating, setRating] = useState(null);```
+
+Create a function called handleRating which takes in a single arguement (ratingValue). The handleRating function returns another function - an event handler. The event handler will handle what the user wants to do when the user clicks on one of the 5 stars: 
+
+```
+const handleRating = (ratingValue) => {
+  const handler = () => {
+    // Execute some code when the user clicks on a star
+  };
+  return handler;
+};
+```

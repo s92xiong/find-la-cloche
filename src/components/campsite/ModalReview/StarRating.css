@@ -1,0 +1,11 @@
+/* ---- Star Review ---- */
+
+.review-star {
+  cursor: pointer;
+  transition: transform 300ms;
+  margin: 0 4px 0 4px;
+}
+
+.review-star:hover {
+  transform: scale(1.3);
+}

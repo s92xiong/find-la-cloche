@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./StarRating.css";
 import { FaStar } from 'react-icons/fa';
 
 function StarRating({ rating, handleRating }) {
@@ -13,7 +14,7 @@ function StarRating({ rating, handleRating }) {
           <input
             type="radio"
             name="rating"
-            className="radio-star"
+            style={{ display: "none" }}
             value={ratingValue}
             onClick={handleRating(ratingValue)}
           />
