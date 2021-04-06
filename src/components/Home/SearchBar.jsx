@@ -103,7 +103,7 @@ function SearchBar({ showCampsiteList, setShowCampsites, currIndex, setCurrIndex
           onFocus={() => setShowCampsites(true)}
           value={value}
         />
-        <button>Search</button>
+        <button style={{ cursor: "pointer" }}>Search</button>
         <SearchList
           campsites={mutableCampsites}
           showCampsiteList={showCampsiteList}
