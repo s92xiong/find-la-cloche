@@ -11,6 +11,7 @@ const handleGoogleAuth = async (e) => {
       // Create a new user document in the "users" collection
       await firestore.collection("users").doc(`${auth.currentUser.uid}`).set({
         email: result.user.email,
+        name: result.user.displayName,
         photos: [],
         reviews: [],
       });
