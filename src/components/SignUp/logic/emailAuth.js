@@ -1,4 +1,4 @@
-import { auth } from "../../../firebase";
+import { auth, firestore } from "../../../firebase";
 import signInError from './signInError';
 
 const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse) => {
@@ -20,11 +20,11 @@ const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEm
       });
   
       // Add user to Firestore
-      // await firestore.collection("users").add({
-      //   email: value.email,
-      //   reviews: [],
-      //   uid: userCredential.user.uid,
-      // });
+      await firestore.collection("users").add({
+        email: value.email,
+        reviews: [],
+        uid: userCredential.user.uid,
+      });
   
       // Send an email verification letter to the newly registered user
       await auth.currentUser.sendEmailVerification();
