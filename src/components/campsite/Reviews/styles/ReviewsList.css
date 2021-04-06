@@ -89,12 +89,28 @@
   position: absolute;
   bottom: 5px;
   right: 0px;
-  font-size: 13px;
-  font-weight: 400;
-  cursor: pointer;
-  color: #428a13;
 }
 
-.edit-delete-review:hover {
+.edit-delete-review p {
+  font-weight: 300;
+}
+
+.edit-review-button, .delete-review-button {
+  cursor: pointer;
+  color: #428a13;
+  font-size: 14px;
+  font-weight: 400;
+} 
+
+
+.edit-review-button:hover, .delete-review-button:hover {
   color: #438a13cc;
+}
+
+.edit-review-button {
+  margin: 0 8px 0 0;
+}
+
+.delete-review-button {
+  margin: 0 0 0 8px;
 }

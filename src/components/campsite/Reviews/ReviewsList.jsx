@@ -74,12 +74,12 @@ function ReviewsList({ match, item, setItem }) {
               </div>
               {
                 (user && review.userID === user.uid) &&
-                <div 
-                  data-id={review.reviewID} 
-                  className="edit-delete-review"
-                  onClick={handleDelete}
-                >
-                  Delete
+                <div data-id={review.reviewID} className="edit-delete-review">
+                  <p>
+                    <span className="edit-review-button">Edit</span>
+                    |
+                    <span className="delete-review-button" onClick={handleDelete}>Delete</span>
+                  </p>
                 </div>
               }
             </div>
