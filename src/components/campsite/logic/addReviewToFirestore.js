@@ -9,7 +9,7 @@ const addReviewToFirestore = async (match, item, setItem, rating, userText, radi
   const newReviews = {...item}.reviews;
   
   newReviews.push({
-    // Add name of user, picture of user, date of review (March 11, 2021)
+    campsite: item.name,
     date: getDate(),
     name: auth.currentUser.displayName,
     photoURL: auth.currentUser.photoURL,

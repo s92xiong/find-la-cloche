@@ -107,11 +107,9 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
           />
           :
           <Page1
-            setShowSubmitButton={setShowSubmitButton}
-            handleSubmit={handleSubmit}
-            setPageNum={setPageNum}
             radioInputs={radioInputs}
             setRadioInputs={setRadioInputs}
+            setShowSubmitButton={setShowSubmitButton}
           />
         }
         {
