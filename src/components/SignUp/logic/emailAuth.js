@@ -20,10 +20,10 @@ const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEm
       });
   
       // Add user to Firestore
-      await firestore.collection("users").add({
+      await firestore.collection("users").doc(`${auth.currentUser.uid}`).set({
         email: value.email,
+        photos: [],
         reviews: [],
-        uid: userCredential.user.uid,
       });
   
       // Send an email verification letter to the newly registered user

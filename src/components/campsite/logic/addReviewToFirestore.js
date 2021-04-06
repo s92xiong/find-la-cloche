@@ -23,6 +23,7 @@ const addReviewToFirestore = async (match, item, setItem, rating, userText, radi
   // Add rating and user review (string) to Firestore DB
   try {
     await firestore.collection("campsites").doc(match.params.id).update({ reviews: newReviews });
+    await firestore.collection("users").doc(auth.currentUser.uid).update({ reviews: newReviews });
     // Update state to render new review
     setItem({...item, reviews: newReviews});
   } catch (error) {

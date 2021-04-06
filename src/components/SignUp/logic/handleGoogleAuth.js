@@ -9,10 +9,10 @@ const handleGoogleAuth = async (e) => {
     
     if (result.additionalUserInfo.isNewUser) {
       // Create a new user document in the "users" collection
-      await firestore.collection("users").add({
+      await firestore.collection("users").doc(`${auth.currentUser.uid}`).set({
         email: result.user.email,
+        photos: [],
         reviews: [],
-        uid: result.user.uid,
       });
 
       // Automatically verify user if they signed in via Google auth
