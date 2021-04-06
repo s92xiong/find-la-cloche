@@ -55,7 +55,7 @@ REACT_APP_STORAGE_BUCKET=messagingSenderIdValue
 REACT_APP_MESSAGING_SENDER_ID=appIdValue
 ```
 
-### Firestore Database Setup
+### Setting up your Firestore Database
 
 Campsite data was manually added into Firestore, taken from ontarioparks.com/reservations. Create a collection titled "campsites" (case sensitive) and in that collection, create 34 documents. For every document, add 4 fields:
 
