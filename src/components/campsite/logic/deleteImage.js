@@ -1,4 +1,4 @@
-import { firestore, storage } from "../../../firebase";
+import { auth, firestore, storage } from "../../../firebase";
 
 async function deleteImage(match, item, setItem, imgName) {
   try {
@@ -9,6 +9,7 @@ async function deleteImage(match, item, setItem, imgName) {
     // Remove image item from Firestore
     const filteredImages = item.images.filter(imgObj => (imgObj.fileName !== imgName));
     await firestore.collection("campsites").doc(match.params.id).update({ images: filteredImages });
+    await firestore.collection("users").doc(auth.currentUser.uid).update({ images: filteredImages });
     setItem({ ...item, images: filteredImages });
   } catch (error) {
     console.error(error);

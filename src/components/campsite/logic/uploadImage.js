@@ -23,10 +23,14 @@ const uploadImage = async (match, filesArray, setFilesArray, setProgress, setUpl
     const newImages = tempArray.filter((obj) => (obj !== null )).sort((a, b) => (a.uploadIndex > b.uploadIndex) ? 1 : -1);
     const imagesCopy = {...item}.images;
 
-    // Add URL to Firestore collection
+    // Add URL to Firestore DB collections: "campsites" & "users"
     await firestore.collection("campsites").doc(match.params.id).update({
       images: imagesCopy.concat(newImages)
     });
+
+    await firestore.collection("users").doc(auth.currentUser.uid).update({
+      images: imagesCopy.concat(newImages)
+    });    
 
     defaultSettings();
   };
