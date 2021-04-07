@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa';
 
 function AverageRating({ average, starSize }) {
 
-  // The size of the container for the "Half Star" must be 1/2 star size
+  // Container size for the "Half Star" must be 1/2 the size of a Full Star
   const halfContainerSize = starSize / 2;
 
   const halfStarContainerStyle = {
