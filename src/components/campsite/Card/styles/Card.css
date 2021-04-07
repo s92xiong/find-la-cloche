@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
 
+/* Card.jsx */
+
 .module-card {
   height: 312px;
   background-position: center center;
@@ -31,6 +33,13 @@
   margin-bottom: 3px;
 }
 
+.park-name {
+  color: #fff;
+  font-weight: 300;
+}
+
+/* AverageRating.jsx, HalfStar.jsx */
+
 .five-star-rating-card {
   display: flex;
 }
@@ -56,9 +65,4 @@
 
 .right-half-star {
   left: 0%;
-}
-
-.park-name {
-  color: #fff;
-  font-weight: 300;
 }
