@@ -78,7 +78,7 @@ The index property determines the order of campsites encountered when hiking clo
 For more in depth information on how to setup Firebase and its services, read the [documentation](https://firebase.google.com/docs/web/setup).
 
 
-## Reuseable generic components
+## Reusable generic components
 
 ### InputField.jsx:
 
