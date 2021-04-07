@@ -24,7 +24,7 @@ function Card({ match, item }) {
     >
       <div className="module-info">
         <h2 className="campsite-title">{(item) && item.name}</h2>
-        <AverageRating average={average} />
+        <AverageRating average={average} starSize={20} />
         <p className="park-name">Killarney Provincial Park</p>
       </div>
     </div>

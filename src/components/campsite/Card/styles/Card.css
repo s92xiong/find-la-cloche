@@ -38,22 +38,27 @@
   font-weight: 300;
 }
 
-/* AverageRating.jsx, HalfStar.jsx */
+/* ---- AverageRating.jsx ---- */
 
-.five-star-rating-card {
+/* .five-star-rating-card {
   display: flex;
-}
+} */
 
-.half-star-container {
+/* Container width must be 1/2 star width */
+/* Container height should match height of star */
+/* Hide anything outside of the container */
+
+/* .half-star-container {
   position: relative;
   float: left;
-  width: 10px; /* Container width must be 1/2 star width */
-  height: 20px; /* Container height should match height of star */
-  overflow: hidden; /* Hide anything outside of the container */
-}
+  width: 10px;
+  height: 20px;
+  overflow: hidden;
+} */
 
 /* Position both L/R stars to be 50% from the top & reference its center point */
-.left-half-star, .right-half-star {
+
+/* .left-half-star, .right-half-star {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -65,4 +70,4 @@
 
 .right-half-star {
   left: 0%;
-}
+} */
