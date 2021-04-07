@@ -7,7 +7,7 @@ Find La Cloche is a web app that provides access to a database containing crowds
 
 
 ## Frameworks
-This project was built using React (Create React App) and Firebase. The Firebase services used in this project are Authentication, Firestore Database, Storage, and Hosting.
+This project was built using React (Create React App) and Firebase. The Firebase services used in this project are Authentication, Firestore, Storage, and Hosting.
 
 
 ## Features
@@ -16,7 +16,9 @@ This project was built using React (Create React App) and Firebase. The Firebase
 * Sign In
 * Sign Out
 * Google Sign In (no email verification)
-* Database with users, campsite reviews and images
+* Database with users
+* Add and delete reviews
+* Upload images
 
 
 ## Project setup
@@ -76,10 +78,11 @@ The index property determines the order of campsites encountered when hiking clo
 For more in depth information on how to setup Firebase and its services, read the [documentation](https://firebase.google.com/docs/web/setup).
 
 
-## Reusing generic components
+## Reuseable generic components
 
-### Use InputField.jsx to build your own custom client-side form validation:
-*InputField.jsx* component allow users to create their own client-side form validation, which can be adjusted to one's preferred styling.
+### InputField.jsx:
+
+Create your own custom, client-side form validation.
 
 To implement this component, the developer must initialize a useState object twice. The first object will keep track of the input fields and their string values, the second object is a set of booleans that monitors errors in the input fields. Property names must be the exact same between both state objects. For example:
 
@@ -88,24 +91,25 @@ const [values, setValues] = { firstName: "", lastName: "", email: "", password: 
 const [errors, setErrors] = { firstName: false, lastName: false, email: false, password: false };
 ```
 
-**Destructured props used by InputField.jsx**: 
-* handleInputChange - a function that returns a function, it uses the valueProp argument (property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
-* error - the useState errors object
-* classInput - className that you want to use for styling purposes
-* inputType - determines the type of input (e.g. text, password, email)
-* placeholderText - custom placeholder text
-* errorMessage - the error message you want to render when an error occurs
-* valueProp - the value property of the input field you want to target (e.g. firstName, lastName, email, or password)
+*InputField* takes seven props: 
+1. handleInputChange - a function that returns a function, it uses the valueProp argument (property name in the state object to update, e.g. "firstName" or "email") when called inside InputField.jsx, this allows all input fields to receive their own individualized event handlers.
+2. error - the useState errors object
+3. classInput - className that you want to use for styling purposes
+4. inputType - determines the type of input (e.g. text, password, email)
+5. placeholderText - custom placeholder text
+6. errorMessage - the error message you want to render when an error occurs
+7. valueProp - the value property of the input field you want to target (e.g. firstName, lastName, email, or password)
 
-### Use StarRating.jsx to implement a 5-star rating system:
+### StarRating.jsx:
 
-Install the required dependency:
-```npm install react-icons --save```
+Implement a 5-star rating system where users can pick a star value ranging from 1 to 5.
 
-Depending on your component heirarchy, you want to initialize a variable state somewhere up the component chain:
+Requirements:
+1. ```npm install react-icons --save```
+2. Depending on your component heirarchy, you want to initialize a variable state somewhere up the component chain:
 ```const [rating, setRating] = useState(null);```
 
-Create a function called handleRating which takes in a single arguement (ratingValue). The handleRating function returns another function - an event handler. The event handler will handle what the user wants to do when the user clicks on one of the 5 stars: 
+3. Create a function titled *handleRating* which takes in a single arguement (ratingValue). *handleRating* returns another an event handler function. This event handler will handle what to do when a user clicks on any of the 5 stars: 
 
 ```
 const handleRating = (ratingValue) => {
@@ -116,6 +120,18 @@ const handleRating = (ratingValue) => {
 };
 ```
 
-**Destructured props used by StarRating.jsx**: 
-* rating - the useState rating value
-* handleRating - the function that returns an event handler previously discussed above
+*StarRating* takes two props: 
+1. rating - the useState rating value
+2. handleRating - the function that returns an event handler previously discussed above
+
+### Use AverageRating.jsx to render 5 stars:
+
+Displays the average 5-star rating, also displays a half-gold star if the average value is rounded to the nearest 0.5.
+
+Requirements:
+1. The developer must be using a 5-star rating system.
+2. ```npm install react-icons --save```
+
+*AverageRating* takes two props:
+1. average - the average value of all ratings from a 5-star review, this value must be rounded to the nearest 0.5 value
+2. starSize - value in pixels that determines the size of the star, changing this value will change the size of the stars rendered to the screen
