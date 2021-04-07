@@ -60,11 +60,12 @@
 .review-body-container {
   margin-left: 30px;
 }
-
 .review-body {
-  color: #000000;
+  color: #414141;
   font-weight: 300;
+  font-size: 15px;
   line-height: 25px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .questions-container {
