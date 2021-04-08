@@ -1,5 +1,5 @@
 # Find La Cloche - Documentation
-Find your campsite on the La Cloche Silhouette Trail.
+Find your campsite on the [La Cloche Silhouette Trail](https://findlacloche.com).
 
 
 ## About This Project
