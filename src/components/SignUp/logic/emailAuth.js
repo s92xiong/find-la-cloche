@@ -23,7 +23,7 @@ const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEm
       await firestore.collection("users").doc(`${auth.currentUser.uid}`).set({
         email: value.email,
         name: userCredential.user.displayName,
-        photos: [],
+        images: [],
         reviews: [],
       });
   

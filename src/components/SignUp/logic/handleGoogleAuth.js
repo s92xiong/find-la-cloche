@@ -12,7 +12,7 @@ const handleGoogleAuth = async (e) => {
       await firestore.collection("users").doc(`${auth.currentUser.uid}`).set({
         email: result.user.email,
         name: result.user.displayName,
-        photos: [],
+        images: [],
         reviews: [],
       });
 
