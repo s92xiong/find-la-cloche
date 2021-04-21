@@ -1,7 +1,7 @@
 import { auth, firestore } from "../../../firebase";
 import signInError from './signInError';
 
-const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse) => {
+const emailAuth = (value, inputError, setInputError, setEmailVerificationPopup, setAccountAlreadyInUse, setLoginSuccess) => {
   const submitEmailAuth = async (e) => {
     e.preventDefault();
 
@@ -10,8 +10,9 @@ const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEm
     if (!areAllIputFieldsValid) return console.log("Please fill in all input fields");
   
     try {
-      // Prevent useEffect from automatically redirecting to homepage upon logging in
-      setNewAccountCreated(true);
+
+      // Prevent loginSuccess pop up from rendering
+      setLoginSuccess(true);
   
       // Create user and automatically log in
       const userCredential = await auth.createUserWithEmailAndPassword(value.email, value.password);
@@ -32,10 +33,9 @@ const emailAuth = (value, inputError, setInputError, setNewAccountCreated, setEm
   
       // Sign user out immediately, they should only be able to sign back in if they have verified their email
       await auth.signOut();
-  
+
       // Render a pop-up div when the user has signed in
       setEmailVerificationPopup(true);
-  
     } catch (error) {
       console.error(error);
       if (error.code === "auth/email-already-in-use") {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import InputField from './InputField';
@@ -14,11 +14,6 @@ function SignUp() {
 
   // Check to see if user is logged in
   const [user] = useAuthState(auth);
-
-  // When registering a new account, the user is automatically logged in, but a logged-in user who accesses this page is immediately
-  // redirected to the homepage via useEffect, thus "isNewAccountCreated" prevents page redirect for that brief moment when
-  // the user is logged in and signed out (this enforces user to validate their email)
-  const [isNewAccountCreated, setNewAccountCreated] = useState(false);
 
   // Display error message if email is already in use
   const [accountAlreadyInUse, setAccountAlreadyInUse] = useState(false);
@@ -75,21 +70,13 @@ function SignUp() {
   };
 
   const { submitEmailAuth } = emailAuth(
-    value, inputError, setInputError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse
+    value, inputError, setInputError, setEmailVerificationPopup, setAccountAlreadyInUse, setLoginSuccess
   );
 
   const handleGoogleLogIn = async (e) => {
     await handleGoogleAuth(e);
     setLoginSuccess(true);
   };
-
-  useEffect(() => {
-    // Redirect to homepage if the user is logged in & they aren't registering a new account
-    if (user && !isNewAccountCreated) {
-      console.log("The user is already logged in!");
-      // return window.location = "/";
-    }
-  }, [user, isNewAccountCreated]);
 
   // Render component if a new account is created & an email verification letter is sent
   if (emailVerificationPopup) return <EmailVerification />;
