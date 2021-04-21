@@ -19,7 +19,7 @@ function Page0({ rating, userText, handleRating, handleChange }) {
             id="reviewBox"
             className="review-text-box"
             onChange={handleChange}
-            maxlength="8000"
+            maxlength="10000"
             value={userText}
           ></textarea>
         </div>
