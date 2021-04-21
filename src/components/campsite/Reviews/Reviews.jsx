@@ -6,7 +6,7 @@ import "./styles/Reviews.css";
 import ModalReview from '../ModalReview/ModalReview';
 import { hideContainer } from '../logic/showHideContainer';
 
-function Reviews({ item, setItem, match, userData }) {
+function Reviews({ item, setItem, match }) {
 
   // Check if user is logged in
   const [user] = useAuthState(auth);
@@ -65,7 +65,6 @@ function Reviews({ item, setItem, match, userData }) {
         setItem={setItem}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        userData={userData}
       />
     </div>
   );

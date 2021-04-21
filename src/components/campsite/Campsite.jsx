@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import "./Campsite.css";
-import { auth, firestore } from '../../firebase';
+import { firestore } from '../../firebase';
 import getCampsites from '../Home/getCampsites';
 import Header from './Header/Header';
 import Card from './Card/Card';
 import ActionBar from './ActionBar/ActionBar';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Campsite({ match }) {
-
-  const [user] = useAuthState(auth);
-
-  const [userData, setUserData] = useState();
 
   // Initialize array of campsites
   const [campsites, setCampsites] = useState([]);
@@ -32,20 +27,6 @@ function Campsite({ match }) {
     getCampsiteDoc(match.params.id);
   }, [match, campsites]);
 
-  // Get information of the current user logged in from Firestore
-  const getUserDoc = async (id) => {
-    const snapshot = await firestore.collection('users').doc(id).get();
-    const data = snapshot.data();
-    setUserData(data);
-    console.log(data);
-  };
- 
-  // Get user data when component loads
-  useEffect(() => {
-    // Only get data if user is logged in and data has not yet been retrieved
-    if (user && !userData) getUserDoc(user.uid);
-  }, [user, userData, match]);
-
   return (
     <div className="campsite-page">
       <div className="campsite-container">
@@ -58,7 +39,6 @@ function Campsite({ match }) {
           match={match}
           item={item}
           setItem={setItem}
-          userData={userData}
         />
       </div>
     </div>

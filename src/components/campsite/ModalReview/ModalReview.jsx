@@ -4,8 +4,9 @@ import Page0 from './Page0';
 import Page1 from './Page1';
 import "./ModalReview.css";
 import { showContainer } from '../logic/showHideContainer';
+import { auth, firestore } from '../../../firebase';
 
-function ModalReview({ match, item, setItem, modalOpen, setModalOpen, userData }) {
+function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
   // Highlight the "Next" button if all form fields are valid in the 1st page of the modal
   const [canContinue, setContinue] = useState(false);
   
@@ -76,8 +77,13 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen, userData }
     setShowSubmitButton(false); // User must re-input radio buttons
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!showSubmitButton) return console.log("Fill in all form fields in order to submit review!");
+
+    // Get user data
+    const snapshotOfUser = await firestore.collection('users').doc(auth.currentUser.uid).get();
+    const userData = snapshotOfUser.data();
+
     addReviewToFirestore(match, item, setItem, rating, userText, radioInputs, userData);
     defaultSettings();
   };
