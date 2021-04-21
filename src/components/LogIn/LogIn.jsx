@@ -76,8 +76,8 @@ function LogIn() {
     }
   };
 
-  const handleGoogleLogIn = (e) => {
-    handleGoogleAuth(e);
+  const handleGoogleLogIn = async (e) => {
+    await handleGoogleAuth(e);
     setLoginSuccess(true);
   };
 

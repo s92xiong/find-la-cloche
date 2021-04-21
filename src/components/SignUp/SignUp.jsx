@@ -8,6 +8,7 @@ import GoogleButton from "./GoggleButton";
 import handleGoogleAuth from './logic/handleGoogleAuth';
 import "./styles/SignUp.css";
 import "./styles/SignUpError.css";
+import LoginRedirect from '../LogIn/LoginRedirect';
 
 function SignUp() {
 
@@ -24,6 +25,10 @@ function SignUp() {
 
   // Display message after the user has successfully created an account
   const [emailVerificationPopup, setEmailVerificationPopup] = useState(false);
+
+  // Use this variable to prevent LoginRedirect component from displaying
+  // eslint-disable-next-line no-unused-vars
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   // Initialize state object for invalid inputs
   const [inputError, setInputError] = useState({
@@ -73,13 +78,24 @@ function SignUp() {
     value, inputError, setInputError, setNewAccountCreated, setEmailVerificationPopup, setAccountAlreadyInUse
   );
 
+  const handleGoogleLogIn = async (e) => {
+    await handleGoogleAuth(e);
+    setLoginSuccess(true);
+  };
+
   useEffect(() => {
     // Redirect to homepage if the user is logged in & they aren't registering a new account
-    if (user && !isNewAccountCreated) return window.location = "/";
+    if (user && !isNewAccountCreated) {
+      console.log("The user is already logged in!");
+      // return window.location = "/";
+    }
   }, [user, isNewAccountCreated]);
 
   // Render component if a new account is created & an email verification letter is sent
   if (emailVerificationPopup) return <EmailVerification />;
+
+  // If loginSuccess is true, do not render the LogInRedirect component
+  if (user && !loginSuccess) return <LoginRedirect />;
 
   return (
     <div className="sign-up">
@@ -130,7 +146,7 @@ function SignUp() {
         <button className="sign-up-form-button">Sign up</button>
         <p>Already have an account? <a className="log-in-a-tag" href="/log-in">Log in</a></p>
         <p>Or</p>
-        <GoogleButton handleClick={handleGoogleAuth} />
+        <GoogleButton handleClick={handleGoogleLogIn} />
       </form>
     </div>
   );
