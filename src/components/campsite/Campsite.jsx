@@ -26,24 +26,26 @@ function Campsite({ match }) {
     setItem(data);
   };
 
+  // Get campsite info when the component loads
+  useEffect(() => {
+    getCampsites(campsites, setCampsites, null);
+    getCampsiteDoc(match.params.id);
+  }, [match, campsites]);
+
+  // Get information of the current user logged in from Firestore
   const getUserDoc = async (id) => {
     const snapshot = await firestore.collection('users').doc(id).get();
     const data = snapshot.data();
     setUserData(data);
     console.log(data);
   };
-
+ 
+  // Get user data when component loads
   useEffect(() => {
-    // Get user data if user is logged in and data hasn't been retrieved
-    if (user && !userData) {
-      getUserDoc(user.uid);
-    }
+    // Only get data if user is logged in and data has not yet been retrieved
+    if (user && !userData) getUserDoc(user.uid);
   }, [user, userData]);
 
-  useEffect(() => {
-    getCampsites(campsites, setCampsites, null);
-    getCampsiteDoc(match.params.id);
-  }, [match, campsites]);
 
   return (
     <div className="campsite-page">
@@ -57,6 +59,7 @@ function Campsite({ match }) {
           match={match}
           item={item}
           setItem={setItem}
+          userData={userData}
         />
       </div>
     </div>

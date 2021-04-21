@@ -5,7 +5,7 @@ import Page1 from './Page1';
 import "./ModalReview.css";
 import { showContainer } from '../logic/showHideContainer';
 
-function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
+function ModalReview({ match, item, setItem, modalOpen, setModalOpen, userData }) {
   // Highlight the "Next" button if all form fields are valid in the 1st page of the modal
   const [canContinue, setContinue] = useState(false);
   
@@ -78,7 +78,7 @@ function ModalReview({ match, item, setItem, modalOpen, setModalOpen }) {
 
   const handleSubmit = () => {
     if (!showSubmitButton) return console.log("Fill in all form fields in order to submit review!");
-    addReviewToFirestore(match, item, setItem, rating, userText, radioInputs);
+    addReviewToFirestore(match, item, setItem, rating, userText, radioInputs, userData);
     defaultSettings();
   };
 

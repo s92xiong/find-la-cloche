@@ -6,7 +6,7 @@ import deleteReview from "../logic/deleteReview";
 import userIcon from "../../../images/person_placeholder.png";
 import "./styles/ReviewsList.css";
 
-function ReviewsList({ match, item, setItem }) {
+function ReviewsList({ match, item, setItem, userData }) {
 
   const [user] = useAuthState(auth);
 
