@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { FaStar, FaCheck, FaTimes } from 'react-icons/fa';
-import { auth } from '../../../firebase';
+import { auth, firestore } from '../../../firebase';
 import deleteReview from "../logic/deleteReview";
 import userIcon from "../../../images/person_placeholder.png";
 import "./styles/ReviewsList.css";
 
-function ReviewsList({ match, item, setItem, userData }) {
+function ReviewsList({ match, item, setItem }) {
 
   const [user] = useAuthState(auth);
 
@@ -18,7 +18,7 @@ function ReviewsList({ match, item, setItem, userData }) {
     }
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     // Popup window to confirm if user wants to delete review
     const result = window.confirm("Are you sure you want to delete this review?");
     if (!result) return;
@@ -29,7 +29,11 @@ function ReviewsList({ match, item, setItem, userData }) {
     // Delete review from campsite by filtering through the reviewsList array state
     const campsiteReviews = item.reviews.filter(review => (dataID !== review.reviewID));
 
-    // Delete review from filtering through the reviewsList array state
+    // Get data of current user
+    const snapshotOfUser = await firestore.collection('users').doc(auth.currentUser.uid).get();
+    const userData = snapshotOfUser.data();
+
+    // Filter through user data reviews, return only reviews that are not the review being deleted
     const userReviews = userData.reviews.filter(review => (dataID !== review.reviewID));
     
     // Update Firestore

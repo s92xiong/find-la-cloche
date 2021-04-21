@@ -58,7 +58,6 @@ function Reviews({ item, setItem, match, userData }) {
         item={item}
         setItem={setItem}
         setModalOpen={setModalOpen}
-        userData={userData}
       />
       <ModalReview
         match={match}

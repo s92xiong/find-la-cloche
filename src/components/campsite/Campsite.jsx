@@ -44,8 +44,7 @@ function Campsite({ match }) {
   useEffect(() => {
     // Only get data if user is logged in and data has not yet been retrieved
     if (user && !userData) getUserDoc(user.uid);
-  }, [user, userData]);
-
+  }, [user, userData, match]);
 
   return (
     <div className="campsite-page">
