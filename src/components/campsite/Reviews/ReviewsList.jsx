@@ -26,11 +26,14 @@ function ReviewsList({ match, item, setItem, userData }) {
     // Get unique id from the element's "data-id"
     const dataID = Number(e.target.dataset.id);
     
-    // Delete review by filtering through the reviewsList array state
-    const filteredReviews = item.reviews.filter(review => (dataID !== review.reviewID));
+    // Delete review from campsite by filtering through the reviewsList array state
+    const campsiteReviews = item.reviews.filter(review => (dataID !== review.reviewID));
+
+    // Delete review from filtering through the reviewsList array state
+    const userReviews = userData.reviews.filter(review => (dataID !== review.reviewID));
     
     // Update Firestore
-    deleteReview(match, filteredReviews, item, setItem);
+    deleteReview(match, campsiteReviews, item, setItem, userReviews);
   };
 
   if (!item || item.reviews.length < 1) return <></>;
