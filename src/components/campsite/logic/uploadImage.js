@@ -28,13 +28,11 @@ const uploadImage = async (match, filesArray, setFilesArray, setProgress, setUpl
       images: imagesCopy.concat(newImages)
     });
 
-    // ADD A FILTER/LOOP HERE: ITERATE THROUGH THE IMAGES, ONLY RETURN IMAGES THAT CONTAIN THE ID OF THE CURRENT USER
-    const getDoc = await firestore.collection('users').doc(auth.currentUser.uid).get();
-    const data = getDoc.data();
-    console.log(data);
+    // Filter for only user images and store it in the user inside "users" collection in Firestore
+    const userImages = imagesCopy.concat(newImages).filter(obj => (obj.userID === auth.currentUser.uid));
 
     await firestore.collection("users").doc(auth.currentUser.uid).update({
-      images: imagesCopy.concat(newImages)
+      images: userImages
     });
 
     defaultSettings();

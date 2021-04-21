@@ -9,8 +9,12 @@ async function deleteImage(match, item, setItem, imgName) {
     // Remove image item from Firestore
     const filteredImages = item.images.filter(imgObj => (imgObj.fileName !== imgName));
     await firestore.collection("campsites").doc(match.params.id).update({ images: filteredImages });
-    await firestore.collection("users").doc(auth.currentUser.uid).update({ images: filteredImages });
+
+    const userImages = filteredImages.filter(obj => (obj.userID === auth.currentUser.uid));
+    await firestore.collection("users").doc(auth.currentUser.uid).update({ images: userImages });
+
     setItem({ ...item, images: filteredImages });
+    
   } catch (error) {
     console.error(error);
     console.log("Error occurred!");
