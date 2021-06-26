@@ -25,14 +25,7 @@ This project was built using React (Create React App) and Firebase. The Firebase
 
 ### Dependencies
 ```
-npm install dotenv
-npm install firebase
-npm install --save react-router-dom
-npm install --save react-firebase-hooks
-npm install react-icons --save
-npm install react-outside-click-handler
-npm install --save react-customizable-progressbar
-npm install -g firebase-tools
+npm install
 ```
 
 ### Installation and Firebase setup
